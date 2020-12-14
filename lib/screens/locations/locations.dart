@@ -29,7 +29,8 @@ class _LocationsScreenState extends State<LocationsScreen> {
         ],
       ),
       body: Query(
-          options: QueryOptions(document: gql(getAllLocations)),
+          options: QueryOptions(
+              document: gql(getAllLocations), variables: {"page": 1}),
           builder: (QueryResult result,
               {VoidCallback refetch, FetchMore fetchMore}) {
             if (result.isLoading) {
@@ -46,25 +47,19 @@ class _LocationsScreenState extends State<LocationsScreen> {
             }
 
             final List locations = result.data['locations']['results'];
-            final int locationResponse =
-                result.data['locations']['info']['next'];
-
-            var nextPage = locationResponse;
+            final int nextPage = result.data['locations']['info']['next'];
 
             FetchMoreOptions fetchMoreLocations = FetchMoreOptions(
-                variables: {'next': locationResponse},
-                updateQuery: (previousResultData, fetchMoreResultData) {
-                  final List<dynamic> locales = [
-                    ...previousResultData['locations']['results']
-                        as List<dynamic>,
-                    ...fetchMoreResultData['locations']['results']
-                        as List<dynamic>
-                  ];
-
-                  fetchMoreResultData['locations']['results'] = locales;
-
-                  return fetchMoreResultData;
-                });
+                variables: {'page': nextPage},
+                updateQuery: (existing, newLocations) => ({
+                      'locations': {
+                        'page': newLocations['info']['next'],
+                        'locations': [
+                          ...existing['locations']['results'],
+                          ...newLocations['locations']['results']
+                        ],
+                      }
+                    }));
 
             ScrollController _scrollController = ScrollController();
             _scrollController.addListener(() {

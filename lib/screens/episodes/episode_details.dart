@@ -1,22 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:ricky_n_morty/api_queries/graph_queries.dart'
+    show getEpisodeDetails;
 
 class EpisodeDetails extends StatelessWidget {
   final String id, episodeTitle, episode, episodeDate;
-
-  final String getEpisodeDetails = """
-query episodeDetails(\$id: ID!) {
-  episode(id: \$id) {
-    id
-    name
-    characters {
-      name
-      image
-    }
-  }
-}
-""";
 
   const EpisodeDetails(
       {Key key, this.id, this.episodeTitle, this.episode, this.episodeDate})

@@ -1,24 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:ricky_n_morty/api_queries/graph_queries.dart'
+    show getCharacterDetails;
 
 class CharacterDetails extends StatelessWidget {
-  final String getCharacterDetails = """
-  query characterDetails(\$id: ID!) {
-  character(id: \$id) {
-    id 
-    status
-    type
-    image
-    origin {
-      name
-    }
-    episode {
-      episode
-    }
-  }
-}""";
-
   final String id,
       characterName,
       characterGender,
@@ -112,7 +98,11 @@ class CharacterDetails extends StatelessWidget {
                           )
                         ],
                       ),
-                      Text('🌍 ${characterDetails['origin']['name']}'),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                          'Home Planet 🌍:  ${characterDetails['origin']['name']}'),
                       Text('Episodes with $characterName'),
                       Divider(),
                       Wrap(

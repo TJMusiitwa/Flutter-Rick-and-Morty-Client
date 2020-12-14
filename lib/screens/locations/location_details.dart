@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:ricky_n_morty/api_queries/graph_queries.dart'
+    show getLocationDetails;
 
 class LocationDetails extends StatelessWidget {
   final String id, locationName, locationType, locationDimension;
@@ -13,19 +15,6 @@ class LocationDetails extends StatelessWidget {
       this.locationDimension})
       : super(key: key);
 
-  final String getLocationDetails = """
-query LocationDetails(\$id: ID!) {
-  location(id: \$id) {
-    id
-    type
-    dimension
-    residents {
-      name
-      image
-    }
-  }
-}
-""";
   @override
   Widget build(BuildContext context) {
     return Scaffold(

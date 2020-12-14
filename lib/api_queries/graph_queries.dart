@@ -1,7 +1,7 @@
 //Get all characters
 final String getAllCharacters = """
-query allCharacters {
-  characters {
+query allCharacters(\$page: Int!) {
+  characters(page: \$page) {
     info {
       count
       pages
@@ -17,12 +17,13 @@ query allCharacters {
     }
   }
 }
+
 """;
 
 //Get all episodes
 final String getAllEpisodes = """
-query allEpisodes {
-  episodes {
+query allEpisodes(\$page: Int!)  {
+  episodes(page: \$page) {
     info {
       count
       pages
@@ -41,8 +42,8 @@ query allEpisodes {
 
 //Get all locations
 final String getAllLocations = """
-query allLocations {
-  locations {
+query allLocations(\$page: Int!) {
+  locations(page: \$page) {
     info {
       count
       pages
@@ -57,11 +58,25 @@ query allLocations {
     }
   }
 }
+
 """;
 
 //Get all character details
 final String getCharacterDetails = """
-""";
+  query characterDetails(\$id: ID!) {
+  character(id: \$id) {
+    id 
+    status
+    type
+    image
+    origin {
+      name
+    }
+    episode {
+      episode
+    }
+  }
+}""";
 
 //Get all episode details
 final String getEpisodeDetails = """

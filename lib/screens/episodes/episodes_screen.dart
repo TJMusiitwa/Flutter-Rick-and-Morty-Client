@@ -24,7 +24,8 @@ class EpisodesScreen extends StatelessWidget {
         ],
       ),
       body: Query(
-          options: QueryOptions(document: gql(getAllEpisodes)),
+          options: QueryOptions(
+              document: gql(getAllEpisodes), variables: {"page": 0}),
           builder: (QueryResult result,
               {VoidCallback refetch, FetchMore fetchMore}) {
             if (result.isLoading) {
@@ -42,24 +43,19 @@ class EpisodesScreen extends StatelessWidget {
             }
             final List episodes = result.data['episodes']['results'];
 
-            // Paging holder
-            final int episodesResponse =
-                result.data['episodes']['info']['next'];
+            final nextPage = result.data['episodes']['info']['next'];
 
             FetchMoreOptions fetchMoreEpisodes = FetchMoreOptions(
-                variables: {'next': episodesResponse},
-                updateQuery: (previousResultData, fetchMoreResultData) {
-                  final List<dynamic> locales = [
-                    ...previousResultData['episodes']['results']
-                        as List<dynamic>,
-                    ...fetchMoreResultData['episodes']['results']
-                        as List<dynamic>
-                  ];
-
-                  fetchMoreResultData['episodes']['results'] = locales;
-
-                  return fetchMoreResultData;
-                });
+                variables: {'page': nextPage},
+                updateQuery: (existing, newEpisodes) => ({
+                      'episodes': {
+                        'page': newEpisodes['info']['next'],
+                        'results': [
+                          ...existing['episodes']['results'],
+                          ...newEpisodes['episodes']['results']
+                        ],
+                      }
+                    }));
 
             ScrollController _scrollController = ScrollController();
             _scrollController.addListener(() {

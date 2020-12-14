@@ -23,7 +23,8 @@ class CharactersScreen extends StatelessWidget {
         ],
       ),
       body: Query(
-          options: QueryOptions(document: gql(getAllCharacters)),
+          options: QueryOptions(
+              document: gql(getAllCharacters), variables: {"page": 1}),
           builder: (QueryResult result,
               {VoidCallback refetch, FetchMore fetchMore}) {
             if (result.isLoading) {
@@ -96,15 +97,15 @@ class CharactersScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: ListTile(
-                    leading: Hero(
-                      tag: character['id'],
-                      child: CachedNetworkImage(
-                        height: 100,
-                        imageUrl: character['image'],
-                        fit: BoxFit.contain,
-                        fadeInDuration: Duration(milliseconds: 500),
-                      ),
-                    ),
+                    // leading: Hero(
+                    //   tag: character['id'],
+                    //   child: CachedNetworkImage(
+                    //     height: 100,
+                    //     imageUrl: character['image'],
+                    //     fit: BoxFit.contain,
+                    //     //fadeInDuration: Duration(milliseconds: 500),
+                    //   ),
+                    // ),
                     title: Text(
                       character['name'],
                       softWrap: true,
