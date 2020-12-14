@@ -1,4 +1,4 @@
-package com.example.ricky_n_morty;
+package com.jonathanmusiitwa.ricky_n_morty;
 
 import io.flutter.embedding.android.FlutterActivity;
 

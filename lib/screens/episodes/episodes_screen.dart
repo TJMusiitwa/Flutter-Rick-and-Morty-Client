@@ -24,10 +24,10 @@ class EpisodesScreen extends StatelessWidget {
         ],
       ),
       body: Query(
-          options: QueryOptions(documentNode: gql(getAllEpisodes)),
+          options: QueryOptions(document: gql(getAllEpisodes)),
           builder: (QueryResult result,
               {VoidCallback refetch, FetchMore fetchMore}) {
-            if (result.loading) {
+            if (result.isLoading) {
               return Center(child: CircularProgressIndicator());
             }
             if (result.hasException) {

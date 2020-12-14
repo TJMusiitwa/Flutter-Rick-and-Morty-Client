@@ -23,10 +23,10 @@ class CharactersScreen extends StatelessWidget {
         ],
       ),
       body: Query(
-          options: QueryOptions(documentNode: gql(getAllCharacters)),
+          options: QueryOptions(document: gql(getAllCharacters)),
           builder: (QueryResult result,
               {VoidCallback refetch, FetchMore fetchMore}) {
-            if (result.loading) {
+            if (result.isLoading) {
               return Center(child: CircularProgressIndicator());
             }
             if (result.hasException) {

@@ -29,10 +29,10 @@ class _LocationsScreenState extends State<LocationsScreen> {
         ],
       ),
       body: Query(
-          options: QueryOptions(documentNode: gql(getAllLocations)),
+          options: QueryOptions(document: gql(getAllLocations)),
           builder: (QueryResult result,
               {VoidCallback refetch, FetchMore fetchMore}) {
-            if (result.loading) {
+            if (result.isLoading) {
               return Center(child: CircularProgressIndicator());
             }
             if (result.hasException) {

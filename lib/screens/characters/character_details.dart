@@ -38,10 +38,10 @@ class CharacterDetails extends StatelessWidget {
     return Scaffold(
       body: Query(
         options: QueryOptions(
-            documentNode: gql(getCharacterDetails),
+            document: gql(getCharacterDetails),
             variables: {"id": int.tryParse(id)}),
         builder: (result, {fetchMore, refetch}) {
-          if (result.loading) {
+          if (result.isLoading) {
             return Center(child: CircularProgressIndicator());
           }
           final characterDetails = result.data['character'];

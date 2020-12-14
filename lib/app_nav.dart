@@ -60,15 +60,15 @@ class _AppnavState extends State<Appnav> {
           items: [
             BottomNavigationBarItem(
               icon: Icon(Icons.people),
-              title: Text('Characters'),
+              label: 'Characters',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.local_movies),
-              title: Text('Episodes'),
+              label: 'Episodes',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.location_on),
-              title: Text('Locations'),
+              label: 'Locations',
             ),
           ],
           type: BottomNavigationBarType.fixed,

@@ -8,7 +8,7 @@ It is built using the [Rick and Morty GraphQl API](https://rickandmortyapi.com/)
 Github link to [API Repo](https://github.com/afuh/rick-and-morty-api)
 
 ## Why build this?
-This is just another flutter project as well as the need to explore more real-world graphql APIs.
+This is just another Flutter project as well as the need to explore more real-world graphql APIs.
 
 ## Copyright
 Rick and Morty is created by Justin Roiland and Dan Harmon for Adult Swim. The data and images are used without claim of ownership and belong to their respective owners.

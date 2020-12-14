@@ -32,10 +32,10 @@ query episodeDetails(\$id: ID!) {
       ),
       body: Query(
         options: QueryOptions(
-            documentNode: gql(getEpisodeDetails),
+            document: gql(getEpisodeDetails),
             variables: {"id": int.tryParse(id)}),
         builder: (result, {fetchMore, refetch}) {
-          if (result.loading) {
+          if (result.isLoading) {
             return Center(child: CircularProgressIndicator());
           }
           final episodeDetails = result.data['episode'];

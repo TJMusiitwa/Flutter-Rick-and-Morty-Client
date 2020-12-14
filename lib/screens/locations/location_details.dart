@@ -36,11 +36,11 @@ query LocationDetails(\$id: ID!) {
       )),
       body: Query(
           options: QueryOptions(
-              documentNode: gql(getLocationDetails),
+              document: gql(getLocationDetails),
               variables: {"id": int.tryParse(id)}),
           builder: (QueryResult result,
               {VoidCallback refetch, FetchMore fetchMore}) {
-            if (result.loading) {
+            if (result.isLoading) {
               return Center(child: CircularProgressIndicator());
             }
             if (result.hasException) {}
