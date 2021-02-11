@@ -1,8 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ferry/ferry.dart';
+import 'package:ferry_flutter/ferry_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:ricky_n_morty/api_queries/graph_queries.dart'
-    show getEpisodeDetails;
+import 'package:get_it/get_it.dart';
+import 'package:ricky_n_morty/graphql/episodeDetails.data.gql.dart';
+import 'package:ricky_n_morty/graphql/episodeDetails.req.gql.dart';
+import 'package:ricky_n_morty/graphql/episodeDetails.var.gql.dart';
 
 class EpisodeDetails extends StatelessWidget {
   final String id, episodeTitle, episode, episodeDate;
@@ -12,6 +15,7 @@ class EpisodeDetails extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final client = GetIt.I<Client>();
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -19,17 +23,18 @@ class EpisodeDetails extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
         ),
       ),
-      body: Query(
-        options: QueryOptions(
-            document: gql(getEpisodeDetails),
-            variables: {"id": int.tryParse(id)}),
-        builder: (result, {fetchMore, refetch}) {
-          if (result.isLoading) {
+      body: Operation(
+        client: client,
+        operationRequest: GepisodeDetailsReq((d) => d..vars.id = id),
+        builder: (BuildContext context,
+            OperationResponse<GepisodeDetailsData, GepisodeDetailsVars>
+                response,
+            Object error) {
+          if (response.loading) {
             return Center(child: CircularProgressIndicator());
           }
-          final episodeDetails = result.data['episode'];
-          final List episodeCharacters = episodeDetails['characters'];
-
+          final episodeDetails = response.data.episode;
+          final episodeCharacters = episodeDetails.characters.asList();
           return SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
             child: Column(
@@ -49,14 +54,15 @@ class EpisodeDetails extends StatelessWidget {
                   spacing: 6,
                   runSpacing: 6,
                   children: List<Widget>.generate(
-                      episodeCharacters.length,
-                      (index) => Chip(
-                            avatar: CircleAvatar(
-                              backgroundImage: CachedNetworkImageProvider(
-                                  episodeCharacters[index]['image']),
-                            ),
-                            label: Text(episodeCharacters[index]['name']),
-                          )),
+                    episodeCharacters.length,
+                    (index) => Chip(
+                      avatar: CircleAvatar(
+                        backgroundImage: CachedNetworkImageProvider(
+                            episodeCharacters[index].image),
+                      ),
+                      label: Text(episodeCharacters[index].name),
+                    ),
+                  ),
                 ),
               ],
             ),

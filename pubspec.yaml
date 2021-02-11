@@ -23,10 +23,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  graphql_flutter: ^4.0.0-beta.5
+  cached_network_image: ^2.3.3
+  ferry: ^0.9.4
+  ferry_flutter: ^0.4.0
+  ferry_hive_store: ^0.3.2
   flutter_launcher_icons: ^0.8.1
   flutter_native_splash: ^0.1.9
-  cached_network_image: ^2.3.3
+  get_it: ^5.0.6
+  gql_http_link: ^0.3.2
+  hive: ^1.4.4+1
+  hive_flutter: ^0.3.1
   url_launcher: ^5.7.8
 
 flutter_native_splash:
@@ -45,10 +51,11 @@ flutter_icons:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner: null
+  ferry_generator: null
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
-
 # The following section is specific to Flutter.
 flutter:
 
@@ -61,13 +68,10 @@ flutter:
   assets:
     - assets/
   #   - images/a_dot_ham.jpeg
-
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
-
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
-
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a

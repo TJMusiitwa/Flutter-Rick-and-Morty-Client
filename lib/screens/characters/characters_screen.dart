@@ -1,13 +1,21 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ferry/ferry.dart';
+import 'package:ferry_flutter/ferry_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:ricky_n_morty/api_queries/graph_queries.dart'
-    show getAllCharacters;
+import 'package:get_it/get_it.dart';
+import 'package:ricky_n_morty/graphql/allCharacters.data.gql.dart';
+import 'package:ricky_n_morty/graphql/allCharacters.req.gql.dart';
+import 'package:ricky_n_morty/graphql/allCharacters.var.gql.dart';
 import 'package:ricky_n_morty/screens/settings_screen.dart';
+
 import 'character_details.dart';
 
 class CharactersScreen extends StatelessWidget {
-  bool isLoading = false;
+  final client = GetIt.I<Client>();
+  final charactersRequest = GallCharactersReq((c) => c
+    ..requestId = 'getCharactersId'
+    ..vars.page = 1);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,113 +30,105 @@ class CharactersScreen extends StatelessWidget {
                   MaterialPageRoute(builder: (_) => SettingsScreen()))),
         ],
       ),
-      body: Query(
-          options: QueryOptions(
-              document: gql(getAllCharacters), variables: {"page": 1}),
-          builder: (QueryResult result,
-              {VoidCallback refetch, FetchMore fetchMore}) {
-            if (result.isLoading) {
-              return Center(child: CircularProgressIndicator());
-            }
-            if (result.hasException) {
-              Scaffold.of(context).showSnackBar(SnackBar(
-                content: Text(
-                  result.exception.toString(),
-                  softWrap: true,
-                  overflow: TextOverflow.ellipsis,
+      body: Operation(
+        client: client,
+        operationRequest: charactersRequest,
+        builder: (BuildContext context,
+            OperationResponse<GallCharactersData, GallCharactersVars> response,
+            Object error) {
+          if (response.loading) {
+            return Center(child: CircularProgressIndicator());
+          }
+          if (response.hasErrors) {
+            Scaffold.of(context).showSnackBar(SnackBar(
+              content: Text(
+                response.graphqlErrors.first.message,
+                softWrap: true,
+                overflow: TextOverflow.ellipsis,
+              ),
+              action: SnackBarAction(label: 'RETRY', onPressed: () {}),
+              behavior: SnackBarBehavior.fixed,
+            ));
+          }
+
+          if (response.data.characters == null) {
+            return Column(
+              children: [
+                Center(
+                  child: Image.asset('assets/rick_mort_splash.png'),
                 ),
-                action: SnackBarAction(label: 'RETRY', onPressed: () {}),
-                behavior: SnackBarBehavior.fixed,
-              ));
-            }
+                SizedBox(height: 10),
+                Center(
+                  child: Text(
+                    'Uhh Morty, you do know there is nothing but junk to watch on TV',
+                    softWrap: true,
+                  ),
+                ),
+              ],
+            );
+          }
 
-            if (result.data == null) {
-              return Column(
-                children: [
-                  Center(
-                    child: Image.asset('assets/rick_mort_splash.png'),
-                  ),
-                  SizedBox(height: 10),
-                  Center(
-                    child: Text(
-                        'Uhh Morty, you do know there is nothing but junk to watch on TV'),
-                  ),
-                ],
+          ScrollController _scrollController = ScrollController();
+          _scrollController.addListener(() {
+            if (_scrollController.position.pixels ==
+                _scrollController.position.maxScrollExtent) {
+              final paginationChars = charactersRequest.rebuild(
+                (p) => p
+                  ..vars.page = p.vars.page + 1
+                  ..updateResult = (previous, next) =>
+                      previous?.rebuild((p) => p
+                        ..characters.results.addAll(next.characters.results)) ??
+                      next,
               );
+              client.requestController.add(paginationChars);
             }
+          });
 
-            final List characters = result.data['characters']['results'];
-
-            final int charactersResponse =
-                result.data['characters']['info']['next'];
-
-            FetchMoreOptions fetchMoreCharacters = FetchMoreOptions(
-                variables: {'next': charactersResponse},
-                updateQuery: (previousResultData, fetchMoreResultData) {
-                  final List<dynamic> locales = [
-                    ...previousResultData['characters']['results']
-                        as List<dynamic>,
-                    ...fetchMoreResultData['characters']['results']
-                        as List<dynamic>
-                  ];
-
-                  fetchMoreResultData['characters']['results'] = locales;
-
-                  return fetchMoreResultData;
-                });
-
-            ScrollController _scrollController = ScrollController();
-            _scrollController.addListener(() {
-              if (_scrollController.position.maxScrollExtent ==
-                  _scrollController.position.pixels) {
-                if (!isLoading) {
-                  isLoading = !isLoading;
-                  fetchMore(fetchMoreCharacters);
-                }
-              }
-            });
-
-            return ListView.builder(
-              itemCount: characters.length,
-              itemBuilder: (BuildContext context, int index) {
-                final character = characters[index];
-                return Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: ListTile(
-                    // leading: Hero(
-                    //   tag: character['id'],
-                    //   child: CachedNetworkImage(
-                    //     height: 100,
-                    //     imageUrl: character['image'],
-                    //     fit: BoxFit.contain,
-                    //     //fadeInDuration: Duration(milliseconds: 500),
-                    //   ),
-                    // ),
-                    title: Text(
-                      character['name'],
-                      softWrap: true,
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.headline5,
+          final characters = response.data.characters.results.toBuiltList();
+          return ListView.builder(
+            controller: _scrollController,
+            itemCount: characters.length,
+            //itemExtent: 10,
+            itemBuilder: (BuildContext context, int index) {
+              final character = characters[index];
+              return Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: ListTile(
+                  leading: Container(
+                    height: 100,
+                    width: 80,
+                    child: CachedNetworkImage(
+                      imageUrl: character.image,
+                      fit: BoxFit.cover,
+                      //fadeInDuration: Duration(milliseconds: 500),
                     ),
-                    subtitle: Text(character['species']),
-                    trailing: Text(character['gender']),
-                    onTap: () => Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) => CharacterDetails(
-                          id: character['id'],
-                          characterName: character['name'],
-                          characterGender: character['gender'],
-                          characterSpecies: character['species'],
-                        ),
+                  ),
+                  title: Text(
+                    character.name,
+                    softWrap: true,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.headline5,
+                  ),
+                  subtitle: Text(character.species),
+                  trailing: Text(character.gender),
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => CharacterDetails(
+                        id: character.id,
+                        characterName: character.name,
+                        characterGender: character.gender,
+                        characterSpecies: character.species,
                       ),
                     ),
                   ),
-                );
-              },
-            );
-          }),
+                ),
+              );
+            },
+          );
+        },
+      ),
     );
   }
 }

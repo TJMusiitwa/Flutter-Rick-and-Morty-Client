@@ -1,15 +1,23 @@
+import 'package:ferry/ferry.dart';
+import 'package:ferry_flutter/ferry_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:ricky_n_morty/api_queries/graph_queries.dart'
-    show getAllEpisodes;
+import 'package:get_it/get_it.dart';
+import 'package:ricky_n_morty/graphql/allEpisodes.data.gql.dart';
+import 'package:ricky_n_morty/graphql/allEpisodes.req.gql.dart';
+import 'package:ricky_n_morty/graphql/allEpisodes.var.gql.dart';
+
 import 'package:ricky_n_morty/screens/settings_screen.dart';
 import 'episode_details.dart';
 
 class EpisodesScreen extends StatelessWidget {
-  bool isLoading = false;
+  final client = GetIt.I<Client>();
+  final episodesReq = GallEpisodesReq((l) => l
+    ..requestId = 'getEpisodesId'
+    ..vars.page = 1);
 
   @override
   Widget build(BuildContext context) {
+    int _currentPage = 1;
     return Scaffold(
       appBar: AppBar(
         title: Text('Episodes'),
@@ -23,89 +31,77 @@ class EpisodesScreen extends StatelessWidget {
                   MaterialPageRoute(builder: (_) => SettingsScreen()))),
         ],
       ),
-      body: Query(
-          options: QueryOptions(
-              document: gql(getAllEpisodes), variables: {"page": 0}),
-          builder: (QueryResult result,
-              {VoidCallback refetch, FetchMore fetchMore}) {
-            if (result.isLoading) {
-              return Center(child: CircularProgressIndicator());
-            }
-            if (result.hasException) {
-              return Text(result.exception.toString());
-            }
-
-            if (result.data == null) {
-              return Center(
-                child: Text(
-                    'Uhh Morty, you do know there is nothing but junk to watch on TV'),
+      body: Operation(
+        client: client,
+        operationRequest: episodesReq,
+        builder: (BuildContext context,
+            OperationResponse<GallEpisodesData, GallEpisodesVars> response,
+            Object error) {
+          if (response.loading) {
+            return Center(child: CircularProgressIndicator());
+          } else if (response.hasErrors) {
+            return Text(response.graphqlErrors.first.message);
+          } else if (response.data.episodes.results == null) {
+            return Center(
+              child: Text(
+                  'Uhh Morty, you do know there is nothing but junk to watch on TV'),
+            );
+          }
+          ScrollController _scrollController = ScrollController();
+          _scrollController.addListener(() {
+            if (_scrollController.position.pixels ==
+                _scrollController.position.maxScrollExtent) {
+              final paginationEps = episodesReq.rebuild(
+                (p) => p
+                  ..vars.page = p.vars.page + 1
+                  ..updateResult = (previous, next) =>
+                      previous?.rebuild((p) =>
+                          p..episodes.results.addAll(next.episodes.results)) ??
+                      next,
               );
+              client.requestController.add(paginationEps);
             }
-            final List episodes = result.data['episodes']['results'];
+          });
 
-            final nextPage = result.data['episodes']['info']['next'];
-
-            FetchMoreOptions fetchMoreEpisodes = FetchMoreOptions(
-                variables: {'page': nextPage},
-                updateQuery: (existing, newEpisodes) => ({
-                      'episodes': {
-                        'page': newEpisodes['info']['next'],
-                        'results': [
-                          ...existing['episodes']['results'],
-                          ...newEpisodes['episodes']['results']
-                        ],
-                      }
-                    }));
-
-            ScrollController _scrollController = ScrollController();
-            _scrollController.addListener(() {
-              if (_scrollController.position.maxScrollExtent ==
-                  _scrollController.position.pixels) {
-                if (!isLoading) {
-                  isLoading = !isLoading;
-                  fetchMore(fetchMoreEpisodes);
-                }
-              }
-            });
-
-            return ListView.builder(
-              controller: _scrollController,
-              itemCount: episodes.length,
-              itemBuilder: (BuildContext context, int index) {
-                final episode = episodes[index];
-                return Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+          final episodes = response.data.episodes.results.toBuiltList();
+          return ListView.builder(
+            controller: _scrollController,
+            itemCount: episodes.length,
+            itemExtent: 100,
+            itemBuilder: (BuildContext context, int index) {
+              final episode = episodes[index];
+              return Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: ListTile(
+                  title: Text(
+                    episode.name,
+                    softWrap: true,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline5
+                        .copyWith(fontSize: 20),
                   ),
-                  child: ListTile(
-                    title: Text(
-                      episode['name'],
-                      softWrap: true,
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline5
-                          .copyWith(fontSize: 20),
-                    ),
-                    subtitle: Text('Aired: ' + episode['air_date']),
-                    trailing: Text(episode['episode']),
-                    onTap: () => Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) => EpisodeDetails(
-                          id: episode['id'],
-                          episodeTitle: episode['name'],
-                          episode: episode['episode'],
-                          episodeDate: episode['air_date'],
-                        ),
+                  subtitle: Text('Aired: ' + episode.air_date),
+                  trailing: Text(episode.episode),
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => EpisodeDetails(
+                        id: episode.id,
+                        episodeTitle: episode.name,
+                        episode: episode.episode,
+                        episodeDate: episode.air_date,
                       ),
                     ),
-                    // Navigator.pushNamed(context, '/episodesDetails',
-                    //     arguments: ),
                   ),
-                );
-              },
-            );
-          }),
+                ),
+              );
+            },
+          );
+        },
+      ),
     );
   }
 }
