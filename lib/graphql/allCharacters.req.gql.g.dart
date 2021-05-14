@@ -17,59 +17,62 @@ class _$GallCharactersReqSerializer
   final String wireName = 'GallCharactersReq';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, GallCharactersReq object,
+  Iterable<Object?> serialize(Serializers serializers, GallCharactersReq object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       'vars',
       serializers.serialize(object.vars,
           specifiedType: const FullType(_i3.GallCharactersVars)),
       'operation',
       serializers.serialize(object.operation,
           specifiedType: const FullType(_i4.Operation)),
+      'executeOnListen',
+      serializers.serialize(object.executeOnListen,
+          specifiedType: const FullType(bool)),
     ];
-    if (object.requestId != null) {
+    Object? value;
+    value = object.requestId;
+    if (value != null) {
       result
         ..add('requestId')
-        ..add(serializers.serialize(object.requestId,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.optimisticResponse != null) {
+    value = object.optimisticResponse;
+    if (value != null) {
       result
         ..add('optimisticResponse')
-        ..add(serializers.serialize(object.optimisticResponse,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(_i2.GallCharactersData)));
     }
-    if (object.updateCacheHandlerKey != null) {
+    value = object.updateCacheHandlerKey;
+    if (value != null) {
       result
         ..add('updateCacheHandlerKey')
-        ..add(serializers.serialize(object.updateCacheHandlerKey,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.updateCacheHandlerContext != null) {
+    value = object.updateCacheHandlerContext;
+    if (value != null) {
       result
         ..add('updateCacheHandlerContext')
-        ..add(serializers.serialize(object.updateCacheHandlerContext,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(
                 Map, const [const FullType(String), const FullType(dynamic)])));
     }
-    if (object.fetchPolicy != null) {
+    value = object.fetchPolicy;
+    if (value != null) {
       result
         ..add('fetchPolicy')
-        ..add(serializers.serialize(object.fetchPolicy,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(_i1.FetchPolicy)));
-    }
-    if (object.executeOnListen != null) {
-      result
-        ..add('executeOnListen')
-        ..add(serializers.serialize(object.executeOnListen,
-            specifiedType: const FullType(bool)));
     }
     return result;
   }
 
   @override
   GallCharactersReq deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new GallCharactersReqBuilder();
 
@@ -77,11 +80,11 @@ class _$GallCharactersReqSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'vars':
           result.vars.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(_i3.GallCharactersVars))
+                  specifiedType: const FullType(_i3.GallCharactersVars))!
               as _i3.GallCharactersVars);
           break;
         case 'operation':
@@ -94,7 +97,7 @@ class _$GallCharactersReqSerializer
           break;
         case 'optimisticResponse':
           result.optimisticResponse.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(_i2.GallCharactersData))
+                  specifiedType: const FullType(_i2.GallCharactersData))!
               as _i2.GallCharactersData);
           break;
         case 'updateCacheHandlerKey':
@@ -130,42 +133,41 @@ class _$GallCharactersReq extends GallCharactersReq {
   @override
   final _i4.Operation operation;
   @override
-  final String requestId;
+  final String? requestId;
   @override
-  final _i2.GallCharactersData Function(
-      _i2.GallCharactersData, _i2.GallCharactersData) updateResult;
+  final _i2.GallCharactersData? Function(
+      _i2.GallCharactersData?, _i2.GallCharactersData?)? updateResult;
   @override
-  final _i2.GallCharactersData optimisticResponse;
+  final _i2.GallCharactersData? optimisticResponse;
   @override
-  final String updateCacheHandlerKey;
+  final String? updateCacheHandlerKey;
   @override
-  final Map<String, dynamic> updateCacheHandlerContext;
+  final Map<String, dynamic>? updateCacheHandlerContext;
   @override
-  final _i1.FetchPolicy fetchPolicy;
+  final _i1.FetchPolicy? fetchPolicy;
   @override
   final bool executeOnListen;
 
   factory _$GallCharactersReq(
-          [void Function(GallCharactersReqBuilder) updates]) =>
+          [void Function(GallCharactersReqBuilder)? updates]) =>
       (new GallCharactersReqBuilder()..update(updates)).build();
 
   _$GallCharactersReq._(
-      {this.vars,
-      this.operation,
+      {required this.vars,
+      required this.operation,
       this.requestId,
       this.updateResult,
       this.optimisticResponse,
       this.updateCacheHandlerKey,
       this.updateCacheHandlerContext,
       this.fetchPolicy,
-      this.executeOnListen})
+      required this.executeOnListen})
       : super._() {
-    if (vars == null) {
-      throw new BuiltValueNullFieldError('GallCharactersReq', 'vars');
-    }
-    if (operation == null) {
-      throw new BuiltValueNullFieldError('GallCharactersReq', 'operation');
-    }
+    BuiltValueNullFieldError.checkNotNull(vars, 'GallCharactersReq', 'vars');
+    BuiltValueNullFieldError.checkNotNull(
+        operation, 'GallCharactersReq', 'operation');
+    BuiltValueNullFieldError.checkNotNull(
+        executeOnListen, 'GallCharactersReq', 'executeOnListen');
   }
 
   @override
@@ -228,58 +230,58 @@ class _$GallCharactersReq extends GallCharactersReq {
 
 class GallCharactersReqBuilder
     implements Builder<GallCharactersReq, GallCharactersReqBuilder> {
-  _$GallCharactersReq _$v;
+  _$GallCharactersReq? _$v;
 
-  _i3.GallCharactersVarsBuilder _vars;
+  _i3.GallCharactersVarsBuilder? _vars;
   _i3.GallCharactersVarsBuilder get vars =>
       _$this._vars ??= new _i3.GallCharactersVarsBuilder();
-  set vars(_i3.GallCharactersVarsBuilder vars) => _$this._vars = vars;
+  set vars(_i3.GallCharactersVarsBuilder? vars) => _$this._vars = vars;
 
-  _i4.Operation _operation;
-  _i4.Operation get operation => _$this._operation;
-  set operation(_i4.Operation operation) => _$this._operation = operation;
+  _i4.Operation? _operation;
+  _i4.Operation? get operation => _$this._operation;
+  set operation(_i4.Operation? operation) => _$this._operation = operation;
 
-  String _requestId;
-  String get requestId => _$this._requestId;
-  set requestId(String requestId) => _$this._requestId = requestId;
+  String? _requestId;
+  String? get requestId => _$this._requestId;
+  set requestId(String? requestId) => _$this._requestId = requestId;
 
-  _i2.GallCharactersData Function(
-      _i2.GallCharactersData, _i2.GallCharactersData) _updateResult;
-  _i2.GallCharactersData Function(
-          _i2.GallCharactersData, _i2.GallCharactersData)
+  _i2.GallCharactersData? Function(
+      _i2.GallCharactersData?, _i2.GallCharactersData?)? _updateResult;
+  _i2.GallCharactersData? Function(
+          _i2.GallCharactersData?, _i2.GallCharactersData?)?
       get updateResult => _$this._updateResult;
   set updateResult(
-          _i2.GallCharactersData Function(
-                  _i2.GallCharactersData, _i2.GallCharactersData)
+          _i2.GallCharactersData? Function(
+                  _i2.GallCharactersData?, _i2.GallCharactersData?)?
               updateResult) =>
       _$this._updateResult = updateResult;
 
-  _i2.GallCharactersDataBuilder _optimisticResponse;
+  _i2.GallCharactersDataBuilder? _optimisticResponse;
   _i2.GallCharactersDataBuilder get optimisticResponse =>
       _$this._optimisticResponse ??= new _i2.GallCharactersDataBuilder();
-  set optimisticResponse(_i2.GallCharactersDataBuilder optimisticResponse) =>
+  set optimisticResponse(_i2.GallCharactersDataBuilder? optimisticResponse) =>
       _$this._optimisticResponse = optimisticResponse;
 
-  String _updateCacheHandlerKey;
-  String get updateCacheHandlerKey => _$this._updateCacheHandlerKey;
-  set updateCacheHandlerKey(String updateCacheHandlerKey) =>
+  String? _updateCacheHandlerKey;
+  String? get updateCacheHandlerKey => _$this._updateCacheHandlerKey;
+  set updateCacheHandlerKey(String? updateCacheHandlerKey) =>
       _$this._updateCacheHandlerKey = updateCacheHandlerKey;
 
-  Map<String, dynamic> _updateCacheHandlerContext;
-  Map<String, dynamic> get updateCacheHandlerContext =>
+  Map<String, dynamic>? _updateCacheHandlerContext;
+  Map<String, dynamic>? get updateCacheHandlerContext =>
       _$this._updateCacheHandlerContext;
   set updateCacheHandlerContext(
-          Map<String, dynamic> updateCacheHandlerContext) =>
+          Map<String, dynamic>? updateCacheHandlerContext) =>
       _$this._updateCacheHandlerContext = updateCacheHandlerContext;
 
-  _i1.FetchPolicy _fetchPolicy;
-  _i1.FetchPolicy get fetchPolicy => _$this._fetchPolicy;
-  set fetchPolicy(_i1.FetchPolicy fetchPolicy) =>
+  _i1.FetchPolicy? _fetchPolicy;
+  _i1.FetchPolicy? get fetchPolicy => _$this._fetchPolicy;
+  set fetchPolicy(_i1.FetchPolicy? fetchPolicy) =>
       _$this._fetchPolicy = fetchPolicy;
 
-  bool _executeOnListen;
-  bool get executeOnListen => _$this._executeOnListen;
-  set executeOnListen(bool executeOnListen) =>
+  bool? _executeOnListen;
+  bool? get executeOnListen => _$this._executeOnListen;
+  set executeOnListen(bool? executeOnListen) =>
       _$this._executeOnListen = executeOnListen;
 
   GallCharactersReqBuilder() {
@@ -287,16 +289,17 @@ class GallCharactersReqBuilder
   }
 
   GallCharactersReqBuilder get _$this {
-    if (_$v != null) {
-      _vars = _$v.vars?.toBuilder();
-      _operation = _$v.operation;
-      _requestId = _$v.requestId;
-      _updateResult = _$v.updateResult;
-      _optimisticResponse = _$v.optimisticResponse?.toBuilder();
-      _updateCacheHandlerKey = _$v.updateCacheHandlerKey;
-      _updateCacheHandlerContext = _$v.updateCacheHandlerContext;
-      _fetchPolicy = _$v.fetchPolicy;
-      _executeOnListen = _$v.executeOnListen;
+    final $v = _$v;
+    if ($v != null) {
+      _vars = $v.vars.toBuilder();
+      _operation = $v.operation;
+      _requestId = $v.requestId;
+      _updateResult = $v.updateResult;
+      _optimisticResponse = $v.optimisticResponse?.toBuilder();
+      _updateCacheHandlerKey = $v.updateCacheHandlerKey;
+      _updateCacheHandlerContext = $v.updateCacheHandlerContext;
+      _fetchPolicy = $v.fetchPolicy;
+      _executeOnListen = $v.executeOnListen;
       _$v = null;
     }
     return this;
@@ -304,14 +307,12 @@ class GallCharactersReqBuilder
 
   @override
   void replace(GallCharactersReq other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GallCharactersReq;
   }
 
   @override
-  void update(void Function(GallCharactersReqBuilder) updates) {
+  void update(void Function(GallCharactersReqBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -322,16 +323,18 @@ class GallCharactersReqBuilder
       _$result = _$v ??
           new _$GallCharactersReq._(
               vars: vars.build(),
-              operation: operation,
+              operation: BuiltValueNullFieldError.checkNotNull(
+                  operation, 'GallCharactersReq', 'operation'),
               requestId: requestId,
               updateResult: updateResult,
               optimisticResponse: _optimisticResponse?.build(),
               updateCacheHandlerKey: updateCacheHandlerKey,
               updateCacheHandlerContext: updateCacheHandlerContext,
               fetchPolicy: fetchPolicy,
-              executeOnListen: executeOnListen);
+              executeOnListen: BuiltValueNullFieldError.checkNotNull(
+                  executeOnListen, 'GallCharactersReq', 'executeOnListen'));
     } catch (_) {
-      String _$failedField;
+      late String _$failedField;
       try {
         _$failedField = 'vars';
         vars.build();

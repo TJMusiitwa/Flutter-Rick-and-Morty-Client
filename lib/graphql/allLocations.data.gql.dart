@@ -18,13 +18,13 @@ abstract class GallLocationsData
       b..G__typename = 'Query';
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  @nullable
-  GallLocationsData_locations get locations;
+  GallLocationsData_locations? get locations;
   static Serializer<GallLocationsData> get serializer =>
       _$gallLocationsDataSerializer;
   Map<String, dynamic> toJson() =>
-      _i1.serializers.serializeWith(GallLocationsData.serializer, this);
-  static GallLocationsData fromJson(Map<String, dynamic> json) =>
+      (_i1.serializers.serializeWith(GallLocationsData.serializer, this)
+          as Map<String, dynamic>);
+  static GallLocationsData? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(GallLocationsData.serializer, json);
 }
 
@@ -41,15 +41,13 @@ abstract class GallLocationsData_locations
       b..G__typename = 'Locations';
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  @nullable
-  GallLocationsData_locations_info get info;
-  @nullable
-  BuiltList<GallLocationsData_locations_results> get results;
+  GallLocationsData_locations_info? get info;
+  BuiltList<GallLocationsData_locations_results>? get results;
   static Serializer<GallLocationsData_locations> get serializer =>
       _$gallLocationsDataLocationsSerializer;
-  Map<String, dynamic> toJson() => _i1.serializers
-      .serializeWith(GallLocationsData_locations.serializer, this);
-  static GallLocationsData_locations fromJson(Map<String, dynamic> json) =>
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+      GallLocationsData_locations.serializer, this) as Map<String, dynamic>);
+  static GallLocationsData_locations? fromJson(Map<String, dynamic> json) =>
       _i1.serializers
           .deserializeWith(GallLocationsData_locations.serializer, json);
 }
@@ -68,17 +66,16 @@ abstract class GallLocationsData_locations_info
       b..G__typename = 'Info';
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  @nullable
-  int get count;
-  @nullable
-  int get pages;
-  @nullable
-  int get next;
+  int? get count;
+  int? get pages;
+  int? get next;
   static Serializer<GallLocationsData_locations_info> get serializer =>
       _$gallLocationsDataLocationsInfoSerializer;
-  Map<String, dynamic> toJson() => _i1.serializers
-      .serializeWith(GallLocationsData_locations_info.serializer, this);
-  static GallLocationsData_locations_info fromJson(Map<String, dynamic> json) =>
+  Map<String, dynamic> toJson() => (_i1.serializers
+          .serializeWith(GallLocationsData_locations_info.serializer, this)
+      as Map<String, dynamic>);
+  static GallLocationsData_locations_info? fromJson(
+          Map<String, dynamic> json) =>
       _i1.serializers
           .deserializeWith(GallLocationsData_locations_info.serializer, json);
 }
@@ -98,21 +95,17 @@ abstract class GallLocationsData_locations_results
       b..G__typename = 'Location';
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  @nullable
-  String get id;
-  @nullable
-  String get name;
-  @nullable
-  String get type;
-  @nullable
-  String get dimension;
-  @nullable
-  String get created;
+  String? get id;
+  String? get name;
+  String? get type;
+  String? get dimension;
+  String? get created;
   static Serializer<GallLocationsData_locations_results> get serializer =>
       _$gallLocationsDataLocationsResultsSerializer;
-  Map<String, dynamic> toJson() => _i1.serializers
-      .serializeWith(GallLocationsData_locations_results.serializer, this);
-  static GallLocationsData_locations_results fromJson(
+  Map<String, dynamic> toJson() => (_i1.serializers
+          .serializeWith(GallLocationsData_locations_results.serializer, this)
+      as Map<String, dynamic>);
+  static GallLocationsData_locations_results? fromJson(
           Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
           GallLocationsData_locations_results.serializer, json);

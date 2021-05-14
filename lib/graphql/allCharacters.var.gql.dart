@@ -13,12 +13,12 @@ abstract class GallCharactersVars
   factory GallCharactersVars([Function(GallCharactersVarsBuilder b) updates]) =
       _$GallCharactersVars;
 
-  @nullable
-  int get page;
+  int? get page;
   static Serializer<GallCharactersVars> get serializer =>
       _$gallCharactersVarsSerializer;
   Map<String, dynamic> toJson() =>
-      _i1.serializers.serializeWith(GallCharactersVars.serializer, this);
-  static GallCharactersVars fromJson(Map<String, dynamic> json) =>
+      (_i1.serializers.serializeWith(GallCharactersVars.serializer, this)
+          as Map<String, dynamic>);
+  static GallCharactersVars? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(GallCharactersVars.serializer, json);
 }

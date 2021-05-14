@@ -28,29 +28,23 @@ abstract class GepisodeDetailsReq
   _i4.Operation get operation;
   _i4.Request get execRequest =>
       _i4.Request(operation: operation, variables: vars.toJson());
-  @nullable
-  String get requestId;
-  @nullable
+  String? get requestId;
   @BuiltValueField(serialize: false)
-  _i2.GepisodeDetailsData Function(
-      _i2.GepisodeDetailsData, _i2.GepisodeDetailsData) get updateResult;
-  @nullable
-  _i2.GepisodeDetailsData get optimisticResponse;
-  @nullable
-  String get updateCacheHandlerKey;
-  @nullable
-  Map<String, dynamic> get updateCacheHandlerContext;
-  @nullable
-  _i1.FetchPolicy get fetchPolicy;
-  @nullable
+  _i2.GepisodeDetailsData? Function(
+      _i2.GepisodeDetailsData?, _i2.GepisodeDetailsData?)? get updateResult;
+  _i2.GepisodeDetailsData? get optimisticResponse;
+  String? get updateCacheHandlerKey;
+  Map<String, dynamic>? get updateCacheHandlerContext;
+  _i1.FetchPolicy? get fetchPolicy;
   bool get executeOnListen;
   @override
-  _i2.GepisodeDetailsData parseData(Map<String, dynamic> json) =>
+  _i2.GepisodeDetailsData? parseData(Map<String, dynamic> json) =>
       _i2.GepisodeDetailsData.fromJson(json);
   static Serializer<GepisodeDetailsReq> get serializer =>
       _$gepisodeDetailsReqSerializer;
   Map<String, dynamic> toJson() =>
-      _i6.serializers.serializeWith(GepisodeDetailsReq.serializer, this);
-  static GepisodeDetailsReq fromJson(Map<String, dynamic> json) =>
+      (_i6.serializers.serializeWith(GepisodeDetailsReq.serializer, this)
+          as Map<String, dynamic>);
+  static GepisodeDetailsReq? fromJson(Map<String, dynamic> json) =>
       _i6.serializers.deserializeWith(GepisodeDetailsReq.serializer, json);
 }

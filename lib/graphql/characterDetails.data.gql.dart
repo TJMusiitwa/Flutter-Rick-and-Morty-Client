@@ -19,13 +19,13 @@ abstract class GcharacterDetailsData
       b..G__typename = 'Query';
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  @nullable
-  GcharacterDetailsData_character get character;
+  GcharacterDetailsData_character? get character;
   static Serializer<GcharacterDetailsData> get serializer =>
       _$gcharacterDetailsDataSerializer;
   Map<String, dynamic> toJson() =>
-      _i1.serializers.serializeWith(GcharacterDetailsData.serializer, this);
-  static GcharacterDetailsData fromJson(Map<String, dynamic> json) =>
+      (_i1.serializers.serializeWith(GcharacterDetailsData.serializer, this)
+          as Map<String, dynamic>);
+  static GcharacterDetailsData? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(GcharacterDetailsData.serializer, json);
 }
 
@@ -43,23 +43,18 @@ abstract class GcharacterDetailsData_character
       b..G__typename = 'Character';
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  @nullable
-  String get id;
-  @nullable
-  String get status;
-  @nullable
-  String get type;
-  @nullable
-  String get image;
-  @nullable
-  GcharacterDetailsData_character_origin get origin;
-  @nullable
-  BuiltList<GcharacterDetailsData_character_episode> get episode;
+  String? get id;
+  String? get status;
+  String? get type;
+  String? get image;
+  GcharacterDetailsData_character_origin? get origin;
+  BuiltList<GcharacterDetailsData_character_episode>? get episode;
   static Serializer<GcharacterDetailsData_character> get serializer =>
       _$gcharacterDetailsDataCharacterSerializer;
-  Map<String, dynamic> toJson() => _i1.serializers
-      .serializeWith(GcharacterDetailsData_character.serializer, this);
-  static GcharacterDetailsData_character fromJson(Map<String, dynamic> json) =>
+  Map<String, dynamic> toJson() => (_i1.serializers
+          .serializeWith(GcharacterDetailsData_character.serializer, this)
+      as Map<String, dynamic>);
+  static GcharacterDetailsData_character? fromJson(Map<String, dynamic> json) =>
       _i1.serializers
           .deserializeWith(GcharacterDetailsData_character.serializer, json);
 }
@@ -79,13 +74,13 @@ abstract class GcharacterDetailsData_character_origin
       b..G__typename = 'Location';
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  @nullable
-  String get name;
+  String? get name;
   static Serializer<GcharacterDetailsData_character_origin> get serializer =>
       _$gcharacterDetailsDataCharacterOriginSerializer;
-  Map<String, dynamic> toJson() => _i1.serializers
-      .serializeWith(GcharacterDetailsData_character_origin.serializer, this);
-  static GcharacterDetailsData_character_origin fromJson(
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+          GcharacterDetailsData_character_origin.serializer, this)
+      as Map<String, dynamic>);
+  static GcharacterDetailsData_character_origin? fromJson(
           Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
           GcharacterDetailsData_character_origin.serializer, json);
@@ -106,13 +101,13 @@ abstract class GcharacterDetailsData_character_episode
       b..G__typename = 'Episode';
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  @nullable
-  String get episode;
+  String? get episode;
   static Serializer<GcharacterDetailsData_character_episode> get serializer =>
       _$gcharacterDetailsDataCharacterEpisodeSerializer;
-  Map<String, dynamic> toJson() => _i1.serializers
-      .serializeWith(GcharacterDetailsData_character_episode.serializer, this);
-  static GcharacterDetailsData_character_episode fromJson(
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+          GcharacterDetailsData_character_episode.serializer, this)
+      as Map<String, dynamic>);
+  static GcharacterDetailsData_character_episode? fromJson(
           Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
           GcharacterDetailsData_character_episode.serializer, json);

@@ -8,10 +8,10 @@ import 'package:ricky_n_morty/graphql/episodeDetails.req.gql.dart';
 import 'package:ricky_n_morty/graphql/episodeDetails.var.gql.dart';
 
 class EpisodeDetails extends StatelessWidget {
-  final String id, episodeTitle, episode, episodeDate;
+  final String? id, episodeTitle, episode, episodeDate;
 
   const EpisodeDetails(
-      {Key key, this.id, this.episodeTitle, this.episode, this.episodeDate})
+      {Key? key, this.id, this.episodeTitle, this.episode, this.episodeDate})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class EpisodeDetails extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          episodeTitle,
+          episodeTitle!,
           overflow: TextOverflow.ellipsis,
         ),
       ),
@@ -27,14 +27,14 @@ class EpisodeDetails extends StatelessWidget {
         client: client,
         operationRequest: GepisodeDetailsReq((d) => d..vars.id = id),
         builder: (BuildContext context,
-            OperationResponse<GepisodeDetailsData, GepisodeDetailsVars>
+            OperationResponse<GepisodeDetailsData, GepisodeDetailsVars?>?
                 response,
-            Object error) {
-          if (response.loading) {
+            Object? error) {
+          if (response!.loading) {
             return Center(child: CircularProgressIndicator());
           }
-          final episodeDetails = response.data.episode;
-          final episodeCharacters = episodeDetails.characters.asList();
+          final episodeDetails = response.data!.episode!;
+          final episodeCharacters = episodeDetails.characters!.asList();
           return SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
             child: Column(
@@ -58,9 +58,9 @@ class EpisodeDetails extends StatelessWidget {
                     (index) => Chip(
                       avatar: CircleAvatar(
                         backgroundImage: CachedNetworkImageProvider(
-                            episodeCharacters[index].image),
+                            episodeCharacters[index].image!),
                       ),
-                      label: Text(episodeCharacters[index].name),
+                      label: Text(episodeCharacters[index].name!),
                     ),
                   ),
                 ),

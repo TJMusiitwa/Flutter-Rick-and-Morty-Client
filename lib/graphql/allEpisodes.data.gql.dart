@@ -18,13 +18,13 @@ abstract class GallEpisodesData
       b..G__typename = 'Query';
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  @nullable
-  GallEpisodesData_episodes get episodes;
+  GallEpisodesData_episodes? get episodes;
   static Serializer<GallEpisodesData> get serializer =>
       _$gallEpisodesDataSerializer;
   Map<String, dynamic> toJson() =>
-      _i1.serializers.serializeWith(GallEpisodesData.serializer, this);
-  static GallEpisodesData fromJson(Map<String, dynamic> json) =>
+      (_i1.serializers.serializeWith(GallEpisodesData.serializer, this)
+          as Map<String, dynamic>);
+  static GallEpisodesData? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(GallEpisodesData.serializer, json);
 }
 
@@ -41,15 +41,14 @@ abstract class GallEpisodesData_episodes
       b..G__typename = 'Episodes';
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  @nullable
-  GallEpisodesData_episodes_info get info;
-  @nullable
-  BuiltList<GallEpisodesData_episodes_results> get results;
+  GallEpisodesData_episodes_info? get info;
+  BuiltList<GallEpisodesData_episodes_results>? get results;
   static Serializer<GallEpisodesData_episodes> get serializer =>
       _$gallEpisodesDataEpisodesSerializer;
   Map<String, dynamic> toJson() =>
-      _i1.serializers.serializeWith(GallEpisodesData_episodes.serializer, this);
-  static GallEpisodesData_episodes fromJson(Map<String, dynamic> json) =>
+      (_i1.serializers.serializeWith(GallEpisodesData_episodes.serializer, this)
+          as Map<String, dynamic>);
+  static GallEpisodesData_episodes? fromJson(Map<String, dynamic> json) =>
       _i1.serializers
           .deserializeWith(GallEpisodesData_episodes.serializer, json);
 }
@@ -68,17 +67,14 @@ abstract class GallEpisodesData_episodes_info
       b..G__typename = 'Info';
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  @nullable
-  int get count;
-  @nullable
-  int get pages;
-  @nullable
-  int get next;
+  int? get count;
+  int? get pages;
+  int? get next;
   static Serializer<GallEpisodesData_episodes_info> get serializer =>
       _$gallEpisodesDataEpisodesInfoSerializer;
-  Map<String, dynamic> toJson() => _i1.serializers
-      .serializeWith(GallEpisodesData_episodes_info.serializer, this);
-  static GallEpisodesData_episodes_info fromJson(Map<String, dynamic> json) =>
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+      GallEpisodesData_episodes_info.serializer, this) as Map<String, dynamic>);
+  static GallEpisodesData_episodes_info? fromJson(Map<String, dynamic> json) =>
       _i1.serializers
           .deserializeWith(GallEpisodesData_episodes_info.serializer, json);
 }
@@ -97,21 +93,17 @@ abstract class GallEpisodesData_episodes_results
       b..G__typename = 'Episode';
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  @nullable
-  String get id;
-  @nullable
-  String get name;
-  @nullable
-  String get air_date;
-  @nullable
-  String get episode;
-  @nullable
-  String get created;
+  String? get id;
+  String? get name;
+  String? get air_date;
+  String? get episode;
+  String? get created;
   static Serializer<GallEpisodesData_episodes_results> get serializer =>
       _$gallEpisodesDataEpisodesResultsSerializer;
-  Map<String, dynamic> toJson() => _i1.serializers
-      .serializeWith(GallEpisodesData_episodes_results.serializer, this);
-  static GallEpisodesData_episodes_results fromJson(
+  Map<String, dynamic> toJson() => (_i1.serializers
+          .serializeWith(GallEpisodesData_episodes_results.serializer, this)
+      as Map<String, dynamic>);
+  static GallEpisodesData_episodes_results? fromJson(
           Map<String, dynamic> json) =>
       _i1.serializers
           .deserializeWith(GallEpisodesData_episodes_results.serializer, json);

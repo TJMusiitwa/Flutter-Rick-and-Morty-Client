@@ -26,17 +26,20 @@ class _$GallCharactersDataSerializer
   final String wireName = 'GallCharactersData';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, GallCharactersData object,
+  Iterable<Object?> serialize(
+      Serializers serializers, GallCharactersData object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
     ];
-    if (object.characters != null) {
+    Object? value;
+    value = object.characters;
+    if (value != null) {
       result
         ..add('characters')
-        ..add(serializers.serialize(object.characters,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(GallCharactersData_characters)));
     }
     return result;
@@ -44,7 +47,7 @@ class _$GallCharactersDataSerializer
 
   @override
   GallCharactersData deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new GallCharactersDataBuilder();
 
@@ -52,7 +55,7 @@ class _$GallCharactersDataSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case '__typename':
           result.G__typename = serializers.deserialize(value,
@@ -60,7 +63,7 @@ class _$GallCharactersDataSerializer
           break;
         case 'characters':
           result.characters.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(GallCharactersData_characters))
+                  specifiedType: const FullType(GallCharactersData_characters))!
               as GallCharactersData_characters);
           break;
       }
@@ -81,24 +84,27 @@ class _$GallCharactersData_charactersSerializer
   final String wireName = 'GallCharactersData_characters';
 
   @override
-  Iterable<Object> serialize(
+  Iterable<Object?> serialize(
       Serializers serializers, GallCharactersData_characters object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
     ];
-    if (object.info != null) {
+    Object? value;
+    value = object.info;
+    if (value != null) {
       result
         ..add('info')
-        ..add(serializers.serialize(object.info,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(GallCharactersData_characters_info)));
     }
-    if (object.results != null) {
+    value = object.results;
+    if (value != null) {
       result
         ..add('results')
-        ..add(serializers.serialize(object.results,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(BuiltList, const [
               const FullType(GallCharactersData_characters_results)
             ])));
@@ -108,7 +114,7 @@ class _$GallCharactersData_charactersSerializer
 
   @override
   GallCharactersData_characters deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new GallCharactersData_charactersBuilder();
 
@@ -116,7 +122,7 @@ class _$GallCharactersData_charactersSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case '__typename':
           result.G__typename = serializers.deserialize(value,
@@ -125,14 +131,14 @@ class _$GallCharactersData_charactersSerializer
         case 'info':
           result.info.replace(serializers.deserialize(value,
                   specifiedType:
-                      const FullType(GallCharactersData_characters_info))
+                      const FullType(GallCharactersData_characters_info))!
               as GallCharactersData_characters_info);
           break;
         case 'results':
           result.results.replace(serializers.deserialize(value,
               specifiedType: const FullType(BuiltList, const [
                 const FullType(GallCharactersData_characters_results)
-              ])) as BuiltList<Object>);
+              ]))! as BuiltList<Object>);
           break;
       }
     }
@@ -152,38 +158,39 @@ class _$GallCharactersData_characters_infoSerializer
   final String wireName = 'GallCharactersData_characters_info';
 
   @override
-  Iterable<Object> serialize(
+  Iterable<Object?> serialize(
       Serializers serializers, GallCharactersData_characters_info object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
     ];
-    if (object.count != null) {
+    Object? value;
+    value = object.count;
+    if (value != null) {
       result
         ..add('count')
-        ..add(serializers.serialize(object.count,
-            specifiedType: const FullType(int)));
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
-    if (object.pages != null) {
+    value = object.pages;
+    if (value != null) {
       result
         ..add('pages')
-        ..add(serializers.serialize(object.pages,
-            specifiedType: const FullType(int)));
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
-    if (object.next != null) {
+    value = object.next;
+    if (value != null) {
       result
         ..add('next')
-        ..add(serializers.serialize(object.next,
-            specifiedType: const FullType(int)));
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
     return result;
   }
 
   @override
   GallCharactersData_characters_info deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new GallCharactersData_characters_infoBuilder();
 
@@ -191,7 +198,7 @@ class _$GallCharactersData_characters_infoSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case '__typename':
           result.G__typename = serializers.deserialize(value,
@@ -227,48 +234,55 @@ class _$GallCharactersData_characters_resultsSerializer
   final String wireName = 'GallCharactersData_characters_results';
 
   @override
-  Iterable<Object> serialize(
+  Iterable<Object?> serialize(
       Serializers serializers, GallCharactersData_characters_results object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
     ];
-    if (object.id != null) {
+    Object? value;
+    value = object.id;
+    if (value != null) {
       result
         ..add('id')
-        ..add(serializers.serialize(object.id,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.name != null) {
+    value = object.name;
+    if (value != null) {
       result
         ..add('name')
-        ..add(serializers.serialize(object.name,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.species != null) {
+    value = object.species;
+    if (value != null) {
       result
         ..add('species')
-        ..add(serializers.serialize(object.species,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.gender != null) {
+    value = object.gender;
+    if (value != null) {
       result
         ..add('gender')
-        ..add(serializers.serialize(object.gender,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.image != null) {
+    value = object.image;
+    if (value != null) {
       result
         ..add('image')
-        ..add(serializers.serialize(object.image,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.created != null) {
+    value = object.created;
+    if (value != null) {
       result
         ..add('created')
-        ..add(serializers.serialize(object.created,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
     return result;
@@ -276,7 +290,7 @@ class _$GallCharactersData_characters_resultsSerializer
 
   @override
   GallCharactersData_characters_results deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new GallCharactersData_characters_resultsBuilder();
 
@@ -284,7 +298,7 @@ class _$GallCharactersData_characters_resultsSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case '__typename':
           result.G__typename = serializers.deserialize(value,
@@ -325,16 +339,16 @@ class _$GallCharactersData extends GallCharactersData {
   @override
   final String G__typename;
   @override
-  final GallCharactersData_characters characters;
+  final GallCharactersData_characters? characters;
 
   factory _$GallCharactersData(
-          [void Function(GallCharactersDataBuilder) updates]) =>
+          [void Function(GallCharactersDataBuilder)? updates]) =>
       (new GallCharactersDataBuilder()..update(updates)).build();
 
-  _$GallCharactersData._({this.G__typename, this.characters}) : super._() {
-    if (G__typename == null) {
-      throw new BuiltValueNullFieldError('GallCharactersData', 'G__typename');
-    }
+  _$GallCharactersData._({required this.G__typename, this.characters})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, 'GallCharactersData', 'G__typename');
   }
 
   @override
@@ -370,16 +384,16 @@ class _$GallCharactersData extends GallCharactersData {
 
 class GallCharactersDataBuilder
     implements Builder<GallCharactersData, GallCharactersDataBuilder> {
-  _$GallCharactersData _$v;
+  _$GallCharactersData? _$v;
 
-  String _G__typename;
-  String get G__typename => _$this._G__typename;
-  set G__typename(String G__typename) => _$this._G__typename = G__typename;
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
 
-  GallCharactersData_charactersBuilder _characters;
+  GallCharactersData_charactersBuilder? _characters;
   GallCharactersData_charactersBuilder get characters =>
       _$this._characters ??= new GallCharactersData_charactersBuilder();
-  set characters(GallCharactersData_charactersBuilder characters) =>
+  set characters(GallCharactersData_charactersBuilder? characters) =>
       _$this._characters = characters;
 
   GallCharactersDataBuilder() {
@@ -387,9 +401,10 @@ class GallCharactersDataBuilder
   }
 
   GallCharactersDataBuilder get _$this {
-    if (_$v != null) {
-      _G__typename = _$v.G__typename;
-      _characters = _$v.characters?.toBuilder();
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _characters = $v.characters?.toBuilder();
       _$v = null;
     }
     return this;
@@ -397,14 +412,12 @@ class GallCharactersDataBuilder
 
   @override
   void replace(GallCharactersData other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GallCharactersData;
   }
 
   @override
-  void update(void Function(GallCharactersDataBuilder) updates) {
+  void update(void Function(GallCharactersDataBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -414,9 +427,11 @@ class GallCharactersDataBuilder
     try {
       _$result = _$v ??
           new _$GallCharactersData._(
-              G__typename: G__typename, characters: _characters?.build());
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, 'GallCharactersData', 'G__typename'),
+              characters: _characters?.build());
     } catch (_) {
-      String _$failedField;
+      late String _$failedField;
       try {
         _$failedField = 'characters';
         _characters?.build();
@@ -435,20 +450,19 @@ class _$GallCharactersData_characters extends GallCharactersData_characters {
   @override
   final String G__typename;
   @override
-  final GallCharactersData_characters_info info;
+  final GallCharactersData_characters_info? info;
   @override
-  final BuiltList<GallCharactersData_characters_results> results;
+  final BuiltList<GallCharactersData_characters_results>? results;
 
   factory _$GallCharactersData_characters(
-          [void Function(GallCharactersData_charactersBuilder) updates]) =>
+          [void Function(GallCharactersData_charactersBuilder)? updates]) =>
       (new GallCharactersData_charactersBuilder()..update(updates)).build();
 
-  _$GallCharactersData_characters._({this.G__typename, this.info, this.results})
+  _$GallCharactersData_characters._(
+      {required this.G__typename, this.info, this.results})
       : super._() {
-    if (G__typename == null) {
-      throw new BuiltValueNullFieldError(
-          'GallCharactersData_characters', 'G__typename');
-    }
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, 'GallCharactersData_characters', 'G__typename');
   }
 
   @override
@@ -489,23 +503,23 @@ class GallCharactersData_charactersBuilder
     implements
         Builder<GallCharactersData_characters,
             GallCharactersData_charactersBuilder> {
-  _$GallCharactersData_characters _$v;
+  _$GallCharactersData_characters? _$v;
 
-  String _G__typename;
-  String get G__typename => _$this._G__typename;
-  set G__typename(String G__typename) => _$this._G__typename = G__typename;
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
 
-  GallCharactersData_characters_infoBuilder _info;
+  GallCharactersData_characters_infoBuilder? _info;
   GallCharactersData_characters_infoBuilder get info =>
       _$this._info ??= new GallCharactersData_characters_infoBuilder();
-  set info(GallCharactersData_characters_infoBuilder info) =>
+  set info(GallCharactersData_characters_infoBuilder? info) =>
       _$this._info = info;
 
-  ListBuilder<GallCharactersData_characters_results> _results;
+  ListBuilder<GallCharactersData_characters_results>? _results;
   ListBuilder<GallCharactersData_characters_results> get results =>
       _$this._results ??=
           new ListBuilder<GallCharactersData_characters_results>();
-  set results(ListBuilder<GallCharactersData_characters_results> results) =>
+  set results(ListBuilder<GallCharactersData_characters_results>? results) =>
       _$this._results = results;
 
   GallCharactersData_charactersBuilder() {
@@ -513,10 +527,11 @@ class GallCharactersData_charactersBuilder
   }
 
   GallCharactersData_charactersBuilder get _$this {
-    if (_$v != null) {
-      _G__typename = _$v.G__typename;
-      _info = _$v.info?.toBuilder();
-      _results = _$v.results?.toBuilder();
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _info = $v.info?.toBuilder();
+      _results = $v.results?.toBuilder();
       _$v = null;
     }
     return this;
@@ -524,14 +539,12 @@ class GallCharactersData_charactersBuilder
 
   @override
   void replace(GallCharactersData_characters other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GallCharactersData_characters;
   }
 
   @override
-  void update(void Function(GallCharactersData_charactersBuilder) updates) {
+  void update(void Function(GallCharactersData_charactersBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -541,11 +554,12 @@ class GallCharactersData_charactersBuilder
     try {
       _$result = _$v ??
           new _$GallCharactersData_characters._(
-              G__typename: G__typename,
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, 'GallCharactersData_characters', 'G__typename'),
               info: _info?.build(),
               results: _results?.build());
     } catch (_) {
-      String _$failedField;
+      late String _$failedField;
       try {
         _$failedField = 'info';
         _info?.build();
@@ -567,24 +581,23 @@ class _$GallCharactersData_characters_info
   @override
   final String G__typename;
   @override
-  final int count;
+  final int? count;
   @override
-  final int pages;
+  final int? pages;
   @override
-  final int next;
+  final int? next;
 
   factory _$GallCharactersData_characters_info(
-          [void Function(GallCharactersData_characters_infoBuilder) updates]) =>
+          [void Function(GallCharactersData_characters_infoBuilder)?
+              updates]) =>
       (new GallCharactersData_characters_infoBuilder()..update(updates))
           .build();
 
   _$GallCharactersData_characters_info._(
-      {this.G__typename, this.count, this.pages, this.next})
+      {required this.G__typename, this.count, this.pages, this.next})
       : super._() {
-    if (G__typename == null) {
-      throw new BuiltValueNullFieldError(
-          'GallCharactersData_characters_info', 'G__typename');
-    }
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, 'GallCharactersData_characters_info', 'G__typename');
   }
 
   @override
@@ -628,34 +641,35 @@ class GallCharactersData_characters_infoBuilder
     implements
         Builder<GallCharactersData_characters_info,
             GallCharactersData_characters_infoBuilder> {
-  _$GallCharactersData_characters_info _$v;
+  _$GallCharactersData_characters_info? _$v;
 
-  String _G__typename;
-  String get G__typename => _$this._G__typename;
-  set G__typename(String G__typename) => _$this._G__typename = G__typename;
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
 
-  int _count;
-  int get count => _$this._count;
-  set count(int count) => _$this._count = count;
+  int? _count;
+  int? get count => _$this._count;
+  set count(int? count) => _$this._count = count;
 
-  int _pages;
-  int get pages => _$this._pages;
-  set pages(int pages) => _$this._pages = pages;
+  int? _pages;
+  int? get pages => _$this._pages;
+  set pages(int? pages) => _$this._pages = pages;
 
-  int _next;
-  int get next => _$this._next;
-  set next(int next) => _$this._next = next;
+  int? _next;
+  int? get next => _$this._next;
+  set next(int? next) => _$this._next = next;
 
   GallCharactersData_characters_infoBuilder() {
     GallCharactersData_characters_info._initializeBuilder(this);
   }
 
   GallCharactersData_characters_infoBuilder get _$this {
-    if (_$v != null) {
-      _G__typename = _$v.G__typename;
-      _count = _$v.count;
-      _pages = _$v.pages;
-      _next = _$v.next;
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _count = $v.count;
+      _pages = $v.pages;
+      _next = $v.next;
       _$v = null;
     }
     return this;
@@ -663,15 +677,13 @@ class GallCharactersData_characters_infoBuilder
 
   @override
   void replace(GallCharactersData_characters_info other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GallCharactersData_characters_info;
   }
 
   @override
   void update(
-      void Function(GallCharactersData_characters_infoBuilder) updates) {
+      void Function(GallCharactersData_characters_infoBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -679,7 +691,11 @@ class GallCharactersData_characters_infoBuilder
   _$GallCharactersData_characters_info build() {
     final _$result = _$v ??
         new _$GallCharactersData_characters_info._(
-            G__typename: G__typename, count: count, pages: pages, next: next);
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                'GallCharactersData_characters_info', 'G__typename'),
+            count: count,
+            pages: pages,
+            next: next);
     replace(_$result);
     return _$result;
   }
@@ -690,26 +706,26 @@ class _$GallCharactersData_characters_results
   @override
   final String G__typename;
   @override
-  final String id;
+  final String? id;
   @override
-  final String name;
+  final String? name;
   @override
-  final String species;
+  final String? species;
   @override
-  final String gender;
+  final String? gender;
   @override
-  final String image;
+  final String? image;
   @override
-  final String created;
+  final String? created;
 
   factory _$GallCharactersData_characters_results(
-          [void Function(GallCharactersData_characters_resultsBuilder)
+          [void Function(GallCharactersData_characters_resultsBuilder)?
               updates]) =>
       (new GallCharactersData_characters_resultsBuilder()..update(updates))
           .build();
 
   _$GallCharactersData_characters_results._(
-      {this.G__typename,
+      {required this.G__typename,
       this.id,
       this.name,
       this.species,
@@ -717,10 +733,8 @@ class _$GallCharactersData_characters_results
       this.image,
       this.created})
       : super._() {
-    if (G__typename == null) {
-      throw new BuiltValueNullFieldError(
-          'GallCharactersData_characters_results', 'G__typename');
-    }
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, 'GallCharactersData_characters_results', 'G__typename');
   }
 
   @override
@@ -778,49 +792,50 @@ class GallCharactersData_characters_resultsBuilder
     implements
         Builder<GallCharactersData_characters_results,
             GallCharactersData_characters_resultsBuilder> {
-  _$GallCharactersData_characters_results _$v;
+  _$GallCharactersData_characters_results? _$v;
 
-  String _G__typename;
-  String get G__typename => _$this._G__typename;
-  set G__typename(String G__typename) => _$this._G__typename = G__typename;
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
 
-  String _id;
-  String get id => _$this._id;
-  set id(String id) => _$this._id = id;
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
 
-  String _name;
-  String get name => _$this._name;
-  set name(String name) => _$this._name = name;
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
 
-  String _species;
-  String get species => _$this._species;
-  set species(String species) => _$this._species = species;
+  String? _species;
+  String? get species => _$this._species;
+  set species(String? species) => _$this._species = species;
 
-  String _gender;
-  String get gender => _$this._gender;
-  set gender(String gender) => _$this._gender = gender;
+  String? _gender;
+  String? get gender => _$this._gender;
+  set gender(String? gender) => _$this._gender = gender;
 
-  String _image;
-  String get image => _$this._image;
-  set image(String image) => _$this._image = image;
+  String? _image;
+  String? get image => _$this._image;
+  set image(String? image) => _$this._image = image;
 
-  String _created;
-  String get created => _$this._created;
-  set created(String created) => _$this._created = created;
+  String? _created;
+  String? get created => _$this._created;
+  set created(String? created) => _$this._created = created;
 
   GallCharactersData_characters_resultsBuilder() {
     GallCharactersData_characters_results._initializeBuilder(this);
   }
 
   GallCharactersData_characters_resultsBuilder get _$this {
-    if (_$v != null) {
-      _G__typename = _$v.G__typename;
-      _id = _$v.id;
-      _name = _$v.name;
-      _species = _$v.species;
-      _gender = _$v.gender;
-      _image = _$v.image;
-      _created = _$v.created;
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _species = $v.species;
+      _gender = $v.gender;
+      _image = $v.image;
+      _created = $v.created;
       _$v = null;
     }
     return this;
@@ -828,15 +843,13 @@ class GallCharactersData_characters_resultsBuilder
 
   @override
   void replace(GallCharactersData_characters_results other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GallCharactersData_characters_results;
   }
 
   @override
   void update(
-      void Function(GallCharactersData_characters_resultsBuilder) updates) {
+      void Function(GallCharactersData_characters_resultsBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -844,7 +857,8 @@ class GallCharactersData_characters_resultsBuilder
   _$GallCharactersData_characters_results build() {
     final _$result = _$v ??
         new _$GallCharactersData_characters_results._(
-            G__typename: G__typename,
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                'GallCharactersData_characters_results', 'G__typename'),
             id: id,
             name: name,
             species: species,

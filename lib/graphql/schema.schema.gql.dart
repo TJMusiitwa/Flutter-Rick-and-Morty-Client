@@ -30,21 +30,17 @@ abstract class GFilterCharacter
   factory GFilterCharacter([Function(GFilterCharacterBuilder b) updates]) =
       _$GFilterCharacter;
 
-  @nullable
-  String get name;
-  @nullable
-  String get status;
-  @nullable
-  String get species;
-  @nullable
-  String get type;
-  @nullable
-  String get gender;
+  String? get name;
+  String? get status;
+  String? get species;
+  String? get type;
+  String? get gender;
   static Serializer<GFilterCharacter> get serializer =>
       _$gFilterCharacterSerializer;
   Map<String, dynamic> toJson() =>
-      _i1.serializers.serializeWith(GFilterCharacter.serializer, this);
-  static GFilterCharacter fromJson(Map<String, dynamic> json) =>
+      (_i1.serializers.serializeWith(GFilterCharacter.serializer, this)
+          as Map<String, dynamic>);
+  static GFilterCharacter? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(GFilterCharacter.serializer, json);
 }
 
@@ -55,15 +51,14 @@ abstract class GFilterEpisode
   factory GFilterEpisode([Function(GFilterEpisodeBuilder b) updates]) =
       _$GFilterEpisode;
 
-  @nullable
-  String get name;
-  @nullable
-  String get episode;
+  String? get name;
+  String? get episode;
   static Serializer<GFilterEpisode> get serializer =>
       _$gFilterEpisodeSerializer;
   Map<String, dynamic> toJson() =>
-      _i1.serializers.serializeWith(GFilterEpisode.serializer, this);
-  static GFilterEpisode fromJson(Map<String, dynamic> json) =>
+      (_i1.serializers.serializeWith(GFilterEpisode.serializer, this)
+          as Map<String, dynamic>);
+  static GFilterEpisode? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(GFilterEpisode.serializer, json);
 }
 
@@ -74,29 +69,27 @@ abstract class GFilterLocation
   factory GFilterLocation([Function(GFilterLocationBuilder b) updates]) =
       _$GFilterLocation;
 
-  @nullable
-  String get name;
-  @nullable
-  String get type;
-  @nullable
-  String get dimension;
+  String? get name;
+  String? get type;
+  String? get dimension;
   static Serializer<GFilterLocation> get serializer =>
       _$gFilterLocationSerializer;
   Map<String, dynamic> toJson() =>
-      _i1.serializers.serializeWith(GFilterLocation.serializer, this);
-  static GFilterLocation fromJson(Map<String, dynamic> json) =>
+      (_i1.serializers.serializeWith(GFilterLocation.serializer, this)
+          as Map<String, dynamic>);
+  static GFilterLocation? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(GFilterLocation.serializer, json);
 }
 
 abstract class GUpload implements Built<GUpload, GUploadBuilder> {
   GUpload._();
 
-  factory GUpload([String value]) =>
+  factory GUpload([String? value]) =>
       _$GUpload((b) => value != null ? (b..value = value) : b);
 
   String get value;
   @BuiltValueSerializer(custom: true)
   static Serializer<GUpload> get serializer =>
       _i2.DefaultScalarSerializer<GUpload>(
-          (Object serialized) => GUpload(serialized));
+          (Object serialized) => GUpload((serialized as String?)));
 }

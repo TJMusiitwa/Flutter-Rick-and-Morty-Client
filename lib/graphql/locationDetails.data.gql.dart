@@ -19,13 +19,13 @@ abstract class GLocationDetailsData
       b..G__typename = 'Query';
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  @nullable
-  GLocationDetailsData_location get location;
+  GLocationDetailsData_location? get location;
   static Serializer<GLocationDetailsData> get serializer =>
       _$gLocationDetailsDataSerializer;
   Map<String, dynamic> toJson() =>
-      _i1.serializers.serializeWith(GLocationDetailsData.serializer, this);
-  static GLocationDetailsData fromJson(Map<String, dynamic> json) =>
+      (_i1.serializers.serializeWith(GLocationDetailsData.serializer, this)
+          as Map<String, dynamic>);
+  static GLocationDetailsData? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(GLocationDetailsData.serializer, json);
 }
 
@@ -43,15 +43,13 @@ abstract class GLocationDetailsData_location
       b..G__typename = 'Location';
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  @nullable
-  String get id;
-  @nullable
-  BuiltList<GLocationDetailsData_location_residents> get residents;
+  String? get id;
+  BuiltList<GLocationDetailsData_location_residents>? get residents;
   static Serializer<GLocationDetailsData_location> get serializer =>
       _$gLocationDetailsDataLocationSerializer;
-  Map<String, dynamic> toJson() => _i1.serializers
-      .serializeWith(GLocationDetailsData_location.serializer, this);
-  static GLocationDetailsData_location fromJson(Map<String, dynamic> json) =>
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+      GLocationDetailsData_location.serializer, this) as Map<String, dynamic>);
+  static GLocationDetailsData_location? fromJson(Map<String, dynamic> json) =>
       _i1.serializers
           .deserializeWith(GLocationDetailsData_location.serializer, json);
 }
@@ -71,15 +69,14 @@ abstract class GLocationDetailsData_location_residents
       b..G__typename = 'Character';
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  @nullable
-  String get name;
-  @nullable
-  String get image;
+  String? get name;
+  String? get image;
   static Serializer<GLocationDetailsData_location_residents> get serializer =>
       _$gLocationDetailsDataLocationResidentsSerializer;
-  Map<String, dynamic> toJson() => _i1.serializers
-      .serializeWith(GLocationDetailsData_location_residents.serializer, this);
-  static GLocationDetailsData_location_residents fromJson(
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+          GLocationDetailsData_location_residents.serializer, this)
+      as Map<String, dynamic>);
+  static GLocationDetailsData_location_residents? fromJson(
           Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
           GLocationDetailsData_location_residents.serializer, json);

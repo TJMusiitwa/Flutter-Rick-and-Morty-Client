@@ -17,59 +17,62 @@ class _$GallEpisodesReqSerializer
   final String wireName = 'GallEpisodesReq';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, GallEpisodesReq object,
+  Iterable<Object?> serialize(Serializers serializers, GallEpisodesReq object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       'vars',
       serializers.serialize(object.vars,
           specifiedType: const FullType(_i3.GallEpisodesVars)),
       'operation',
       serializers.serialize(object.operation,
           specifiedType: const FullType(_i4.Operation)),
+      'executeOnListen',
+      serializers.serialize(object.executeOnListen,
+          specifiedType: const FullType(bool)),
     ];
-    if (object.requestId != null) {
+    Object? value;
+    value = object.requestId;
+    if (value != null) {
       result
         ..add('requestId')
-        ..add(serializers.serialize(object.requestId,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.optimisticResponse != null) {
+    value = object.optimisticResponse;
+    if (value != null) {
       result
         ..add('optimisticResponse')
-        ..add(serializers.serialize(object.optimisticResponse,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(_i2.GallEpisodesData)));
     }
-    if (object.updateCacheHandlerKey != null) {
+    value = object.updateCacheHandlerKey;
+    if (value != null) {
       result
         ..add('updateCacheHandlerKey')
-        ..add(serializers.serialize(object.updateCacheHandlerKey,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.updateCacheHandlerContext != null) {
+    value = object.updateCacheHandlerContext;
+    if (value != null) {
       result
         ..add('updateCacheHandlerContext')
-        ..add(serializers.serialize(object.updateCacheHandlerContext,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(
                 Map, const [const FullType(String), const FullType(dynamic)])));
     }
-    if (object.fetchPolicy != null) {
+    value = object.fetchPolicy;
+    if (value != null) {
       result
         ..add('fetchPolicy')
-        ..add(serializers.serialize(object.fetchPolicy,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(_i1.FetchPolicy)));
-    }
-    if (object.executeOnListen != null) {
-      result
-        ..add('executeOnListen')
-        ..add(serializers.serialize(object.executeOnListen,
-            specifiedType: const FullType(bool)));
     }
     return result;
   }
 
   @override
   GallEpisodesReq deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new GallEpisodesReqBuilder();
 
@@ -77,11 +80,11 @@ class _$GallEpisodesReqSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'vars':
           result.vars.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(_i3.GallEpisodesVars))
+                  specifiedType: const FullType(_i3.GallEpisodesVars))!
               as _i3.GallEpisodesVars);
           break;
         case 'operation':
@@ -94,7 +97,7 @@ class _$GallEpisodesReqSerializer
           break;
         case 'optimisticResponse':
           result.optimisticResponse.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(_i2.GallEpisodesData))
+                  specifiedType: const FullType(_i2.GallEpisodesData))!
               as _i2.GallEpisodesData);
           break;
         case 'updateCacheHandlerKey':
@@ -130,41 +133,40 @@ class _$GallEpisodesReq extends GallEpisodesReq {
   @override
   final _i4.Operation operation;
   @override
-  final String requestId;
+  final String? requestId;
   @override
-  final _i2.GallEpisodesData Function(
-      _i2.GallEpisodesData, _i2.GallEpisodesData) updateResult;
+  final _i2.GallEpisodesData? Function(
+      _i2.GallEpisodesData?, _i2.GallEpisodesData?)? updateResult;
   @override
-  final _i2.GallEpisodesData optimisticResponse;
+  final _i2.GallEpisodesData? optimisticResponse;
   @override
-  final String updateCacheHandlerKey;
+  final String? updateCacheHandlerKey;
   @override
-  final Map<String, dynamic> updateCacheHandlerContext;
+  final Map<String, dynamic>? updateCacheHandlerContext;
   @override
-  final _i1.FetchPolicy fetchPolicy;
+  final _i1.FetchPolicy? fetchPolicy;
   @override
   final bool executeOnListen;
 
-  factory _$GallEpisodesReq([void Function(GallEpisodesReqBuilder) updates]) =>
+  factory _$GallEpisodesReq([void Function(GallEpisodesReqBuilder)? updates]) =>
       (new GallEpisodesReqBuilder()..update(updates)).build();
 
   _$GallEpisodesReq._(
-      {this.vars,
-      this.operation,
+      {required this.vars,
+      required this.operation,
       this.requestId,
       this.updateResult,
       this.optimisticResponse,
       this.updateCacheHandlerKey,
       this.updateCacheHandlerContext,
       this.fetchPolicy,
-      this.executeOnListen})
+      required this.executeOnListen})
       : super._() {
-    if (vars == null) {
-      throw new BuiltValueNullFieldError('GallEpisodesReq', 'vars');
-    }
-    if (operation == null) {
-      throw new BuiltValueNullFieldError('GallEpisodesReq', 'operation');
-    }
+    BuiltValueNullFieldError.checkNotNull(vars, 'GallEpisodesReq', 'vars');
+    BuiltValueNullFieldError.checkNotNull(
+        operation, 'GallEpisodesReq', 'operation');
+    BuiltValueNullFieldError.checkNotNull(
+        executeOnListen, 'GallEpisodesReq', 'executeOnListen');
   }
 
   @override
@@ -227,57 +229,57 @@ class _$GallEpisodesReq extends GallEpisodesReq {
 
 class GallEpisodesReqBuilder
     implements Builder<GallEpisodesReq, GallEpisodesReqBuilder> {
-  _$GallEpisodesReq _$v;
+  _$GallEpisodesReq? _$v;
 
-  _i3.GallEpisodesVarsBuilder _vars;
+  _i3.GallEpisodesVarsBuilder? _vars;
   _i3.GallEpisodesVarsBuilder get vars =>
       _$this._vars ??= new _i3.GallEpisodesVarsBuilder();
-  set vars(_i3.GallEpisodesVarsBuilder vars) => _$this._vars = vars;
+  set vars(_i3.GallEpisodesVarsBuilder? vars) => _$this._vars = vars;
 
-  _i4.Operation _operation;
-  _i4.Operation get operation => _$this._operation;
-  set operation(_i4.Operation operation) => _$this._operation = operation;
+  _i4.Operation? _operation;
+  _i4.Operation? get operation => _$this._operation;
+  set operation(_i4.Operation? operation) => _$this._operation = operation;
 
-  String _requestId;
-  String get requestId => _$this._requestId;
-  set requestId(String requestId) => _$this._requestId = requestId;
+  String? _requestId;
+  String? get requestId => _$this._requestId;
+  set requestId(String? requestId) => _$this._requestId = requestId;
 
-  _i2.GallEpisodesData Function(_i2.GallEpisodesData, _i2.GallEpisodesData)
+  _i2.GallEpisodesData? Function(_i2.GallEpisodesData?, _i2.GallEpisodesData?)?
       _updateResult;
-  _i2.GallEpisodesData Function(_i2.GallEpisodesData, _i2.GallEpisodesData)
+  _i2.GallEpisodesData? Function(_i2.GallEpisodesData?, _i2.GallEpisodesData?)?
       get updateResult => _$this._updateResult;
   set updateResult(
-          _i2.GallEpisodesData Function(
-                  _i2.GallEpisodesData, _i2.GallEpisodesData)
+          _i2.GallEpisodesData? Function(
+                  _i2.GallEpisodesData?, _i2.GallEpisodesData?)?
               updateResult) =>
       _$this._updateResult = updateResult;
 
-  _i2.GallEpisodesDataBuilder _optimisticResponse;
+  _i2.GallEpisodesDataBuilder? _optimisticResponse;
   _i2.GallEpisodesDataBuilder get optimisticResponse =>
       _$this._optimisticResponse ??= new _i2.GallEpisodesDataBuilder();
-  set optimisticResponse(_i2.GallEpisodesDataBuilder optimisticResponse) =>
+  set optimisticResponse(_i2.GallEpisodesDataBuilder? optimisticResponse) =>
       _$this._optimisticResponse = optimisticResponse;
 
-  String _updateCacheHandlerKey;
-  String get updateCacheHandlerKey => _$this._updateCacheHandlerKey;
-  set updateCacheHandlerKey(String updateCacheHandlerKey) =>
+  String? _updateCacheHandlerKey;
+  String? get updateCacheHandlerKey => _$this._updateCacheHandlerKey;
+  set updateCacheHandlerKey(String? updateCacheHandlerKey) =>
       _$this._updateCacheHandlerKey = updateCacheHandlerKey;
 
-  Map<String, dynamic> _updateCacheHandlerContext;
-  Map<String, dynamic> get updateCacheHandlerContext =>
+  Map<String, dynamic>? _updateCacheHandlerContext;
+  Map<String, dynamic>? get updateCacheHandlerContext =>
       _$this._updateCacheHandlerContext;
   set updateCacheHandlerContext(
-          Map<String, dynamic> updateCacheHandlerContext) =>
+          Map<String, dynamic>? updateCacheHandlerContext) =>
       _$this._updateCacheHandlerContext = updateCacheHandlerContext;
 
-  _i1.FetchPolicy _fetchPolicy;
-  _i1.FetchPolicy get fetchPolicy => _$this._fetchPolicy;
-  set fetchPolicy(_i1.FetchPolicy fetchPolicy) =>
+  _i1.FetchPolicy? _fetchPolicy;
+  _i1.FetchPolicy? get fetchPolicy => _$this._fetchPolicy;
+  set fetchPolicy(_i1.FetchPolicy? fetchPolicy) =>
       _$this._fetchPolicy = fetchPolicy;
 
-  bool _executeOnListen;
-  bool get executeOnListen => _$this._executeOnListen;
-  set executeOnListen(bool executeOnListen) =>
+  bool? _executeOnListen;
+  bool? get executeOnListen => _$this._executeOnListen;
+  set executeOnListen(bool? executeOnListen) =>
       _$this._executeOnListen = executeOnListen;
 
   GallEpisodesReqBuilder() {
@@ -285,16 +287,17 @@ class GallEpisodesReqBuilder
   }
 
   GallEpisodesReqBuilder get _$this {
-    if (_$v != null) {
-      _vars = _$v.vars?.toBuilder();
-      _operation = _$v.operation;
-      _requestId = _$v.requestId;
-      _updateResult = _$v.updateResult;
-      _optimisticResponse = _$v.optimisticResponse?.toBuilder();
-      _updateCacheHandlerKey = _$v.updateCacheHandlerKey;
-      _updateCacheHandlerContext = _$v.updateCacheHandlerContext;
-      _fetchPolicy = _$v.fetchPolicy;
-      _executeOnListen = _$v.executeOnListen;
+    final $v = _$v;
+    if ($v != null) {
+      _vars = $v.vars.toBuilder();
+      _operation = $v.operation;
+      _requestId = $v.requestId;
+      _updateResult = $v.updateResult;
+      _optimisticResponse = $v.optimisticResponse?.toBuilder();
+      _updateCacheHandlerKey = $v.updateCacheHandlerKey;
+      _updateCacheHandlerContext = $v.updateCacheHandlerContext;
+      _fetchPolicy = $v.fetchPolicy;
+      _executeOnListen = $v.executeOnListen;
       _$v = null;
     }
     return this;
@@ -302,14 +305,12 @@ class GallEpisodesReqBuilder
 
   @override
   void replace(GallEpisodesReq other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GallEpisodesReq;
   }
 
   @override
-  void update(void Function(GallEpisodesReqBuilder) updates) {
+  void update(void Function(GallEpisodesReqBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -320,16 +321,18 @@ class GallEpisodesReqBuilder
       _$result = _$v ??
           new _$GallEpisodesReq._(
               vars: vars.build(),
-              operation: operation,
+              operation: BuiltValueNullFieldError.checkNotNull(
+                  operation, 'GallEpisodesReq', 'operation'),
               requestId: requestId,
               updateResult: updateResult,
               optimisticResponse: _optimisticResponse?.build(),
               updateCacheHandlerKey: updateCacheHandlerKey,
               updateCacheHandlerContext: updateCacheHandlerContext,
               fetchPolicy: fetchPolicy,
-              executeOnListen: executeOnListen);
+              executeOnListen: BuiltValueNullFieldError.checkNotNull(
+                  executeOnListen, 'GallEpisodesReq', 'executeOnListen'));
     } catch (_) {
-      String _$failedField;
+      late String _$failedField;
       try {
         _$failedField = 'vars';
         vars.build();

@@ -82,14 +82,14 @@ class _AppnavState extends State<Appnav> {
   }
 
   Future<bool> _systemBackButtonPressed() async {
-    if (_navigatorKeys[_currentIndex].currentState.canPop()) {
+    if (_navigatorKeys[_currentIndex].currentState!.canPop()) {
       _navigatorKeys[_currentIndex]
-          .currentState
+          .currentState!
           .pop(_navigatorKeys[_currentIndex].currentContext);
     } else {
       SystemChannels.platform.invokeMethod<void>('SystemNavigator.pop');
     }
-    return null;
+    return false;
   }
 }
 
@@ -108,7 +108,7 @@ class _CharactersNavigatorState extends State<CharactersNavigator> {
                 case '/characterDetails':
                   return CharacterDetails();
               }
-              return null;
+              throw {};
             });
       },
     );
@@ -130,7 +130,7 @@ class _EpisodesNavigatorState extends State<EpisodesNavigator> {
                 case '/episodesDetails':
                   return EpisodeDetails();
               }
-              return null;
+              throw {};
             });
       },
     );
@@ -152,7 +152,7 @@ class _LocationsNavigatorState extends State<LocationsNavigator> {
                 case '/locationsDetails':
                   return LocationDetails();
               }
-              return null;
+              throw {};
             });
       },
     );

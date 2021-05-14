@@ -20,10 +20,10 @@ class _$GLocationDetailsVarsSerializer
   final String wireName = 'GLocationDetailsVars';
 
   @override
-  Iterable<Object> serialize(
+  Iterable<Object?> serialize(
       Serializers serializers, GLocationDetailsVars object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
     ];
@@ -33,7 +33,7 @@ class _$GLocationDetailsVarsSerializer
 
   @override
   GLocationDetailsVars deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new GLocationDetailsVarsBuilder();
 
@@ -41,7 +41,7 @@ class _$GLocationDetailsVarsSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'id':
           result.id = serializers.deserialize(value,
@@ -59,13 +59,11 @@ class _$GLocationDetailsVars extends GLocationDetailsVars {
   final String id;
 
   factory _$GLocationDetailsVars(
-          [void Function(GLocationDetailsVarsBuilder) updates]) =>
+          [void Function(GLocationDetailsVarsBuilder)? updates]) =>
       (new GLocationDetailsVarsBuilder()..update(updates)).build();
 
-  _$GLocationDetailsVars._({this.id}) : super._() {
-    if (id == null) {
-      throw new BuiltValueNullFieldError('GLocationDetailsVars', 'id');
-    }
+  _$GLocationDetailsVars._({required this.id}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(id, 'GLocationDetailsVars', 'id');
   }
 
   @override
@@ -97,17 +95,18 @@ class _$GLocationDetailsVars extends GLocationDetailsVars {
 
 class GLocationDetailsVarsBuilder
     implements Builder<GLocationDetailsVars, GLocationDetailsVarsBuilder> {
-  _$GLocationDetailsVars _$v;
+  _$GLocationDetailsVars? _$v;
 
-  String _id;
-  String get id => _$this._id;
-  set id(String id) => _$this._id = id;
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
 
   GLocationDetailsVarsBuilder();
 
   GLocationDetailsVarsBuilder get _$this {
-    if (_$v != null) {
-      _id = _$v.id;
+    final $v = _$v;
+    if ($v != null) {
+      _id = $v.id;
       _$v = null;
     }
     return this;
@@ -115,20 +114,21 @@ class GLocationDetailsVarsBuilder
 
   @override
   void replace(GLocationDetailsVars other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GLocationDetailsVars;
   }
 
   @override
-  void update(void Function(GLocationDetailsVarsBuilder) updates) {
+  void update(void Function(GLocationDetailsVarsBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
   _$GLocationDetailsVars build() {
-    final _$result = _$v ?? new _$GLocationDetailsVars._(id: id);
+    final _$result = _$v ??
+        new _$GLocationDetailsVars._(
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, 'GLocationDetailsVars', 'id'));
     replace(_$result);
     return _$result;
   }

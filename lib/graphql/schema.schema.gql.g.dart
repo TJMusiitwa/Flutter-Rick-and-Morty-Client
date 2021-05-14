@@ -63,37 +63,43 @@ class _$GFilterCharacterSerializer
   final String wireName = 'GFilterCharacter';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, GFilterCharacter object,
+  Iterable<Object?> serialize(Serializers serializers, GFilterCharacter object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[];
-    if (object.name != null) {
+    final result = <Object?>[];
+    Object? value;
+    value = object.name;
+    if (value != null) {
       result
         ..add('name')
-        ..add(serializers.serialize(object.name,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.status != null) {
+    value = object.status;
+    if (value != null) {
       result
         ..add('status')
-        ..add(serializers.serialize(object.status,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.species != null) {
+    value = object.species;
+    if (value != null) {
       result
         ..add('species')
-        ..add(serializers.serialize(object.species,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.type != null) {
+    value = object.type;
+    if (value != null) {
       result
         ..add('type')
-        ..add(serializers.serialize(object.type,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.gender != null) {
+    value = object.gender;
+    if (value != null) {
       result
         ..add('gender')
-        ..add(serializers.serialize(object.gender,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
     return result;
@@ -101,7 +107,7 @@ class _$GFilterCharacterSerializer
 
   @override
   GFilterCharacter deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new GFilterCharacterBuilder();
 
@@ -109,7 +115,7 @@ class _$GFilterCharacterSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'name':
           result.name = serializers.deserialize(value,
@@ -146,19 +152,22 @@ class _$GFilterEpisodeSerializer
   final String wireName = 'GFilterEpisode';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, GFilterEpisode object,
+  Iterable<Object?> serialize(Serializers serializers, GFilterEpisode object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[];
-    if (object.name != null) {
+    final result = <Object?>[];
+    Object? value;
+    value = object.name;
+    if (value != null) {
       result
         ..add('name')
-        ..add(serializers.serialize(object.name,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.episode != null) {
+    value = object.episode;
+    if (value != null) {
       result
         ..add('episode')
-        ..add(serializers.serialize(object.episode,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
     return result;
@@ -166,7 +175,7 @@ class _$GFilterEpisodeSerializer
 
   @override
   GFilterEpisode deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new GFilterEpisodeBuilder();
 
@@ -174,7 +183,7 @@ class _$GFilterEpisodeSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'name':
           result.name = serializers.deserialize(value,
@@ -199,25 +208,29 @@ class _$GFilterLocationSerializer
   final String wireName = 'GFilterLocation';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, GFilterLocation object,
+  Iterable<Object?> serialize(Serializers serializers, GFilterLocation object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[];
-    if (object.name != null) {
+    final result = <Object?>[];
+    Object? value;
+    value = object.name;
+    if (value != null) {
       result
         ..add('name')
-        ..add(serializers.serialize(object.name,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.type != null) {
+    value = object.type;
+    if (value != null) {
       result
         ..add('type')
-        ..add(serializers.serialize(object.type,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.dimension != null) {
+    value = object.dimension;
+    if (value != null) {
       result
         ..add('dimension')
-        ..add(serializers.serialize(object.dimension,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
     return result;
@@ -225,7 +238,7 @@ class _$GFilterLocationSerializer
 
   @override
   GFilterLocation deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new GFilterLocationBuilder();
 
@@ -233,7 +246,7 @@ class _$GFilterLocationSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'name':
           result.name = serializers.deserialize(value,
@@ -256,18 +269,18 @@ class _$GFilterLocationSerializer
 
 class _$GFilterCharacter extends GFilterCharacter {
   @override
-  final String name;
+  final String? name;
   @override
-  final String status;
+  final String? status;
   @override
-  final String species;
+  final String? species;
   @override
-  final String type;
+  final String? type;
   @override
-  final String gender;
+  final String? gender;
 
   factory _$GFilterCharacter(
-          [void Function(GFilterCharacterBuilder) updates]) =>
+          [void Function(GFilterCharacterBuilder)? updates]) =>
       (new GFilterCharacterBuilder()..update(updates)).build();
 
   _$GFilterCharacter._(
@@ -315,37 +328,38 @@ class _$GFilterCharacter extends GFilterCharacter {
 
 class GFilterCharacterBuilder
     implements Builder<GFilterCharacter, GFilterCharacterBuilder> {
-  _$GFilterCharacter _$v;
+  _$GFilterCharacter? _$v;
 
-  String _name;
-  String get name => _$this._name;
-  set name(String name) => _$this._name = name;
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
 
-  String _status;
-  String get status => _$this._status;
-  set status(String status) => _$this._status = status;
+  String? _status;
+  String? get status => _$this._status;
+  set status(String? status) => _$this._status = status;
 
-  String _species;
-  String get species => _$this._species;
-  set species(String species) => _$this._species = species;
+  String? _species;
+  String? get species => _$this._species;
+  set species(String? species) => _$this._species = species;
 
-  String _type;
-  String get type => _$this._type;
-  set type(String type) => _$this._type = type;
+  String? _type;
+  String? get type => _$this._type;
+  set type(String? type) => _$this._type = type;
 
-  String _gender;
-  String get gender => _$this._gender;
-  set gender(String gender) => _$this._gender = gender;
+  String? _gender;
+  String? get gender => _$this._gender;
+  set gender(String? gender) => _$this._gender = gender;
 
   GFilterCharacterBuilder();
 
   GFilterCharacterBuilder get _$this {
-    if (_$v != null) {
-      _name = _$v.name;
-      _status = _$v.status;
-      _species = _$v.species;
-      _type = _$v.type;
-      _gender = _$v.gender;
+    final $v = _$v;
+    if ($v != null) {
+      _name = $v.name;
+      _status = $v.status;
+      _species = $v.species;
+      _type = $v.type;
+      _gender = $v.gender;
       _$v = null;
     }
     return this;
@@ -353,14 +367,12 @@ class GFilterCharacterBuilder
 
   @override
   void replace(GFilterCharacter other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GFilterCharacter;
   }
 
   @override
-  void update(void Function(GFilterCharacterBuilder) updates) {
+  void update(void Function(GFilterCharacterBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -380,11 +392,11 @@ class GFilterCharacterBuilder
 
 class _$GFilterEpisode extends GFilterEpisode {
   @override
-  final String name;
+  final String? name;
   @override
-  final String episode;
+  final String? episode;
 
-  factory _$GFilterEpisode([void Function(GFilterEpisodeBuilder) updates]) =>
+  factory _$GFilterEpisode([void Function(GFilterEpisodeBuilder)? updates]) =>
       (new GFilterEpisodeBuilder()..update(updates)).build();
 
   _$GFilterEpisode._({this.name, this.episode}) : super._();
@@ -421,22 +433,23 @@ class _$GFilterEpisode extends GFilterEpisode {
 
 class GFilterEpisodeBuilder
     implements Builder<GFilterEpisode, GFilterEpisodeBuilder> {
-  _$GFilterEpisode _$v;
+  _$GFilterEpisode? _$v;
 
-  String _name;
-  String get name => _$this._name;
-  set name(String name) => _$this._name = name;
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
 
-  String _episode;
-  String get episode => _$this._episode;
-  set episode(String episode) => _$this._episode = episode;
+  String? _episode;
+  String? get episode => _$this._episode;
+  set episode(String? episode) => _$this._episode = episode;
 
   GFilterEpisodeBuilder();
 
   GFilterEpisodeBuilder get _$this {
-    if (_$v != null) {
-      _name = _$v.name;
-      _episode = _$v.episode;
+    final $v = _$v;
+    if ($v != null) {
+      _name = $v.name;
+      _episode = $v.episode;
       _$v = null;
     }
     return this;
@@ -444,14 +457,12 @@ class GFilterEpisodeBuilder
 
   @override
   void replace(GFilterEpisode other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GFilterEpisode;
   }
 
   @override
-  void update(void Function(GFilterEpisodeBuilder) updates) {
+  void update(void Function(GFilterEpisodeBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -466,13 +477,13 @@ class GFilterEpisodeBuilder
 
 class _$GFilterLocation extends GFilterLocation {
   @override
-  final String name;
+  final String? name;
   @override
-  final String type;
+  final String? type;
   @override
-  final String dimension;
+  final String? dimension;
 
-  factory _$GFilterLocation([void Function(GFilterLocationBuilder) updates]) =>
+  factory _$GFilterLocation([void Function(GFilterLocationBuilder)? updates]) =>
       (new GFilterLocationBuilder()..update(updates)).build();
 
   _$GFilterLocation._({this.name, this.type, this.dimension}) : super._();
@@ -512,27 +523,28 @@ class _$GFilterLocation extends GFilterLocation {
 
 class GFilterLocationBuilder
     implements Builder<GFilterLocation, GFilterLocationBuilder> {
-  _$GFilterLocation _$v;
+  _$GFilterLocation? _$v;
 
-  String _name;
-  String get name => _$this._name;
-  set name(String name) => _$this._name = name;
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
 
-  String _type;
-  String get type => _$this._type;
-  set type(String type) => _$this._type = type;
+  String? _type;
+  String? get type => _$this._type;
+  set type(String? type) => _$this._type = type;
 
-  String _dimension;
-  String get dimension => _$this._dimension;
-  set dimension(String dimension) => _$this._dimension = dimension;
+  String? _dimension;
+  String? get dimension => _$this._dimension;
+  set dimension(String? dimension) => _$this._dimension = dimension;
 
   GFilterLocationBuilder();
 
   GFilterLocationBuilder get _$this {
-    if (_$v != null) {
-      _name = _$v.name;
-      _type = _$v.type;
-      _dimension = _$v.dimension;
+    final $v = _$v;
+    if ($v != null) {
+      _name = $v.name;
+      _type = $v.type;
+      _dimension = $v.dimension;
       _$v = null;
     }
     return this;
@@ -540,14 +552,12 @@ class GFilterLocationBuilder
 
   @override
   void replace(GFilterLocation other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GFilterLocation;
   }
 
   @override
-  void update(void Function(GFilterLocationBuilder) updates) {
+  void update(void Function(GFilterLocationBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -564,13 +574,11 @@ class _$GUpload extends GUpload {
   @override
   final String value;
 
-  factory _$GUpload([void Function(GUploadBuilder) updates]) =>
+  factory _$GUpload([void Function(GUploadBuilder)? updates]) =>
       (new GUploadBuilder()..update(updates)).build();
 
-  _$GUpload._({this.value}) : super._() {
-    if (value == null) {
-      throw new BuiltValueNullFieldError('GUpload', 'value');
-    }
+  _$GUpload._({required this.value}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(value, 'GUpload', 'value');
   }
 
   @override
@@ -599,17 +607,18 @@ class _$GUpload extends GUpload {
 }
 
 class GUploadBuilder implements Builder<GUpload, GUploadBuilder> {
-  _$GUpload _$v;
+  _$GUpload? _$v;
 
-  String _value;
-  String get value => _$this._value;
-  set value(String value) => _$this._value = value;
+  String? _value;
+  String? get value => _$this._value;
+  set value(String? value) => _$this._value = value;
 
   GUploadBuilder();
 
   GUploadBuilder get _$this {
-    if (_$v != null) {
-      _value = _$v.value;
+    final $v = _$v;
+    if ($v != null) {
+      _value = $v.value;
       _$v = null;
     }
     return this;
@@ -617,20 +626,21 @@ class GUploadBuilder implements Builder<GUpload, GUploadBuilder> {
 
   @override
   void replace(GUpload other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GUpload;
   }
 
   @override
-  void update(void Function(GUploadBuilder) updates) {
+  void update(void Function(GUploadBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
   _$GUpload build() {
-    final _$result = _$v ?? new _$GUpload._(value: value);
+    final _$result = _$v ??
+        new _$GUpload._(
+            value: BuiltValueNullFieldError.checkNotNull(
+                value, 'GUpload', 'value'));
     replace(_$result);
     return _$result;
   }

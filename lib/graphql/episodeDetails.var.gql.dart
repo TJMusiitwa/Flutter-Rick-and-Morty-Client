@@ -17,7 +17,8 @@ abstract class GepisodeDetailsVars
   static Serializer<GepisodeDetailsVars> get serializer =>
       _$gepisodeDetailsVarsSerializer;
   Map<String, dynamic> toJson() =>
-      _i1.serializers.serializeWith(GepisodeDetailsVars.serializer, this);
-  static GepisodeDetailsVars fromJson(Map<String, dynamic> json) =>
+      (_i1.serializers.serializeWith(GepisodeDetailsVars.serializer, this)
+          as Map<String, dynamic>);
+  static GepisodeDetailsVars? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(GepisodeDetailsVars.serializer, json);
 }

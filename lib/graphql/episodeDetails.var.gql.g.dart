@@ -20,10 +20,10 @@ class _$GepisodeDetailsVarsSerializer
   final String wireName = 'GepisodeDetailsVars';
 
   @override
-  Iterable<Object> serialize(
+  Iterable<Object?> serialize(
       Serializers serializers, GepisodeDetailsVars object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
     ];
@@ -33,7 +33,7 @@ class _$GepisodeDetailsVarsSerializer
 
   @override
   GepisodeDetailsVars deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new GepisodeDetailsVarsBuilder();
 
@@ -41,7 +41,7 @@ class _$GepisodeDetailsVarsSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'id':
           result.id = serializers.deserialize(value,
@@ -59,13 +59,11 @@ class _$GepisodeDetailsVars extends GepisodeDetailsVars {
   final String id;
 
   factory _$GepisodeDetailsVars(
-          [void Function(GepisodeDetailsVarsBuilder) updates]) =>
+          [void Function(GepisodeDetailsVarsBuilder)? updates]) =>
       (new GepisodeDetailsVarsBuilder()..update(updates)).build();
 
-  _$GepisodeDetailsVars._({this.id}) : super._() {
-    if (id == null) {
-      throw new BuiltValueNullFieldError('GepisodeDetailsVars', 'id');
-    }
+  _$GepisodeDetailsVars._({required this.id}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(id, 'GepisodeDetailsVars', 'id');
   }
 
   @override
@@ -97,17 +95,18 @@ class _$GepisodeDetailsVars extends GepisodeDetailsVars {
 
 class GepisodeDetailsVarsBuilder
     implements Builder<GepisodeDetailsVars, GepisodeDetailsVarsBuilder> {
-  _$GepisodeDetailsVars _$v;
+  _$GepisodeDetailsVars? _$v;
 
-  String _id;
-  String get id => _$this._id;
-  set id(String id) => _$this._id = id;
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
 
   GepisodeDetailsVarsBuilder();
 
   GepisodeDetailsVarsBuilder get _$this {
-    if (_$v != null) {
-      _id = _$v.id;
+    final $v = _$v;
+    if ($v != null) {
+      _id = $v.id;
       _$v = null;
     }
     return this;
@@ -115,20 +114,21 @@ class GepisodeDetailsVarsBuilder
 
   @override
   void replace(GepisodeDetailsVars other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GepisodeDetailsVars;
   }
 
   @override
-  void update(void Function(GepisodeDetailsVarsBuilder) updates) {
+  void update(void Function(GepisodeDetailsVarsBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
   _$GepisodeDetailsVars build() {
-    final _$result = _$v ?? new _$GepisodeDetailsVars._(id: id);
+    final _$result = _$v ??
+        new _$GepisodeDetailsVars._(
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, 'GepisodeDetailsVars', 'id'));
     replace(_$result);
     return _$result;
   }

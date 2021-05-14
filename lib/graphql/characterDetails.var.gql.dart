@@ -18,7 +18,8 @@ abstract class GcharacterDetailsVars
   static Serializer<GcharacterDetailsVars> get serializer =>
       _$gcharacterDetailsVarsSerializer;
   Map<String, dynamic> toJson() =>
-      _i1.serializers.serializeWith(GcharacterDetailsVars.serializer, this);
-  static GcharacterDetailsVars fromJson(Map<String, dynamic> json) =>
+      (_i1.serializers.serializeWith(GcharacterDetailsVars.serializer, this)
+          as Map<String, dynamic>);
+  static GcharacterDetailsVars? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(GcharacterDetailsVars.serializer, json);
 }

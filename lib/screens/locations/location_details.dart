@@ -8,10 +8,10 @@ import 'package:ricky_n_morty/graphql/locationDetails.req.gql.dart';
 import 'package:ricky_n_morty/graphql/locationDetails.var.gql.dart';
 
 class LocationDetails extends StatelessWidget {
-  final String id, locationName, locationType, locationDimension;
+  final String? id, locationName, locationType, locationDimension;
 
   const LocationDetails(
-      {Key key,
+      {Key? key,
       this.id,
       this.locationName,
       this.locationType,
@@ -24,21 +24,21 @@ class LocationDetails extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           title: Text(
-        locationName,
+        locationName!,
         overflow: TextOverflow.ellipsis,
       )),
       body: Operation(
         client: client,
         operationRequest: GLocationDetailsReq((d) => d..vars.id = id),
         builder: (BuildContext context,
-            OperationResponse<GLocationDetailsData, GLocationDetailsVars>
+            OperationResponse<GLocationDetailsData, GLocationDetailsVars?>?
                 response,
-            Object error) {
-          if (response.loading) {
+            Object? error) {
+          if (response!.loading) {
             return Center(child: CircularProgressIndicator());
           }
           if (response.hasErrors) {}
-          final residents = response.data.location.residents.asList();
+          final residents = response.data!.location!.residents!.asList();
           return SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
             child: Column(

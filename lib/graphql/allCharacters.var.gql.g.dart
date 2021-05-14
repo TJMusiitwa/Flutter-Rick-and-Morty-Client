@@ -17,21 +17,23 @@ class _$GallCharactersVarsSerializer
   final String wireName = 'GallCharactersVars';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, GallCharactersVars object,
+  Iterable<Object?> serialize(
+      Serializers serializers, GallCharactersVars object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[];
-    if (object.page != null) {
+    final result = <Object?>[];
+    Object? value;
+    value = object.page;
+    if (value != null) {
       result
         ..add('page')
-        ..add(serializers.serialize(object.page,
-            specifiedType: const FullType(int)));
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
     return result;
   }
 
   @override
   GallCharactersVars deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new GallCharactersVarsBuilder();
 
@@ -39,7 +41,7 @@ class _$GallCharactersVarsSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'page':
           result.page = serializers.deserialize(value,
@@ -54,10 +56,10 @@ class _$GallCharactersVarsSerializer
 
 class _$GallCharactersVars extends GallCharactersVars {
   @override
-  final int page;
+  final int? page;
 
   factory _$GallCharactersVars(
-          [void Function(GallCharactersVarsBuilder) updates]) =>
+          [void Function(GallCharactersVarsBuilder)? updates]) =>
       (new GallCharactersVarsBuilder()..update(updates)).build();
 
   _$GallCharactersVars._({this.page}) : super._();
@@ -92,17 +94,18 @@ class _$GallCharactersVars extends GallCharactersVars {
 
 class GallCharactersVarsBuilder
     implements Builder<GallCharactersVars, GallCharactersVarsBuilder> {
-  _$GallCharactersVars _$v;
+  _$GallCharactersVars? _$v;
 
-  int _page;
-  int get page => _$this._page;
-  set page(int page) => _$this._page = page;
+  int? _page;
+  int? get page => _$this._page;
+  set page(int? page) => _$this._page = page;
 
   GallCharactersVarsBuilder();
 
   GallCharactersVarsBuilder get _$this {
-    if (_$v != null) {
-      _page = _$v.page;
+    final $v = _$v;
+    if ($v != null) {
+      _page = $v.page;
       _$v = null;
     }
     return this;
@@ -110,14 +113,12 @@ class GallCharactersVarsBuilder
 
   @override
   void replace(GallCharactersVars other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GallCharactersVars;
   }
 
   @override
-  void update(void Function(GallCharactersVarsBuilder) updates) {
+  void update(void Function(GallCharactersVarsBuilder)? updates) {
     if (updates != null) updates(this);
   }
 

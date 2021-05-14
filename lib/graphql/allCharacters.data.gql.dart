@@ -18,13 +18,13 @@ abstract class GallCharactersData
       b..G__typename = 'Query';
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  @nullable
-  GallCharactersData_characters get characters;
+  GallCharactersData_characters? get characters;
   static Serializer<GallCharactersData> get serializer =>
       _$gallCharactersDataSerializer;
   Map<String, dynamic> toJson() =>
-      _i1.serializers.serializeWith(GallCharactersData.serializer, this);
-  static GallCharactersData fromJson(Map<String, dynamic> json) =>
+      (_i1.serializers.serializeWith(GallCharactersData.serializer, this)
+          as Map<String, dynamic>);
+  static GallCharactersData? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(GallCharactersData.serializer, json);
 }
 
@@ -42,15 +42,13 @@ abstract class GallCharactersData_characters
       b..G__typename = 'Characters';
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  @nullable
-  GallCharactersData_characters_info get info;
-  @nullable
-  BuiltList<GallCharactersData_characters_results> get results;
+  GallCharactersData_characters_info? get info;
+  BuiltList<GallCharactersData_characters_results>? get results;
   static Serializer<GallCharactersData_characters> get serializer =>
       _$gallCharactersDataCharactersSerializer;
-  Map<String, dynamic> toJson() => _i1.serializers
-      .serializeWith(GallCharactersData_characters.serializer, this);
-  static GallCharactersData_characters fromJson(Map<String, dynamic> json) =>
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+      GallCharactersData_characters.serializer, this) as Map<String, dynamic>);
+  static GallCharactersData_characters? fromJson(Map<String, dynamic> json) =>
       _i1.serializers
           .deserializeWith(GallCharactersData_characters.serializer, json);
 }
@@ -69,17 +67,15 @@ abstract class GallCharactersData_characters_info
       b..G__typename = 'Info';
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  @nullable
-  int get count;
-  @nullable
-  int get pages;
-  @nullable
-  int get next;
+  int? get count;
+  int? get pages;
+  int? get next;
   static Serializer<GallCharactersData_characters_info> get serializer =>
       _$gallCharactersDataCharactersInfoSerializer;
-  Map<String, dynamic> toJson() => _i1.serializers
-      .serializeWith(GallCharactersData_characters_info.serializer, this);
-  static GallCharactersData_characters_info fromJson(
+  Map<String, dynamic> toJson() => (_i1.serializers
+          .serializeWith(GallCharactersData_characters_info.serializer, this)
+      as Map<String, dynamic>);
+  static GallCharactersData_characters_info? fromJson(
           Map<String, dynamic> json) =>
       _i1.serializers
           .deserializeWith(GallCharactersData_characters_info.serializer, json);
@@ -100,23 +96,18 @@ abstract class GallCharactersData_characters_results
       b..G__typename = 'Character';
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  @nullable
-  String get id;
-  @nullable
-  String get name;
-  @nullable
-  String get species;
-  @nullable
-  String get gender;
-  @nullable
-  String get image;
-  @nullable
-  String get created;
+  String? get id;
+  String? get name;
+  String? get species;
+  String? get gender;
+  String? get image;
+  String? get created;
   static Serializer<GallCharactersData_characters_results> get serializer =>
       _$gallCharactersDataCharactersResultsSerializer;
-  Map<String, dynamic> toJson() => _i1.serializers
-      .serializeWith(GallCharactersData_characters_results.serializer, this);
-  static GallCharactersData_characters_results fromJson(
+  Map<String, dynamic> toJson() => (_i1.serializers
+          .serializeWith(GallCharactersData_characters_results.serializer, this)
+      as Map<String, dynamic>);
+  static GallCharactersData_characters_results? fromJson(
           Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
           GallCharactersData_characters_results.serializer, json);

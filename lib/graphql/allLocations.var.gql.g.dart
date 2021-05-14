@@ -17,21 +17,22 @@ class _$GallLocationsVarsSerializer
   final String wireName = 'GallLocationsVars';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, GallLocationsVars object,
+  Iterable<Object?> serialize(Serializers serializers, GallLocationsVars object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[];
-    if (object.page != null) {
+    final result = <Object?>[];
+    Object? value;
+    value = object.page;
+    if (value != null) {
       result
         ..add('page')
-        ..add(serializers.serialize(object.page,
-            specifiedType: const FullType(int)));
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
     return result;
   }
 
   @override
   GallLocationsVars deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new GallLocationsVarsBuilder();
 
@@ -39,7 +40,7 @@ class _$GallLocationsVarsSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'page':
           result.page = serializers.deserialize(value,
@@ -54,10 +55,10 @@ class _$GallLocationsVarsSerializer
 
 class _$GallLocationsVars extends GallLocationsVars {
   @override
-  final int page;
+  final int? page;
 
   factory _$GallLocationsVars(
-          [void Function(GallLocationsVarsBuilder) updates]) =>
+          [void Function(GallLocationsVarsBuilder)? updates]) =>
       (new GallLocationsVarsBuilder()..update(updates)).build();
 
   _$GallLocationsVars._({this.page}) : super._();
@@ -90,17 +91,18 @@ class _$GallLocationsVars extends GallLocationsVars {
 
 class GallLocationsVarsBuilder
     implements Builder<GallLocationsVars, GallLocationsVarsBuilder> {
-  _$GallLocationsVars _$v;
+  _$GallLocationsVars? _$v;
 
-  int _page;
-  int get page => _$this._page;
-  set page(int page) => _$this._page = page;
+  int? _page;
+  int? get page => _$this._page;
+  set page(int? page) => _$this._page = page;
 
   GallLocationsVarsBuilder();
 
   GallLocationsVarsBuilder get _$this {
-    if (_$v != null) {
-      _page = _$v.page;
+    final $v = _$v;
+    if ($v != null) {
+      _page = $v.page;
       _$v = null;
     }
     return this;
@@ -108,14 +110,12 @@ class GallLocationsVarsBuilder
 
   @override
   void replace(GallLocationsVars other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GallLocationsVars;
   }
 
   @override
-  void update(void Function(GallLocationsVarsBuilder) updates) {
+  void update(void Function(GallLocationsVarsBuilder)? updates) {
     if (updates != null) updates(this);
   }
 

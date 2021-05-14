@@ -11,7 +11,7 @@ import 'package:ricky_n_morty/screens/settings_screen.dart';
 import 'character_details.dart';
 
 class CharactersScreen extends StatelessWidget {
-  final client = GetIt.I<Client>();
+  final Client? client = GetIt.I<Client>();
   final charactersRequest = GallCharactersReq((c) => c
     ..requestId = 'getCharactersId'
     ..vars.page = 1);
@@ -31,18 +31,19 @@ class CharactersScreen extends StatelessWidget {
         ],
       ),
       body: Operation(
-        client: client,
+        client: client!,
         operationRequest: charactersRequest,
         builder: (BuildContext context,
-            OperationResponse<GallCharactersData, GallCharactersVars> response,
-            Object error) {
-          if (response.loading) {
+            OperationResponse<GallCharactersData, GallCharactersVars?>?
+                response,
+            Object? error) {
+          if (response!.loading) {
             return Center(child: CircularProgressIndicator());
           }
           if (response.hasErrors) {
-            Scaffold.of(context).showSnackBar(SnackBar(
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(
-                response.graphqlErrors.first.message,
+                response.graphqlErrors!.first.message,
                 softWrap: true,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -51,7 +52,7 @@ class CharactersScreen extends StatelessWidget {
             ));
           }
 
-          if (response.data.characters == null) {
+          if (response.data!.characters == null) {
             return Column(
               children: [
                 Center(
@@ -74,17 +75,15 @@ class CharactersScreen extends StatelessWidget {
                 _scrollController.position.maxScrollExtent) {
               final paginationChars = charactersRequest.rebuild(
                 (p) => p
-                  ..vars.page = p.vars.page + 1
-                  ..updateResult = (previous, next) =>
-                      previous?.rebuild((p) => p
-                        ..characters.results.addAll(next.characters.results)) ??
-                      next,
+                  ..vars.page = p.vars.page! + 1
+                  ..updateResult = (previous, next) => previous!.rebuild((p) =>
+                      p..characters.results.addAll(next!.characters!.results!)),
               );
-              client.requestController.add(paginationChars);
+              client!.requestController.add(paginationChars);
             }
           });
 
-          final characters = response.data.characters.results.toBuiltList();
+          final characters = response.data!.characters!.results!.toBuiltList();
           return ListView.builder(
             controller: _scrollController,
             itemCount: characters.length,
@@ -100,19 +99,19 @@ class CharactersScreen extends StatelessWidget {
                     height: 100,
                     width: 80,
                     child: CachedNetworkImage(
-                      imageUrl: character.image,
+                      imageUrl: character.image!,
                       fit: BoxFit.cover,
                       //fadeInDuration: Duration(milliseconds: 500),
                     ),
                   ),
                   title: Text(
-                    character.name,
+                    character.name!,
                     softWrap: true,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.headline5,
                   ),
-                  subtitle: Text(character.species),
-                  trailing: Text(character.gender),
+                  subtitle: Text(character.species!),
+                  trailing: Text(character.gender!),
                   onTap: () => Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (_) => CharacterDetails(

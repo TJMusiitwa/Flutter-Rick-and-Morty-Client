@@ -20,10 +20,10 @@ class _$GcharacterDetailsVarsSerializer
   final String wireName = 'GcharacterDetailsVars';
 
   @override
-  Iterable<Object> serialize(
+  Iterable<Object?> serialize(
       Serializers serializers, GcharacterDetailsVars object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
     ];
@@ -33,7 +33,7 @@ class _$GcharacterDetailsVarsSerializer
 
   @override
   GcharacterDetailsVars deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new GcharacterDetailsVarsBuilder();
 
@@ -41,7 +41,7 @@ class _$GcharacterDetailsVarsSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'id':
           result.id = serializers.deserialize(value,
@@ -59,13 +59,11 @@ class _$GcharacterDetailsVars extends GcharacterDetailsVars {
   final String id;
 
   factory _$GcharacterDetailsVars(
-          [void Function(GcharacterDetailsVarsBuilder) updates]) =>
+          [void Function(GcharacterDetailsVarsBuilder)? updates]) =>
       (new GcharacterDetailsVarsBuilder()..update(updates)).build();
 
-  _$GcharacterDetailsVars._({this.id}) : super._() {
-    if (id == null) {
-      throw new BuiltValueNullFieldError('GcharacterDetailsVars', 'id');
-    }
+  _$GcharacterDetailsVars._({required this.id}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(id, 'GcharacterDetailsVars', 'id');
   }
 
   @override
@@ -97,17 +95,18 @@ class _$GcharacterDetailsVars extends GcharacterDetailsVars {
 
 class GcharacterDetailsVarsBuilder
     implements Builder<GcharacterDetailsVars, GcharacterDetailsVarsBuilder> {
-  _$GcharacterDetailsVars _$v;
+  _$GcharacterDetailsVars? _$v;
 
-  String _id;
-  String get id => _$this._id;
-  set id(String id) => _$this._id = id;
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
 
   GcharacterDetailsVarsBuilder();
 
   GcharacterDetailsVarsBuilder get _$this {
-    if (_$v != null) {
-      _id = _$v.id;
+    final $v = _$v;
+    if ($v != null) {
+      _id = $v.id;
       _$v = null;
     }
     return this;
@@ -115,20 +114,21 @@ class GcharacterDetailsVarsBuilder
 
   @override
   void replace(GcharacterDetailsVars other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GcharacterDetailsVars;
   }
 
   @override
-  void update(void Function(GcharacterDetailsVarsBuilder) updates) {
+  void update(void Function(GcharacterDetailsVarsBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
   _$GcharacterDetailsVars build() {
-    final _$result = _$v ?? new _$GcharacterDetailsVars._(id: id);
+    final _$result = _$v ??
+        new _$GcharacterDetailsVars._(
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, 'GcharacterDetailsVars', 'id'));
     replace(_$result);
     return _$result;
   }

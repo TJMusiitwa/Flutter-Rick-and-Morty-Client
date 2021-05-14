@@ -8,14 +8,14 @@ import 'package:ricky_n_morty/graphql/characterDetails.req.gql.dart';
 import 'package:ricky_n_morty/graphql/characterDetails.var.gql.dart';
 
 class CharacterDetails extends StatelessWidget {
-  final String id,
+  final String? id,
       characterName,
       characterGender,
       characterSpecies,
       characterImage;
 
   const CharacterDetails(
-      {Key key,
+      {Key? key,
       this.id,
       this.characterName,
       this.characterGender,
@@ -30,14 +30,14 @@ class CharacterDetails extends StatelessWidget {
       client: client,
       operationRequest: GcharacterDetailsReq((d) => d..vars.id = id),
       builder: (BuildContext context,
-          OperationResponse<GcharacterDetailsData, GcharacterDetailsVars>
+          OperationResponse<GcharacterDetailsData, GcharacterDetailsVars?>?
               response,
-          Object error) {
-        if (response.loading) {
+          Object? error) {
+        if (response!.loading) {
           return Center(child: CircularProgressIndicator());
         }
-        final characterDetails = response.data.character;
-        final characterEpisodes = characterDetails.episode.asList();
+        final characterDetails = response.data!.character!;
+        final characterEpisodes = characterDetails.episode!.asList();
         return CustomScrollView(
           slivers: <Widget>[
             SliverSafeArea(
@@ -53,15 +53,15 @@ class CharacterDetails extends StatelessWidget {
                 elevation: 0,
                 flexibleSpace: FlexibleSpaceBar(
                   background: Hero(
-                    tag: characterDetails.id,
+                    tag: characterDetails.id!,
                     child: CachedNetworkImage(
-                      imageUrl: characterDetails.image,
+                      imageUrl: characterDetails.image!,
                       fit: BoxFit.cover,
                       colorBlendMode: BlendMode.darken,
                       color: Colors.black12,
                     ),
                   ),
-                  title: Text(characterName),
+                  title: Text(characterName!),
                 ),
               ),
             ),
@@ -80,19 +80,19 @@ class CharacterDetails extends StatelessWidget {
                         Column(
                           children: <Widget>[
                             Text('STATUS'),
-                            Text(characterDetails.status)
+                            Text(characterDetails.status!)
                           ],
                         ),
                         Column(
                           children: <Widget>[
                             Text('SPECIES'),
-                            Text(characterSpecies)
+                            Text(characterSpecies!)
                           ],
                         ),
                         Column(
                           children: <Widget>[
                             Text('GENDER'),
-                            Text(characterGender)
+                            Text(characterGender!)
                           ],
                         ),
                         Column(
@@ -106,7 +106,7 @@ class CharacterDetails extends StatelessWidget {
                     SizedBox(
                       height: 10,
                     ),
-                    Text('Home Planet 🌍:  ${characterDetails.origin.name}'),
+                    Text('Home Planet 🌍:  ${characterDetails.origin!.name}'),
                     Text('Episodes with $characterName'),
                     Divider(),
                     Wrap(

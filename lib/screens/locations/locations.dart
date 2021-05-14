@@ -10,7 +10,7 @@ import 'package:ricky_n_morty/screens/settings_screen.dart';
 import 'location_details.dart';
 
 class LocationsScreen extends StatelessWidget {
-  final client = GetIt.I<Client>();
+  final Client? client = GetIt.I<Client>();
   final locationsReq = GallLocationsReq((l) => l
     ..requestId = 'getLocationsId'
     ..vars.page = 1);
@@ -30,19 +30,19 @@ class LocationsScreen extends StatelessWidget {
         ],
       ),
       body: Operation(
-        client: client,
+        client: client!,
         operationRequest: locationsReq,
         builder: (BuildContext context,
-            OperationResponse<GallLocationsData, GallLocationsVars> response,
-            Object error) {
-          if (response.loading) {
+            OperationResponse<GallLocationsData, GallLocationsVars?>? response,
+            Object? error) {
+          if (response!.loading) {
             return Center(child: CircularProgressIndicator());
           }
           if (response.hasErrors) {
-            return Text(response.graphqlErrors.first.message);
+            return Text(response.graphqlErrors!.first.message);
           }
 
-          if (response.data.locations == null) {
+          if (response.data!.locations == null) {
             return Center(
               child: Text('Uhh Rick, There are no locations here'),
             );
@@ -53,17 +53,19 @@ class LocationsScreen extends StatelessWidget {
                 _scrollController.position.maxScrollExtent) {
               final paginationLocs = locationsReq.rebuild(
                 (p) => p
-                  ..vars.page = p.vars.page + 1
+                  ..vars.page = p.vars.page! + 1
                   ..updateResult = (previous, next) =>
                       previous?.rebuild((p) => p
-                        ..locations.results.addAll(next.locations.results)) ??
+                        ..locations
+                            .results
+                            .addAll(next!.locations!.results!)) ??
                       next,
               );
-              client.requestController.add(paginationLocs);
+              client!.requestController.add(paginationLocs);
             }
           });
 
-          final locations = response.data.locations.results.toBuiltList();
+          final locations = response.data!.locations!.results!.toBuiltList();
           return ListView.builder(
             controller: _scrollController,
             itemCount: locations.length,
@@ -75,20 +77,20 @@ class LocationsScreen extends StatelessWidget {
                 ),
                 child: ListTile(
                   title: Text(
-                    location.name,
+                    location.name!,
                     softWrap: true,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context)
                         .textTheme
-                        .headline5
+                        .headline5!
                         .copyWith(fontSize: 20),
                   ),
                   subtitle: Text(
-                    'Dimension: ' + location.dimension,
+                    'Dimension: ' + location.dimension!,
                     softWrap: true,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  trailing: Text(location.type),
+                  trailing: Text(location.type!),
                   onTap: () => Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (_) => LocationDetails(

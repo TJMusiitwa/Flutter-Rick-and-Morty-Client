@@ -10,14 +10,13 @@ import 'package:ricky_n_morty/screens/settings_screen.dart';
 import 'episode_details.dart';
 
 class EpisodesScreen extends StatelessWidget {
-  final client = GetIt.I<Client>();
+  final Client? client = GetIt.I<Client>();
   final episodesReq = GallEpisodesReq((l) => l
     ..requestId = 'getEpisodesId'
     ..vars.page = 1);
 
   @override
   Widget build(BuildContext context) {
-    int _currentPage = 1;
     return Scaffold(
       appBar: AppBar(
         title: Text('Episodes'),
@@ -32,16 +31,16 @@ class EpisodesScreen extends StatelessWidget {
         ],
       ),
       body: Operation(
-        client: client,
+        client: client!,
         operationRequest: episodesReq,
         builder: (BuildContext context,
-            OperationResponse<GallEpisodesData, GallEpisodesVars> response,
-            Object error) {
-          if (response.loading) {
+            OperationResponse<GallEpisodesData, GallEpisodesVars?>? response,
+            Object? error) {
+          if (response!.loading) {
             return Center(child: CircularProgressIndicator());
           } else if (response.hasErrors) {
-            return Text(response.graphqlErrors.first.message);
-          } else if (response.data.episodes.results == null) {
+            return Text(response.graphqlErrors!.first.message);
+          } else if (response.data!.episodes!.results == null) {
             return Center(
               child: Text(
                   'Uhh Morty, you do know there is nothing but junk to watch on TV'),
@@ -53,17 +52,17 @@ class EpisodesScreen extends StatelessWidget {
                 _scrollController.position.maxScrollExtent) {
               final paginationEps = episodesReq.rebuild(
                 (p) => p
-                  ..vars.page = p.vars.page + 1
+                  ..vars.page = p.vars.page! + 1
                   ..updateResult = (previous, next) =>
-                      previous?.rebuild((p) =>
-                          p..episodes.results.addAll(next.episodes.results)) ??
+                      previous?.rebuild((p) => p
+                        ..episodes.results.addAll(next!.episodes!.results!)) ??
                       next,
               );
-              client.requestController.add(paginationEps);
+              client!.requestController.add(paginationEps);
             }
           });
 
-          final episodes = response.data.episodes.results.toBuiltList();
+          final episodes = response.data!.episodes!.results!.toBuiltList();
           return ListView.builder(
             controller: _scrollController,
             itemCount: episodes.length,
@@ -76,16 +75,16 @@ class EpisodesScreen extends StatelessWidget {
                 ),
                 child: ListTile(
                   title: Text(
-                    episode.name,
+                    episode.name!,
                     softWrap: true,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context)
                         .textTheme
-                        .headline5
+                        .headline5!
                         .copyWith(fontSize: 20),
                   ),
-                  subtitle: Text('Aired: ' + episode.air_date),
-                  trailing: Text(episode.episode),
+                  subtitle: Text('Aired: ' + episode.air_date!),
+                  trailing: Text(episode.episode!),
                   onTap: () => Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (_) => EpisodeDetails(

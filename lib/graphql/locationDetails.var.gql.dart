@@ -18,7 +18,8 @@ abstract class GLocationDetailsVars
   static Serializer<GLocationDetailsVars> get serializer =>
       _$gLocationDetailsVarsSerializer;
   Map<String, dynamic> toJson() =>
-      _i1.serializers.serializeWith(GLocationDetailsVars.serializer, this);
-  static GLocationDetailsVars fromJson(Map<String, dynamic> json) =>
+      (_i1.serializers.serializeWith(GLocationDetailsVars.serializer, this)
+          as Map<String, dynamic>);
+  static GLocationDetailsVars? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(GLocationDetailsVars.serializer, json);
 }

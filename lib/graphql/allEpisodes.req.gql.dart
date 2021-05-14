@@ -28,29 +28,23 @@ abstract class GallEpisodesReq
   _i4.Operation get operation;
   _i4.Request get execRequest =>
       _i4.Request(operation: operation, variables: vars.toJson());
-  @nullable
-  String get requestId;
-  @nullable
+  String? get requestId;
   @BuiltValueField(serialize: false)
-  _i2.GallEpisodesData Function(_i2.GallEpisodesData, _i2.GallEpisodesData)
+  _i2.GallEpisodesData? Function(_i2.GallEpisodesData?, _i2.GallEpisodesData?)?
       get updateResult;
-  @nullable
-  _i2.GallEpisodesData get optimisticResponse;
-  @nullable
-  String get updateCacheHandlerKey;
-  @nullable
-  Map<String, dynamic> get updateCacheHandlerContext;
-  @nullable
-  _i1.FetchPolicy get fetchPolicy;
-  @nullable
+  _i2.GallEpisodesData? get optimisticResponse;
+  String? get updateCacheHandlerKey;
+  Map<String, dynamic>? get updateCacheHandlerContext;
+  _i1.FetchPolicy? get fetchPolicy;
   bool get executeOnListen;
   @override
-  _i2.GallEpisodesData parseData(Map<String, dynamic> json) =>
+  _i2.GallEpisodesData? parseData(Map<String, dynamic> json) =>
       _i2.GallEpisodesData.fromJson(json);
   static Serializer<GallEpisodesReq> get serializer =>
       _$gallEpisodesReqSerializer;
   Map<String, dynamic> toJson() =>
-      _i6.serializers.serializeWith(GallEpisodesReq.serializer, this);
-  static GallEpisodesReq fromJson(Map<String, dynamic> json) =>
+      (_i6.serializers.serializeWith(GallEpisodesReq.serializer, this)
+          as Map<String, dynamic>);
+  static GallEpisodesReq? fromJson(Map<String, dynamic> json) =>
       _i6.serializers.deserializeWith(GallEpisodesReq.serializer, json);
 }

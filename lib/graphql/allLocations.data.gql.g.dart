@@ -25,17 +25,19 @@ class _$GallLocationsDataSerializer
   final String wireName = 'GallLocationsData';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, GallLocationsData object,
+  Iterable<Object?> serialize(Serializers serializers, GallLocationsData object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
     ];
-    if (object.locations != null) {
+    Object? value;
+    value = object.locations;
+    if (value != null) {
       result
         ..add('locations')
-        ..add(serializers.serialize(object.locations,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(GallLocationsData_locations)));
     }
     return result;
@@ -43,7 +45,7 @@ class _$GallLocationsDataSerializer
 
   @override
   GallLocationsData deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new GallLocationsDataBuilder();
 
@@ -51,7 +53,7 @@ class _$GallLocationsDataSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case '__typename':
           result.G__typename = serializers.deserialize(value,
@@ -59,7 +61,7 @@ class _$GallLocationsDataSerializer
           break;
         case 'locations':
           result.locations.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(GallLocationsData_locations))
+                  specifiedType: const FullType(GallLocationsData_locations))!
               as GallLocationsData_locations);
           break;
       }
@@ -80,24 +82,27 @@ class _$GallLocationsData_locationsSerializer
   final String wireName = 'GallLocationsData_locations';
 
   @override
-  Iterable<Object> serialize(
+  Iterable<Object?> serialize(
       Serializers serializers, GallLocationsData_locations object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
     ];
-    if (object.info != null) {
+    Object? value;
+    value = object.info;
+    if (value != null) {
       result
         ..add('info')
-        ..add(serializers.serialize(object.info,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(GallLocationsData_locations_info)));
     }
-    if (object.results != null) {
+    value = object.results;
+    if (value != null) {
       result
         ..add('results')
-        ..add(serializers.serialize(object.results,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(BuiltList,
                 const [const FullType(GallLocationsData_locations_results)])));
     }
@@ -106,7 +111,7 @@ class _$GallLocationsData_locationsSerializer
 
   @override
   GallLocationsData_locations deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new GallLocationsData_locationsBuilder();
 
@@ -114,7 +119,7 @@ class _$GallLocationsData_locationsSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case '__typename':
           result.G__typename = serializers.deserialize(value,
@@ -123,14 +128,14 @@ class _$GallLocationsData_locationsSerializer
         case 'info':
           result.info.replace(serializers.deserialize(value,
                   specifiedType:
-                      const FullType(GallLocationsData_locations_info))
+                      const FullType(GallLocationsData_locations_info))!
               as GallLocationsData_locations_info);
           break;
         case 'results':
           result.results.replace(serializers.deserialize(value,
               specifiedType: const FullType(BuiltList, const [
                 const FullType(GallLocationsData_locations_results)
-              ])) as BuiltList<Object>);
+              ]))! as BuiltList<Object>);
           break;
       }
     }
@@ -150,38 +155,39 @@ class _$GallLocationsData_locations_infoSerializer
   final String wireName = 'GallLocationsData_locations_info';
 
   @override
-  Iterable<Object> serialize(
+  Iterable<Object?> serialize(
       Serializers serializers, GallLocationsData_locations_info object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
     ];
-    if (object.count != null) {
+    Object? value;
+    value = object.count;
+    if (value != null) {
       result
         ..add('count')
-        ..add(serializers.serialize(object.count,
-            specifiedType: const FullType(int)));
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
-    if (object.pages != null) {
+    value = object.pages;
+    if (value != null) {
       result
         ..add('pages')
-        ..add(serializers.serialize(object.pages,
-            specifiedType: const FullType(int)));
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
-    if (object.next != null) {
+    value = object.next;
+    if (value != null) {
       result
         ..add('next')
-        ..add(serializers.serialize(object.next,
-            specifiedType: const FullType(int)));
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
     return result;
   }
 
   @override
   GallLocationsData_locations_info deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new GallLocationsData_locations_infoBuilder();
 
@@ -189,7 +195,7 @@ class _$GallLocationsData_locations_infoSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case '__typename':
           result.G__typename = serializers.deserialize(value,
@@ -225,42 +231,48 @@ class _$GallLocationsData_locations_resultsSerializer
   final String wireName = 'GallLocationsData_locations_results';
 
   @override
-  Iterable<Object> serialize(
+  Iterable<Object?> serialize(
       Serializers serializers, GallLocationsData_locations_results object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
     ];
-    if (object.id != null) {
+    Object? value;
+    value = object.id;
+    if (value != null) {
       result
         ..add('id')
-        ..add(serializers.serialize(object.id,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.name != null) {
+    value = object.name;
+    if (value != null) {
       result
         ..add('name')
-        ..add(serializers.serialize(object.name,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.type != null) {
+    value = object.type;
+    if (value != null) {
       result
         ..add('type')
-        ..add(serializers.serialize(object.type,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.dimension != null) {
+    value = object.dimension;
+    if (value != null) {
       result
         ..add('dimension')
-        ..add(serializers.serialize(object.dimension,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.created != null) {
+    value = object.created;
+    if (value != null) {
       result
         ..add('created')
-        ..add(serializers.serialize(object.created,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
     return result;
@@ -268,7 +280,7 @@ class _$GallLocationsData_locations_resultsSerializer
 
   @override
   GallLocationsData_locations_results deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new GallLocationsData_locations_resultsBuilder();
 
@@ -276,7 +288,7 @@ class _$GallLocationsData_locations_resultsSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case '__typename':
           result.G__typename = serializers.deserialize(value,
@@ -313,16 +325,16 @@ class _$GallLocationsData extends GallLocationsData {
   @override
   final String G__typename;
   @override
-  final GallLocationsData_locations locations;
+  final GallLocationsData_locations? locations;
 
   factory _$GallLocationsData(
-          [void Function(GallLocationsDataBuilder) updates]) =>
+          [void Function(GallLocationsDataBuilder)? updates]) =>
       (new GallLocationsDataBuilder()..update(updates)).build();
 
-  _$GallLocationsData._({this.G__typename, this.locations}) : super._() {
-    if (G__typename == null) {
-      throw new BuiltValueNullFieldError('GallLocationsData', 'G__typename');
-    }
+  _$GallLocationsData._({required this.G__typename, this.locations})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, 'GallLocationsData', 'G__typename');
   }
 
   @override
@@ -357,16 +369,16 @@ class _$GallLocationsData extends GallLocationsData {
 
 class GallLocationsDataBuilder
     implements Builder<GallLocationsData, GallLocationsDataBuilder> {
-  _$GallLocationsData _$v;
+  _$GallLocationsData? _$v;
 
-  String _G__typename;
-  String get G__typename => _$this._G__typename;
-  set G__typename(String G__typename) => _$this._G__typename = G__typename;
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
 
-  GallLocationsData_locationsBuilder _locations;
+  GallLocationsData_locationsBuilder? _locations;
   GallLocationsData_locationsBuilder get locations =>
       _$this._locations ??= new GallLocationsData_locationsBuilder();
-  set locations(GallLocationsData_locationsBuilder locations) =>
+  set locations(GallLocationsData_locationsBuilder? locations) =>
       _$this._locations = locations;
 
   GallLocationsDataBuilder() {
@@ -374,9 +386,10 @@ class GallLocationsDataBuilder
   }
 
   GallLocationsDataBuilder get _$this {
-    if (_$v != null) {
-      _G__typename = _$v.G__typename;
-      _locations = _$v.locations?.toBuilder();
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _locations = $v.locations?.toBuilder();
       _$v = null;
     }
     return this;
@@ -384,14 +397,12 @@ class GallLocationsDataBuilder
 
   @override
   void replace(GallLocationsData other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GallLocationsData;
   }
 
   @override
-  void update(void Function(GallLocationsDataBuilder) updates) {
+  void update(void Function(GallLocationsDataBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -401,9 +412,11 @@ class GallLocationsDataBuilder
     try {
       _$result = _$v ??
           new _$GallLocationsData._(
-              G__typename: G__typename, locations: _locations?.build());
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, 'GallLocationsData', 'G__typename'),
+              locations: _locations?.build());
     } catch (_) {
-      String _$failedField;
+      late String _$failedField;
       try {
         _$failedField = 'locations';
         _locations?.build();
@@ -422,20 +435,19 @@ class _$GallLocationsData_locations extends GallLocationsData_locations {
   @override
   final String G__typename;
   @override
-  final GallLocationsData_locations_info info;
+  final GallLocationsData_locations_info? info;
   @override
-  final BuiltList<GallLocationsData_locations_results> results;
+  final BuiltList<GallLocationsData_locations_results>? results;
 
   factory _$GallLocationsData_locations(
-          [void Function(GallLocationsData_locationsBuilder) updates]) =>
+          [void Function(GallLocationsData_locationsBuilder)? updates]) =>
       (new GallLocationsData_locationsBuilder()..update(updates)).build();
 
-  _$GallLocationsData_locations._({this.G__typename, this.info, this.results})
+  _$GallLocationsData_locations._(
+      {required this.G__typename, this.info, this.results})
       : super._() {
-    if (G__typename == null) {
-      throw new BuiltValueNullFieldError(
-          'GallLocationsData_locations', 'G__typename');
-    }
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, 'GallLocationsData_locations', 'G__typename');
   }
 
   @override
@@ -476,22 +488,23 @@ class GallLocationsData_locationsBuilder
     implements
         Builder<GallLocationsData_locations,
             GallLocationsData_locationsBuilder> {
-  _$GallLocationsData_locations _$v;
+  _$GallLocationsData_locations? _$v;
 
-  String _G__typename;
-  String get G__typename => _$this._G__typename;
-  set G__typename(String G__typename) => _$this._G__typename = G__typename;
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
 
-  GallLocationsData_locations_infoBuilder _info;
+  GallLocationsData_locations_infoBuilder? _info;
   GallLocationsData_locations_infoBuilder get info =>
       _$this._info ??= new GallLocationsData_locations_infoBuilder();
-  set info(GallLocationsData_locations_infoBuilder info) => _$this._info = info;
+  set info(GallLocationsData_locations_infoBuilder? info) =>
+      _$this._info = info;
 
-  ListBuilder<GallLocationsData_locations_results> _results;
+  ListBuilder<GallLocationsData_locations_results>? _results;
   ListBuilder<GallLocationsData_locations_results> get results =>
       _$this._results ??=
           new ListBuilder<GallLocationsData_locations_results>();
-  set results(ListBuilder<GallLocationsData_locations_results> results) =>
+  set results(ListBuilder<GallLocationsData_locations_results>? results) =>
       _$this._results = results;
 
   GallLocationsData_locationsBuilder() {
@@ -499,10 +512,11 @@ class GallLocationsData_locationsBuilder
   }
 
   GallLocationsData_locationsBuilder get _$this {
-    if (_$v != null) {
-      _G__typename = _$v.G__typename;
-      _info = _$v.info?.toBuilder();
-      _results = _$v.results?.toBuilder();
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _info = $v.info?.toBuilder();
+      _results = $v.results?.toBuilder();
       _$v = null;
     }
     return this;
@@ -510,14 +524,12 @@ class GallLocationsData_locationsBuilder
 
   @override
   void replace(GallLocationsData_locations other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GallLocationsData_locations;
   }
 
   @override
-  void update(void Function(GallLocationsData_locationsBuilder) updates) {
+  void update(void Function(GallLocationsData_locationsBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -527,11 +539,12 @@ class GallLocationsData_locationsBuilder
     try {
       _$result = _$v ??
           new _$GallLocationsData_locations._(
-              G__typename: G__typename,
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, 'GallLocationsData_locations', 'G__typename'),
               info: _info?.build(),
               results: _results?.build());
     } catch (_) {
-      String _$failedField;
+      late String _$failedField;
       try {
         _$failedField = 'info';
         _info?.build();
@@ -553,23 +566,21 @@ class _$GallLocationsData_locations_info
   @override
   final String G__typename;
   @override
-  final int count;
+  final int? count;
   @override
-  final int pages;
+  final int? pages;
   @override
-  final int next;
+  final int? next;
 
   factory _$GallLocationsData_locations_info(
-          [void Function(GallLocationsData_locations_infoBuilder) updates]) =>
+          [void Function(GallLocationsData_locations_infoBuilder)? updates]) =>
       (new GallLocationsData_locations_infoBuilder()..update(updates)).build();
 
   _$GallLocationsData_locations_info._(
-      {this.G__typename, this.count, this.pages, this.next})
+      {required this.G__typename, this.count, this.pages, this.next})
       : super._() {
-    if (G__typename == null) {
-      throw new BuiltValueNullFieldError(
-          'GallLocationsData_locations_info', 'G__typename');
-    }
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, 'GallLocationsData_locations_info', 'G__typename');
   }
 
   @override
@@ -613,34 +624,35 @@ class GallLocationsData_locations_infoBuilder
     implements
         Builder<GallLocationsData_locations_info,
             GallLocationsData_locations_infoBuilder> {
-  _$GallLocationsData_locations_info _$v;
+  _$GallLocationsData_locations_info? _$v;
 
-  String _G__typename;
-  String get G__typename => _$this._G__typename;
-  set G__typename(String G__typename) => _$this._G__typename = G__typename;
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
 
-  int _count;
-  int get count => _$this._count;
-  set count(int count) => _$this._count = count;
+  int? _count;
+  int? get count => _$this._count;
+  set count(int? count) => _$this._count = count;
 
-  int _pages;
-  int get pages => _$this._pages;
-  set pages(int pages) => _$this._pages = pages;
+  int? _pages;
+  int? get pages => _$this._pages;
+  set pages(int? pages) => _$this._pages = pages;
 
-  int _next;
-  int get next => _$this._next;
-  set next(int next) => _$this._next = next;
+  int? _next;
+  int? get next => _$this._next;
+  set next(int? next) => _$this._next = next;
 
   GallLocationsData_locations_infoBuilder() {
     GallLocationsData_locations_info._initializeBuilder(this);
   }
 
   GallLocationsData_locations_infoBuilder get _$this {
-    if (_$v != null) {
-      _G__typename = _$v.G__typename;
-      _count = _$v.count;
-      _pages = _$v.pages;
-      _next = _$v.next;
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _count = $v.count;
+      _pages = $v.pages;
+      _next = $v.next;
       _$v = null;
     }
     return this;
@@ -648,14 +660,12 @@ class GallLocationsData_locations_infoBuilder
 
   @override
   void replace(GallLocationsData_locations_info other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GallLocationsData_locations_info;
   }
 
   @override
-  void update(void Function(GallLocationsData_locations_infoBuilder) updates) {
+  void update(void Function(GallLocationsData_locations_infoBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -663,7 +673,11 @@ class GallLocationsData_locations_infoBuilder
   _$GallLocationsData_locations_info build() {
     final _$result = _$v ??
         new _$GallLocationsData_locations_info._(
-            G__typename: G__typename, count: count, pages: pages, next: next);
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, 'GallLocationsData_locations_info', 'G__typename'),
+            count: count,
+            pages: pages,
+            next: next);
     replace(_$result);
     return _$result;
   }
@@ -674,34 +688,32 @@ class _$GallLocationsData_locations_results
   @override
   final String G__typename;
   @override
-  final String id;
+  final String? id;
   @override
-  final String name;
+  final String? name;
   @override
-  final String type;
+  final String? type;
   @override
-  final String dimension;
+  final String? dimension;
   @override
-  final String created;
+  final String? created;
 
   factory _$GallLocationsData_locations_results(
-          [void Function(GallLocationsData_locations_resultsBuilder)
+          [void Function(GallLocationsData_locations_resultsBuilder)?
               updates]) =>
       (new GallLocationsData_locations_resultsBuilder()..update(updates))
           .build();
 
   _$GallLocationsData_locations_results._(
-      {this.G__typename,
+      {required this.G__typename,
       this.id,
       this.name,
       this.type,
       this.dimension,
       this.created})
       : super._() {
-    if (G__typename == null) {
-      throw new BuiltValueNullFieldError(
-          'GallLocationsData_locations_results', 'G__typename');
-    }
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, 'GallLocationsData_locations_results', 'G__typename');
   }
 
   @override
@@ -754,44 +766,45 @@ class GallLocationsData_locations_resultsBuilder
     implements
         Builder<GallLocationsData_locations_results,
             GallLocationsData_locations_resultsBuilder> {
-  _$GallLocationsData_locations_results _$v;
+  _$GallLocationsData_locations_results? _$v;
 
-  String _G__typename;
-  String get G__typename => _$this._G__typename;
-  set G__typename(String G__typename) => _$this._G__typename = G__typename;
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
 
-  String _id;
-  String get id => _$this._id;
-  set id(String id) => _$this._id = id;
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
 
-  String _name;
-  String get name => _$this._name;
-  set name(String name) => _$this._name = name;
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
 
-  String _type;
-  String get type => _$this._type;
-  set type(String type) => _$this._type = type;
+  String? _type;
+  String? get type => _$this._type;
+  set type(String? type) => _$this._type = type;
 
-  String _dimension;
-  String get dimension => _$this._dimension;
-  set dimension(String dimension) => _$this._dimension = dimension;
+  String? _dimension;
+  String? get dimension => _$this._dimension;
+  set dimension(String? dimension) => _$this._dimension = dimension;
 
-  String _created;
-  String get created => _$this._created;
-  set created(String created) => _$this._created = created;
+  String? _created;
+  String? get created => _$this._created;
+  set created(String? created) => _$this._created = created;
 
   GallLocationsData_locations_resultsBuilder() {
     GallLocationsData_locations_results._initializeBuilder(this);
   }
 
   GallLocationsData_locations_resultsBuilder get _$this {
-    if (_$v != null) {
-      _G__typename = _$v.G__typename;
-      _id = _$v.id;
-      _name = _$v.name;
-      _type = _$v.type;
-      _dimension = _$v.dimension;
-      _created = _$v.created;
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _type = $v.type;
+      _dimension = $v.dimension;
+      _created = $v.created;
       _$v = null;
     }
     return this;
@@ -799,15 +812,13 @@ class GallLocationsData_locations_resultsBuilder
 
   @override
   void replace(GallLocationsData_locations_results other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GallLocationsData_locations_results;
   }
 
   @override
   void update(
-      void Function(GallLocationsData_locations_resultsBuilder) updates) {
+      void Function(GallLocationsData_locations_resultsBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -815,7 +826,8 @@ class GallLocationsData_locations_resultsBuilder
   _$GallLocationsData_locations_results build() {
     final _$result = _$v ??
         new _$GallLocationsData_locations_results._(
-            G__typename: G__typename,
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                'GallLocationsData_locations_results', 'G__typename'),
             id: id,
             name: name,
             type: type,

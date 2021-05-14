@@ -41,12 +41,13 @@ class MyApp extends StatelessWidget {
         title: 'Rick and Morty App',
         theme: ThemeData.light().copyWith(
             primaryColor: Colors.white,
+            primaryColorBrightness: Brightness.light,
             accentColor: Colors.amberAccent,
             visualDensity: VisualDensity.adaptivePlatformDensity),
         darkTheme: ThemeData.dark().copyWith(
             accentColor: Colors.amberAccent,
             visualDensity: VisualDensity.adaptivePlatformDensity),
-        themeMode: ThemeMode.system,
+        themeMode: ThemeMode.dark,
         home: Appnav());
   }
 }

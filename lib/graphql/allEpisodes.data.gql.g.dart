@@ -25,17 +25,19 @@ class _$GallEpisodesDataSerializer
   final String wireName = 'GallEpisodesData';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, GallEpisodesData object,
+  Iterable<Object?> serialize(Serializers serializers, GallEpisodesData object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
     ];
-    if (object.episodes != null) {
+    Object? value;
+    value = object.episodes;
+    if (value != null) {
       result
         ..add('episodes')
-        ..add(serializers.serialize(object.episodes,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(GallEpisodesData_episodes)));
     }
     return result;
@@ -43,7 +45,7 @@ class _$GallEpisodesDataSerializer
 
   @override
   GallEpisodesData deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new GallEpisodesDataBuilder();
 
@@ -51,7 +53,7 @@ class _$GallEpisodesDataSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case '__typename':
           result.G__typename = serializers.deserialize(value,
@@ -59,7 +61,7 @@ class _$GallEpisodesDataSerializer
           break;
         case 'episodes':
           result.episodes.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(GallEpisodesData_episodes))
+                  specifiedType: const FullType(GallEpisodesData_episodes))!
               as GallEpisodesData_episodes);
           break;
       }
@@ -80,24 +82,27 @@ class _$GallEpisodesData_episodesSerializer
   final String wireName = 'GallEpisodesData_episodes';
 
   @override
-  Iterable<Object> serialize(
+  Iterable<Object?> serialize(
       Serializers serializers, GallEpisodesData_episodes object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
     ];
-    if (object.info != null) {
+    Object? value;
+    value = object.info;
+    if (value != null) {
       result
         ..add('info')
-        ..add(serializers.serialize(object.info,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(GallEpisodesData_episodes_info)));
     }
-    if (object.results != null) {
+    value = object.results;
+    if (value != null) {
       result
         ..add('results')
-        ..add(serializers.serialize(object.results,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(BuiltList,
                 const [const FullType(GallEpisodesData_episodes_results)])));
     }
@@ -106,7 +111,7 @@ class _$GallEpisodesData_episodesSerializer
 
   @override
   GallEpisodesData_episodes deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new GallEpisodesData_episodesBuilder();
 
@@ -114,7 +119,7 @@ class _$GallEpisodesData_episodesSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case '__typename':
           result.G__typename = serializers.deserialize(value,
@@ -122,14 +127,15 @@ class _$GallEpisodesData_episodesSerializer
           break;
         case 'info':
           result.info.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(GallEpisodesData_episodes_info))
+                  specifiedType:
+                      const FullType(GallEpisodesData_episodes_info))!
               as GallEpisodesData_episodes_info);
           break;
         case 'results':
           result.results.replace(serializers.deserialize(value,
               specifiedType: const FullType(BuiltList, const [
                 const FullType(GallEpisodesData_episodes_results)
-              ])) as BuiltList<Object>);
+              ]))! as BuiltList<Object>);
           break;
       }
     }
@@ -149,38 +155,39 @@ class _$GallEpisodesData_episodes_infoSerializer
   final String wireName = 'GallEpisodesData_episodes_info';
 
   @override
-  Iterable<Object> serialize(
+  Iterable<Object?> serialize(
       Serializers serializers, GallEpisodesData_episodes_info object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
     ];
-    if (object.count != null) {
+    Object? value;
+    value = object.count;
+    if (value != null) {
       result
         ..add('count')
-        ..add(serializers.serialize(object.count,
-            specifiedType: const FullType(int)));
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
-    if (object.pages != null) {
+    value = object.pages;
+    if (value != null) {
       result
         ..add('pages')
-        ..add(serializers.serialize(object.pages,
-            specifiedType: const FullType(int)));
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
-    if (object.next != null) {
+    value = object.next;
+    if (value != null) {
       result
         ..add('next')
-        ..add(serializers.serialize(object.next,
-            specifiedType: const FullType(int)));
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
     return result;
   }
 
   @override
   GallEpisodesData_episodes_info deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new GallEpisodesData_episodes_infoBuilder();
 
@@ -188,7 +195,7 @@ class _$GallEpisodesData_episodes_infoSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case '__typename':
           result.G__typename = serializers.deserialize(value,
@@ -224,42 +231,48 @@ class _$GallEpisodesData_episodes_resultsSerializer
   final String wireName = 'GallEpisodesData_episodes_results';
 
   @override
-  Iterable<Object> serialize(
+  Iterable<Object?> serialize(
       Serializers serializers, GallEpisodesData_episodes_results object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
     ];
-    if (object.id != null) {
+    Object? value;
+    value = object.id;
+    if (value != null) {
       result
         ..add('id')
-        ..add(serializers.serialize(object.id,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.name != null) {
+    value = object.name;
+    if (value != null) {
       result
         ..add('name')
-        ..add(serializers.serialize(object.name,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.air_date != null) {
+    value = object.air_date;
+    if (value != null) {
       result
         ..add('air_date')
-        ..add(serializers.serialize(object.air_date,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.episode != null) {
+    value = object.episode;
+    if (value != null) {
       result
         ..add('episode')
-        ..add(serializers.serialize(object.episode,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.created != null) {
+    value = object.created;
+    if (value != null) {
       result
         ..add('created')
-        ..add(serializers.serialize(object.created,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
     return result;
@@ -267,7 +280,7 @@ class _$GallEpisodesData_episodes_resultsSerializer
 
   @override
   GallEpisodesData_episodes_results deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new GallEpisodesData_episodes_resultsBuilder();
 
@@ -275,7 +288,7 @@ class _$GallEpisodesData_episodes_resultsSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case '__typename':
           result.G__typename = serializers.deserialize(value,
@@ -312,16 +325,15 @@ class _$GallEpisodesData extends GallEpisodesData {
   @override
   final String G__typename;
   @override
-  final GallEpisodesData_episodes episodes;
+  final GallEpisodesData_episodes? episodes;
 
   factory _$GallEpisodesData(
-          [void Function(GallEpisodesDataBuilder) updates]) =>
+          [void Function(GallEpisodesDataBuilder)? updates]) =>
       (new GallEpisodesDataBuilder()..update(updates)).build();
 
-  _$GallEpisodesData._({this.G__typename, this.episodes}) : super._() {
-    if (G__typename == null) {
-      throw new BuiltValueNullFieldError('GallEpisodesData', 'G__typename');
-    }
+  _$GallEpisodesData._({required this.G__typename, this.episodes}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, 'GallEpisodesData', 'G__typename');
   }
 
   @override
@@ -356,16 +368,16 @@ class _$GallEpisodesData extends GallEpisodesData {
 
 class GallEpisodesDataBuilder
     implements Builder<GallEpisodesData, GallEpisodesDataBuilder> {
-  _$GallEpisodesData _$v;
+  _$GallEpisodesData? _$v;
 
-  String _G__typename;
-  String get G__typename => _$this._G__typename;
-  set G__typename(String G__typename) => _$this._G__typename = G__typename;
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
 
-  GallEpisodesData_episodesBuilder _episodes;
+  GallEpisodesData_episodesBuilder? _episodes;
   GallEpisodesData_episodesBuilder get episodes =>
       _$this._episodes ??= new GallEpisodesData_episodesBuilder();
-  set episodes(GallEpisodesData_episodesBuilder episodes) =>
+  set episodes(GallEpisodesData_episodesBuilder? episodes) =>
       _$this._episodes = episodes;
 
   GallEpisodesDataBuilder() {
@@ -373,9 +385,10 @@ class GallEpisodesDataBuilder
   }
 
   GallEpisodesDataBuilder get _$this {
-    if (_$v != null) {
-      _G__typename = _$v.G__typename;
-      _episodes = _$v.episodes?.toBuilder();
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _episodes = $v.episodes?.toBuilder();
       _$v = null;
     }
     return this;
@@ -383,14 +396,12 @@ class GallEpisodesDataBuilder
 
   @override
   void replace(GallEpisodesData other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GallEpisodesData;
   }
 
   @override
-  void update(void Function(GallEpisodesDataBuilder) updates) {
+  void update(void Function(GallEpisodesDataBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -400,9 +411,11 @@ class GallEpisodesDataBuilder
     try {
       _$result = _$v ??
           new _$GallEpisodesData._(
-              G__typename: G__typename, episodes: _episodes?.build());
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, 'GallEpisodesData', 'G__typename'),
+              episodes: _episodes?.build());
     } catch (_) {
-      String _$failedField;
+      late String _$failedField;
       try {
         _$failedField = 'episodes';
         _episodes?.build();
@@ -421,20 +434,19 @@ class _$GallEpisodesData_episodes extends GallEpisodesData_episodes {
   @override
   final String G__typename;
   @override
-  final GallEpisodesData_episodes_info info;
+  final GallEpisodesData_episodes_info? info;
   @override
-  final BuiltList<GallEpisodesData_episodes_results> results;
+  final BuiltList<GallEpisodesData_episodes_results>? results;
 
   factory _$GallEpisodesData_episodes(
-          [void Function(GallEpisodesData_episodesBuilder) updates]) =>
+          [void Function(GallEpisodesData_episodesBuilder)? updates]) =>
       (new GallEpisodesData_episodesBuilder()..update(updates)).build();
 
-  _$GallEpisodesData_episodes._({this.G__typename, this.info, this.results})
+  _$GallEpisodesData_episodes._(
+      {required this.G__typename, this.info, this.results})
       : super._() {
-    if (G__typename == null) {
-      throw new BuiltValueNullFieldError(
-          'GallEpisodesData_episodes', 'G__typename');
-    }
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, 'GallEpisodesData_episodes', 'G__typename');
   }
 
   @override
@@ -474,21 +486,21 @@ class _$GallEpisodesData_episodes extends GallEpisodesData_episodes {
 class GallEpisodesData_episodesBuilder
     implements
         Builder<GallEpisodesData_episodes, GallEpisodesData_episodesBuilder> {
-  _$GallEpisodesData_episodes _$v;
+  _$GallEpisodesData_episodes? _$v;
 
-  String _G__typename;
-  String get G__typename => _$this._G__typename;
-  set G__typename(String G__typename) => _$this._G__typename = G__typename;
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
 
-  GallEpisodesData_episodes_infoBuilder _info;
+  GallEpisodesData_episodes_infoBuilder? _info;
   GallEpisodesData_episodes_infoBuilder get info =>
       _$this._info ??= new GallEpisodesData_episodes_infoBuilder();
-  set info(GallEpisodesData_episodes_infoBuilder info) => _$this._info = info;
+  set info(GallEpisodesData_episodes_infoBuilder? info) => _$this._info = info;
 
-  ListBuilder<GallEpisodesData_episodes_results> _results;
+  ListBuilder<GallEpisodesData_episodes_results>? _results;
   ListBuilder<GallEpisodesData_episodes_results> get results =>
       _$this._results ??= new ListBuilder<GallEpisodesData_episodes_results>();
-  set results(ListBuilder<GallEpisodesData_episodes_results> results) =>
+  set results(ListBuilder<GallEpisodesData_episodes_results>? results) =>
       _$this._results = results;
 
   GallEpisodesData_episodesBuilder() {
@@ -496,10 +508,11 @@ class GallEpisodesData_episodesBuilder
   }
 
   GallEpisodesData_episodesBuilder get _$this {
-    if (_$v != null) {
-      _G__typename = _$v.G__typename;
-      _info = _$v.info?.toBuilder();
-      _results = _$v.results?.toBuilder();
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _info = $v.info?.toBuilder();
+      _results = $v.results?.toBuilder();
       _$v = null;
     }
     return this;
@@ -507,14 +520,12 @@ class GallEpisodesData_episodesBuilder
 
   @override
   void replace(GallEpisodesData_episodes other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GallEpisodesData_episodes;
   }
 
   @override
-  void update(void Function(GallEpisodesData_episodesBuilder) updates) {
+  void update(void Function(GallEpisodesData_episodesBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -524,11 +535,12 @@ class GallEpisodesData_episodesBuilder
     try {
       _$result = _$v ??
           new _$GallEpisodesData_episodes._(
-              G__typename: G__typename,
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, 'GallEpisodesData_episodes', 'G__typename'),
               info: _info?.build(),
               results: _results?.build());
     } catch (_) {
-      String _$failedField;
+      late String _$failedField;
       try {
         _$failedField = 'info';
         _info?.build();
@@ -549,23 +561,21 @@ class _$GallEpisodesData_episodes_info extends GallEpisodesData_episodes_info {
   @override
   final String G__typename;
   @override
-  final int count;
+  final int? count;
   @override
-  final int pages;
+  final int? pages;
   @override
-  final int next;
+  final int? next;
 
   factory _$GallEpisodesData_episodes_info(
-          [void Function(GallEpisodesData_episodes_infoBuilder) updates]) =>
+          [void Function(GallEpisodesData_episodes_infoBuilder)? updates]) =>
       (new GallEpisodesData_episodes_infoBuilder()..update(updates)).build();
 
   _$GallEpisodesData_episodes_info._(
-      {this.G__typename, this.count, this.pages, this.next})
+      {required this.G__typename, this.count, this.pages, this.next})
       : super._() {
-    if (G__typename == null) {
-      throw new BuiltValueNullFieldError(
-          'GallEpisodesData_episodes_info', 'G__typename');
-    }
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, 'GallEpisodesData_episodes_info', 'G__typename');
   }
 
   @override
@@ -609,34 +619,35 @@ class GallEpisodesData_episodes_infoBuilder
     implements
         Builder<GallEpisodesData_episodes_info,
             GallEpisodesData_episodes_infoBuilder> {
-  _$GallEpisodesData_episodes_info _$v;
+  _$GallEpisodesData_episodes_info? _$v;
 
-  String _G__typename;
-  String get G__typename => _$this._G__typename;
-  set G__typename(String G__typename) => _$this._G__typename = G__typename;
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
 
-  int _count;
-  int get count => _$this._count;
-  set count(int count) => _$this._count = count;
+  int? _count;
+  int? get count => _$this._count;
+  set count(int? count) => _$this._count = count;
 
-  int _pages;
-  int get pages => _$this._pages;
-  set pages(int pages) => _$this._pages = pages;
+  int? _pages;
+  int? get pages => _$this._pages;
+  set pages(int? pages) => _$this._pages = pages;
 
-  int _next;
-  int get next => _$this._next;
-  set next(int next) => _$this._next = next;
+  int? _next;
+  int? get next => _$this._next;
+  set next(int? next) => _$this._next = next;
 
   GallEpisodesData_episodes_infoBuilder() {
     GallEpisodesData_episodes_info._initializeBuilder(this);
   }
 
   GallEpisodesData_episodes_infoBuilder get _$this {
-    if (_$v != null) {
-      _G__typename = _$v.G__typename;
-      _count = _$v.count;
-      _pages = _$v.pages;
-      _next = _$v.next;
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _count = $v.count;
+      _pages = $v.pages;
+      _next = $v.next;
       _$v = null;
     }
     return this;
@@ -644,14 +655,12 @@ class GallEpisodesData_episodes_infoBuilder
 
   @override
   void replace(GallEpisodesData_episodes_info other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GallEpisodesData_episodes_info;
   }
 
   @override
-  void update(void Function(GallEpisodesData_episodes_infoBuilder) updates) {
+  void update(void Function(GallEpisodesData_episodes_infoBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -659,7 +668,11 @@ class GallEpisodesData_episodes_infoBuilder
   _$GallEpisodesData_episodes_info build() {
     final _$result = _$v ??
         new _$GallEpisodesData_episodes_info._(
-            G__typename: G__typename, count: count, pages: pages, next: next);
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, 'GallEpisodesData_episodes_info', 'G__typename'),
+            count: count,
+            pages: pages,
+            next: next);
     replace(_$result);
     return _$result;
   }
@@ -670,32 +683,30 @@ class _$GallEpisodesData_episodes_results
   @override
   final String G__typename;
   @override
-  final String id;
+  final String? id;
   @override
-  final String name;
+  final String? name;
   @override
-  final String air_date;
+  final String? air_date;
   @override
-  final String episode;
+  final String? episode;
   @override
-  final String created;
+  final String? created;
 
   factory _$GallEpisodesData_episodes_results(
-          [void Function(GallEpisodesData_episodes_resultsBuilder) updates]) =>
+          [void Function(GallEpisodesData_episodes_resultsBuilder)? updates]) =>
       (new GallEpisodesData_episodes_resultsBuilder()..update(updates)).build();
 
   _$GallEpisodesData_episodes_results._(
-      {this.G__typename,
+      {required this.G__typename,
       this.id,
       this.name,
       this.air_date,
       this.episode,
       this.created})
       : super._() {
-    if (G__typename == null) {
-      throw new BuiltValueNullFieldError(
-          'GallEpisodesData_episodes_results', 'G__typename');
-    }
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, 'GallEpisodesData_episodes_results', 'G__typename');
   }
 
   @override
@@ -748,44 +759,45 @@ class GallEpisodesData_episodes_resultsBuilder
     implements
         Builder<GallEpisodesData_episodes_results,
             GallEpisodesData_episodes_resultsBuilder> {
-  _$GallEpisodesData_episodes_results _$v;
+  _$GallEpisodesData_episodes_results? _$v;
 
-  String _G__typename;
-  String get G__typename => _$this._G__typename;
-  set G__typename(String G__typename) => _$this._G__typename = G__typename;
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
 
-  String _id;
-  String get id => _$this._id;
-  set id(String id) => _$this._id = id;
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
 
-  String _name;
-  String get name => _$this._name;
-  set name(String name) => _$this._name = name;
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
 
-  String _air_date;
-  String get air_date => _$this._air_date;
-  set air_date(String air_date) => _$this._air_date = air_date;
+  String? _air_date;
+  String? get air_date => _$this._air_date;
+  set air_date(String? air_date) => _$this._air_date = air_date;
 
-  String _episode;
-  String get episode => _$this._episode;
-  set episode(String episode) => _$this._episode = episode;
+  String? _episode;
+  String? get episode => _$this._episode;
+  set episode(String? episode) => _$this._episode = episode;
 
-  String _created;
-  String get created => _$this._created;
-  set created(String created) => _$this._created = created;
+  String? _created;
+  String? get created => _$this._created;
+  set created(String? created) => _$this._created = created;
 
   GallEpisodesData_episodes_resultsBuilder() {
     GallEpisodesData_episodes_results._initializeBuilder(this);
   }
 
   GallEpisodesData_episodes_resultsBuilder get _$this {
-    if (_$v != null) {
-      _G__typename = _$v.G__typename;
-      _id = _$v.id;
-      _name = _$v.name;
-      _air_date = _$v.air_date;
-      _episode = _$v.episode;
-      _created = _$v.created;
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _air_date = $v.air_date;
+      _episode = $v.episode;
+      _created = $v.created;
       _$v = null;
     }
     return this;
@@ -793,14 +805,13 @@ class GallEpisodesData_episodes_resultsBuilder
 
   @override
   void replace(GallEpisodesData_episodes_results other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GallEpisodesData_episodes_results;
   }
 
   @override
-  void update(void Function(GallEpisodesData_episodes_resultsBuilder) updates) {
+  void update(
+      void Function(GallEpisodesData_episodes_resultsBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -808,7 +819,8 @@ class GallEpisodesData_episodes_resultsBuilder
   _$GallEpisodesData_episodes_results build() {
     final _$result = _$v ??
         new _$GallEpisodesData_episodes_results._(
-            G__typename: G__typename,
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                'GallEpisodesData_episodes_results', 'G__typename'),
             id: id,
             name: name,
             air_date: air_date,
