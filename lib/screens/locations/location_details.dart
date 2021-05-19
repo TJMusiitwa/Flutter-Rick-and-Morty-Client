@@ -29,7 +29,9 @@ class LocationDetails extends StatelessWidget {
       )),
       body: Operation(
         client: client,
-        operationRequest: GLocationDetailsReq((d) => d..vars.id = id),
+        operationRequest: GLocationDetailsReq((d) => d
+          ..vars.id = id
+          ..fetchPolicy = FetchPolicy.CacheFirst),
         builder: (BuildContext context,
             OperationResponse<GLocationDetailsData, GLocationDetailsVars?>?
                 response,

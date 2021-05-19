@@ -28,7 +28,9 @@ class CharacterDetails extends StatelessWidget {
     return Scaffold(
         body: Operation(
       client: client,
-      operationRequest: GcharacterDetailsReq((d) => d..vars.id = id),
+      operationRequest: GcharacterDetailsReq((d) => d
+        ..vars.id = id
+        ..fetchPolicy = FetchPolicy.CacheFirst),
       builder: (BuildContext context,
           OperationResponse<GcharacterDetailsData, GcharacterDetailsVars?>?
               response,

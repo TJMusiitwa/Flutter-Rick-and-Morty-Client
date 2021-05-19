@@ -25,7 +25,9 @@ class EpisodeDetails extends StatelessWidget {
       ),
       body: Operation(
         client: client,
-        operationRequest: GepisodeDetailsReq((d) => d..vars.id = id),
+        operationRequest: GepisodeDetailsReq((d) => d
+          ..vars.id = id
+          ..fetchPolicy = FetchPolicy.CacheFirst),
         builder: (BuildContext context,
             OperationResponse<GepisodeDetailsData, GepisodeDetailsVars?>?
                 response,

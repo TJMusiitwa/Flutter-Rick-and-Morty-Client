@@ -10,11 +10,43 @@ import 'package:ricky_n_morty/screens/settings_screen.dart';
 
 import 'character_details.dart';
 
-class CharactersScreen extends StatelessWidget {
+class CharactersScreen extends StatefulWidget {
+  static int pageNum = 1;
+
+  @override
+  _CharactersScreenState createState() => _CharactersScreenState();
+}
+
+class _CharactersScreenState extends State<CharactersScreen> {
   final Client? client = GetIt.I<Client>();
+
   final charactersRequest = GallCharactersReq((c) => c
     ..requestId = 'getCharactersId'
-    ..vars.page = 1);
+    ..vars.page = CharactersScreen.pageNum);
+
+  ScrollController _scrollController = ScrollController();
+
+  _scrollListener() {
+    if (_scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent) {
+      final paginationChars = charactersRequest.rebuild(
+        (p) => p
+          ..vars.page = CharactersScreen.pageNum + 1
+          ..updateResult = (previous, next) => previous!.rebuild(
+              (p) => p..characters.results.addAll(next!.characters!.results!)),
+      );
+      client!.requestController.add(paginationChars);
+      setState(() {
+        CharactersScreen.pageNum++;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(() => _scrollListener());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,21 +100,6 @@ class CharactersScreen extends StatelessWidget {
               ],
             );
           }
-
-          ScrollController _scrollController = ScrollController();
-          _scrollController.addListener(() {
-            if (_scrollController.position.pixels ==
-                _scrollController.position.maxScrollExtent) {
-              final paginationChars = charactersRequest.rebuild(
-                (p) => p
-                  ..vars.page = p.vars.page! + 1
-                  ..updateResult = (previous, next) => previous!.rebuild((p) =>
-                      p..characters.results.addAll(next!.characters!.results!)),
-              );
-              client!.requestController.add(paginationChars);
-            }
-          });
-
           final characters = response.data!.characters!.results!.toBuiltList();
           return ListView.builder(
             controller: _scrollController,

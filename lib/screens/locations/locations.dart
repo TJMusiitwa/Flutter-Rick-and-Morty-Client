@@ -9,11 +9,47 @@ import 'package:ricky_n_morty/screens/settings_screen.dart';
 
 import 'location_details.dart';
 
-class LocationsScreen extends StatelessWidget {
+class LocationsScreen extends StatefulWidget {
+  @override
+  _LocationsScreenState createState() => _LocationsScreenState();
+}
+
+class _LocationsScreenState extends State<LocationsScreen> {
   final Client? client = GetIt.I<Client>();
+
   final locationsReq = GallLocationsReq((l) => l
     ..requestId = 'getLocationsId'
-    ..vars.page = 1);
+    ..fetchPolicy = FetchPolicy.CacheFirst
+    ..vars.page = pageNum);
+
+  static int pageNum = 1;
+
+  ScrollController _scrollController = ScrollController();
+
+  _scrollListener() {
+    if (_scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent) {
+      final paginationLocs = locationsReq.rebuild(
+        (p) => p
+          ..vars.page = pageNum
+          ..updateResult = (previous, next) =>
+              previous?.rebuild((p) =>
+                  p..locations.results.addAll(next!.locations!.results!)) ??
+              next,
+      );
+      client!.requestController.add(paginationLocs);
+      setState(() {
+        pageNum++;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(() => _scrollListener());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,23 +83,6 @@ class LocationsScreen extends StatelessWidget {
               child: Text('Uhh Rick, There are no locations here'),
             );
           }
-          ScrollController _scrollController = ScrollController();
-          _scrollController.addListener(() {
-            if (_scrollController.position.pixels ==
-                _scrollController.position.maxScrollExtent) {
-              final paginationLocs = locationsReq.rebuild(
-                (p) => p
-                  ..vars.page = p.vars.page! + 1
-                  ..updateResult = (previous, next) =>
-                      previous?.rebuild((p) => p
-                        ..locations
-                            .results
-                            .addAll(next!.locations!.results!)) ??
-                      next,
-              );
-              client!.requestController.add(paginationLocs);
-            }
-          });
 
           final locations = response.data!.locations!.results!.toBuiltList();
           return ListView.builder(

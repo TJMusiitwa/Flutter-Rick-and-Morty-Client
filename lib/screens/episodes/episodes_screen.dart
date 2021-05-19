@@ -9,11 +9,45 @@ import 'package:ricky_n_morty/graphql/allEpisodes.var.gql.dart';
 import 'package:ricky_n_morty/screens/settings_screen.dart';
 import 'episode_details.dart';
 
-class EpisodesScreen extends StatelessWidget {
+class EpisodesScreen extends StatefulWidget {
+  @override
+  _EpisodesScreenState createState() => _EpisodesScreenState();
+}
+
+class _EpisodesScreenState extends State<EpisodesScreen> {
   final Client? client = GetIt.I<Client>();
+
   final episodesReq = GallEpisodesReq((l) => l
     ..requestId = 'getEpisodesId'
-    ..vars.page = 1);
+    ..fetchPolicy = FetchPolicy.CacheFirst
+    ..vars.page = pageNum);
+
+  static int pageNum = 1;
+
+  ScrollController _scrollController = ScrollController();
+
+  _scrollListener() {
+    if (_scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent) {
+      final paginationEps = episodesReq.rebuild(
+        (p) {
+          return p
+            ..vars.page = pageNum++
+            ..updateResult = (previous, next) =>
+                previous?.rebuild((p) =>
+                    p..episodes.results.addAll(next!.episodes!.results!)) ??
+                next;
+        },
+      );
+      client!.requestController.add(paginationEps);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(() => _scrollListener());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,26 +80,12 @@ class EpisodesScreen extends StatelessWidget {
                   'Uhh Morty, you do know there is nothing but junk to watch on TV'),
             );
           }
-          ScrollController _scrollController = ScrollController();
-          _scrollController.addListener(() {
-            if (_scrollController.position.pixels ==
-                _scrollController.position.maxScrollExtent) {
-              final paginationEps = episodesReq.rebuild(
-                (p) => p
-                  ..vars.page = p.vars.page! + 1
-                  ..updateResult = (previous, next) =>
-                      previous?.rebuild((p) => p
-                        ..episodes.results.addAll(next!.episodes!.results!)) ??
-                      next,
-              );
-              client!.requestController.add(paginationEps);
-            }
-          });
 
           final episodes = response.data!.episodes!.results!.toBuiltList();
           return ListView.builder(
             controller: _scrollController,
             itemCount: episodes.length,
+            shrinkWrap: true,
             itemExtent: 100,
             itemBuilder: (BuildContext context, int index) {
               final episode = episodes[index];
