@@ -42,10 +42,12 @@ class MyApp extends StatelessWidget {
         theme: ThemeData.light().copyWith(
             primaryColor: Colors.white,
             primaryColorBrightness: Brightness.light,
-            accentColor: Colors.amberAccent,
-            visualDensity: VisualDensity.adaptivePlatformDensity),
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+            colorScheme:
+                ColorScheme.light().copyWith(secondary: Colors.amberAccent)),
         darkTheme: ThemeData.dark().copyWith(
-            accentColor: Colors.amberAccent,
+            colorScheme:
+                ColorScheme.dark().copyWith(secondary: Colors.amberAccent),
             visualDensity: VisualDensity.adaptivePlatformDensity),
         themeMode: ThemeMode.dark,
         home: Appnav());
