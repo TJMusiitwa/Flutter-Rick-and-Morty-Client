@@ -5,8 +5,8 @@ import 'package:get_it/get_it.dart';
 import 'package:ricky_n_morty/graphql/allEpisodes.data.gql.dart';
 import 'package:ricky_n_morty/graphql/allEpisodes.req.gql.dart';
 import 'package:ricky_n_morty/graphql/allEpisodes.var.gql.dart';
-
 import 'package:ricky_n_morty/screens/settings_screen.dart';
+
 import 'episode_details.dart';
 
 class EpisodesScreen extends StatefulWidget {
@@ -47,6 +47,12 @@ class _EpisodesScreenState extends State<EpisodesScreen> {
   void initState() {
     super.initState();
     _scrollController.addListener(() => _scrollListener());
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 
   @override

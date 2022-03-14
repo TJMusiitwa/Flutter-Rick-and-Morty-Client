@@ -108,11 +108,20 @@ class CharacterDetails extends StatelessWidget {
                     SizedBox(
                       height: 10,
                     ),
-                    Text('Home Planet 🌍:  ${characterDetails.origin!.name}'),
-                    Text('Episodes with $characterName'),
+                    Text(
+                      'Home Planet 🌍:  ${characterDetails.origin!.name}',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'Episodes with $characterName',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
                     Divider(),
                     Wrap(
-                      spacing: 6,
+                      spacing: 10,
                       runSpacing: 6,
                       children: List<Widget>.generate(
                           characterEpisodes.length,

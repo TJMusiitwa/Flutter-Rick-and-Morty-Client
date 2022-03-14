@@ -46,30 +46,42 @@ class LocationDetails extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    Text('Location Type: $locationType'),
-                    Text('Dimension: $locationDimension'),
+                    Text(
+                      'Location Type: $locationType',
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      'Dimension: $locationDimension',
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
                   ],
                 ),
-                Text('Residents of $locationName'),
+                const SizedBox(height: 10),
+                Text(
+                  'Residents of $locationName',
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
                 Divider(),
                 Wrap(
                   spacing: 6.0,
                   runSpacing: 6.0,
-                  children:
-                      List<Widget>.generate(residents.length, (int index) {
-                    return Chip(
-                      avatar: CircleAvatar(
-                          backgroundImage: CachedNetworkImageProvider(residents[
-                                      index]
-                                  .image ??
-                              'https://rickandmortyapi.com/api/character/avatar/19.jpeg')),
-                      label: Text(residents[index].name ?? ''),
-                    );
-                  }),
+                  children: List<Widget>.generate(
+                      residents.length,
+                      (int index) => Chip(
+                            avatar: CircleAvatar(
+                                backgroundImage: CachedNetworkImageProvider(
+                                    residents[index].image ??
+                                        'https://rickandmortyapi.com/api/character/avatar/19.jpeg',
+                                    scale: 1.5)),
+                            label: SizedBox(
+                                height: 30,
+                                child: Text(residents[index].name ?? '')),
+                          )),
                 ),
               ],
             ),

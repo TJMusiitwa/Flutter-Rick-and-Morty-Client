@@ -2,8 +2,8 @@
     package="com.jonathanmusiitwa.ricky_n_morty">
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
-        android:name="io.flutter.app.FlutterApplication"
-        android:label="RicknMorty"
+        android:name="${applicationName}"
+        android:label="Rick n Morty"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

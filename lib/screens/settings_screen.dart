@@ -16,7 +16,7 @@ class SettingsScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             Text(
-              'This application is built using The Rick and Morty API in particular the GraphQL API and the Flutter framework.It will give you access to about hundreds of characters, images, locations and episodes. The Rick and Morty API is filled with canonical information as seen on the TV show.',
+              'This application is built using The Rick and Morty API in particular the GraphQL API and the Flutter framework.\nIt will give you access to about hundreds of characters, images, locations and episodes. The Rick and Morty API is filled with canonical information as seen on the TV show.',
               softWrap: true,
               textAlign: TextAlign.justify,
               style: Theme.of(context).textTheme.subtitle1,
@@ -38,11 +38,12 @@ class SettingsScreen extends StatelessWidget {
             ),
             ListTile(
               title: Text('Github link for the app'),
-              subtitle: Text('https://github.com/TJMusiitwa'),
+              subtitle: Text(
+                  'https://github.com/TJMusiitwa/Flutter-Rick-and-Morty-Client'),
               trailing: IconButton(
                   icon: Icon(Icons.open_in_new),
                   onPressed: () async => launch(
-                        'https://github.com/TJMusiitwa',
+                        'https://github.com/TJMusiitwa/Flutter-Rick-and-Morty-Client',
                       )),
             ),
             ListTile(

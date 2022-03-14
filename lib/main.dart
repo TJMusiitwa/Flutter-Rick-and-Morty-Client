@@ -3,7 +3,6 @@ import 'package:ferry_hive_store/ferry_hive_store.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:gql_http_link/gql_http_link.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:ricky_n_morty/app_nav.dart';
 
@@ -41,10 +40,9 @@ class MyApp extends StatelessWidget {
         title: 'Rick and Morty App',
         theme: ThemeData.light().copyWith(
             primaryColor: Colors.white,
-            primaryColorBrightness: Brightness.light,
             visualDensity: VisualDensity.adaptivePlatformDensity,
-            colorScheme:
-                ColorScheme.light().copyWith(secondary: Colors.amberAccent)),
+            colorScheme: ColorScheme.light().copyWith(
+                brightness: Brightness.light, secondary: Colors.amberAccent)),
         darkTheme: ThemeData.dark().copyWith(
             colorScheme:
                 ColorScheme.dark().copyWith(secondary: Colors.amberAccent),

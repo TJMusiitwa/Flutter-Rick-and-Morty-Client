@@ -42,15 +42,26 @@ class EpisodeDetails extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    Text('Episode $episode'),
-                    Text('Aired $episodeDate'),
+                    Text(
+                      'Episode $episode',
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      'Aired $episodeDate',
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
                   ],
                 ),
-                Text('Characters in this episode'),
+                const SizedBox(height: 10),
+                Text(
+                  'Characters in this episode',
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
                 Divider(),
                 Wrap(
                   spacing: 6,
@@ -62,7 +73,9 @@ class EpisodeDetails extends StatelessWidget {
                         backgroundImage: CachedNetworkImageProvider(
                             episodeCharacters[index].image!),
                       ),
-                      label: Text(episodeCharacters[index].name!),
+                      label: SizedBox(
+                          height: 30,
+                          child: Text(episodeCharacters[index].name!)),
                     ),
                   ),
                 ),
