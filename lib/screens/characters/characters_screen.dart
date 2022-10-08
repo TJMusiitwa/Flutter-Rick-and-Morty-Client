@@ -13,6 +13,8 @@ import 'character_details.dart';
 class CharactersScreen extends StatefulWidget {
   static int pageNum = 1;
 
+  const CharactersScreen({super.key});
+
   @override
   _CharactersScreenState createState() => _CharactersScreenState();
 }
@@ -24,7 +26,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
     ..requestId = 'getCharactersId'
     ..vars.page = CharactersScreen.pageNum);
 
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
 
   _scrollListener() {
     if (_scrollController.position.pixels ==
@@ -58,14 +60,14 @@ class _CharactersScreenState extends State<CharactersScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Characters'),
+        title: const Text('Characters'),
         automaticallyImplyLeading: false,
         actions: <Widget>[
           IconButton(
-              icon: Icon(Icons.settings),
+              icon: const Icon(Icons.settings),
               iconSize: 30,
               onPressed: () => Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => SettingsScreen()))),
+                  MaterialPageRoute(builder: (_) => const SettingsScreen()))),
         ],
       ),
       body: Operation(
@@ -76,7 +78,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
                 response,
             Object? error) {
           if (response!.loading) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
           if (response.hasErrors) {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -96,8 +98,8 @@ class _CharactersScreenState extends State<CharactersScreen> {
                 Center(
                   child: Image.asset('assets/rick_mort_splash.png'),
                 ),
-                SizedBox(height: 10),
-                Center(
+                const SizedBox(height: 10),
+                const Center(
                   child: Text(
                     'Uhh Morty, you do know there is nothing but junk to watch on TV',
                     softWrap: true,
@@ -118,7 +120,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: ListTile(
-                  leading: Container(
+                  leading: SizedBox(
                     height: 100,
                     width: 80,
                     child: CachedNetworkImage(

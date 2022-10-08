@@ -10,6 +10,8 @@ import 'package:ricky_n_morty/screens/settings_screen.dart';
 import 'location_details.dart';
 
 class LocationsScreen extends StatefulWidget {
+  const LocationsScreen({super.key});
+
   @override
   _LocationsScreenState createState() => _LocationsScreenState();
 }
@@ -24,7 +26,7 @@ class _LocationsScreenState extends State<LocationsScreen> {
 
   static int pageNum = 1;
 
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
 
   _scrollListener() {
     if (_scrollController.position.pixels ==
@@ -60,15 +62,15 @@ class _LocationsScreenState extends State<LocationsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Locations'),
+        title: const Text('Locations'),
         automaticallyImplyLeading: false,
         elevation: 0,
         actions: <Widget>[
           IconButton(
-              icon: Icon(Icons.settings),
+              icon: const Icon(Icons.settings),
               iconSize: 30,
               onPressed: () => Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => SettingsScreen()))),
+                  MaterialPageRoute(builder: (_) => const SettingsScreen()))),
         ],
       ),
       body: Operation(
@@ -78,14 +80,14 @@ class _LocationsScreenState extends State<LocationsScreen> {
             OperationResponse<GallLocationsData, GallLocationsVars?>? response,
             Object? error) {
           if (response!.loading) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
           if (response.hasErrors) {
             return Text(response.graphqlErrors!.first.message);
           }
 
           if (response.data!.locations == null) {
-            return Center(
+            return const Center(
               child: Text('Uhh Rick, There are no locations here'),
             );
           }
@@ -111,7 +113,7 @@ class _LocationsScreenState extends State<LocationsScreen> {
                         .copyWith(fontSize: 20),
                   ),
                   subtitle: Text(
-                    'Dimension: ' + location.dimension!,
+                    'Dimension: ${location.dimension!}',
                     softWrap: true,
                     overflow: TextOverflow.ellipsis,
                   ),

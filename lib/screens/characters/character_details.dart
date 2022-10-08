@@ -36,7 +36,7 @@ class CharacterDetails extends StatelessWidget {
               response,
           Object? error) {
         if (response!.loading) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         }
         final characterDetails = response.data!.character!;
         final characterEpisodes = characterDetails.episode!.asList();
@@ -49,7 +49,7 @@ class CharacterDetails extends StatelessWidget {
                 floating: true,
                 expandedHeight: 300,
                 automaticallyImplyLeading: true,
-                leading: BackButton(
+                leading: const BackButton(
                   color: Colors.amber,
                 ),
                 elevation: 0,
@@ -81,45 +81,45 @@ class CharacterDetails extends StatelessWidget {
                       children: <Widget>[
                         Column(
                           children: <Widget>[
-                            Text('STATUS'),
+                            const Text('STATUS'),
                             Text(characterDetails.status!)
                           ],
                         ),
                         Column(
                           children: <Widget>[
-                            Text('SPECIES'),
+                            const Text('SPECIES'),
                             Text(characterSpecies!)
                           ],
                         ),
                         Column(
                           children: <Widget>[
-                            Text('GENDER'),
+                            const Text('GENDER'),
                             Text(characterGender!)
                           ],
                         ),
                         Column(
                           children: <Widget>[
-                            Text('TYPE'),
+                            const Text('TYPE'),
                             Text(characterDetails.type ?? '')
                           ],
                         )
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Text(
                       'Home Planet 🌍:  ${characterDetails.origin!.name}',
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Text(
                       'Episodes with $characterName',
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
-                    Divider(),
+                    const Divider(),
                     Wrap(
                       spacing: 10,
                       runSpacing: 6,

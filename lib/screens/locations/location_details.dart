@@ -37,7 +37,7 @@ class LocationDetails extends StatelessWidget {
                 response,
             Object? error) {
           if (response!.loading) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
           if (response.hasErrors) {}
           final residents = response.data!.location!.residents!.asList();
@@ -66,7 +66,7 @@ class LocationDetails extends StatelessWidget {
                   'Residents of $locationName',
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
-                Divider(),
+                const Divider(),
                 Wrap(
                   spacing: 6.0,
                   runSpacing: 6.0,

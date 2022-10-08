@@ -1,0 +1,12 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    - lib/graphql/*.ast.gql.dart
+    - lib/graphql/*.req.gql.dart
+    - lib/graphql/*.data.gql.dart
+    - lib/graphql/*.var.gql.dart
+    - lib/graphql/*.gql.g.dart
+    - lib/graphql/serializers.gql.dart
+    - lib/graphql/schema.schema.gql.dart
+

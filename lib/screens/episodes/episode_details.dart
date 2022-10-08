@@ -33,7 +33,7 @@ class EpisodeDetails extends StatelessWidget {
                 response,
             Object? error) {
           if (response!.loading) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
           final episodeDetails = response.data!.episode!;
           final episodeCharacters = episodeDetails.characters!.asList();
@@ -62,7 +62,7 @@ class EpisodeDetails extends StatelessWidget {
                   'Characters in this episode',
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
-                Divider(),
+                const Divider(),
                 Wrap(
                   spacing: 6,
                   runSpacing: 6,

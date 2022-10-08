@@ -20,21 +20,29 @@ List<GlobalKey<NavigatorState>> _navigatorKeys = [
 ];
 
 class Appnav extends StatefulWidget {
+  const Appnav({super.key});
+
   @override
   _AppnavState createState() => _AppnavState();
 }
 
 class CharactersNavigator extends StatefulWidget {
+  const CharactersNavigator({super.key});
+
   @override
   _CharactersNavigatorState createState() => _CharactersNavigatorState();
 }
 
 class EpisodesNavigator extends StatefulWidget {
+  const EpisodesNavigator({super.key});
+
   @override
   _EpisodesNavigatorState createState() => _EpisodesNavigatorState();
 }
 
 class LocationsNavigator extends StatefulWidget {
+  const LocationsNavigator({super.key});
+
   @override
   _LocationsNavigatorState createState() => _LocationsNavigatorState();
 }
@@ -50,14 +58,14 @@ class _AppnavState extends State<Appnav> {
             top: false,
             child: IndexedStack(
               index: _currentIndex,
-              children: <Widget>[
+              children: const <Widget>[
                 CharactersNavigator(),
                 EpisodesNavigator(),
                 LocationsNavigator()
               ],
             )),
         bottomNavigationBar: BottomNavigationBar(
-          items: [
+          items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.people),
               label: 'Characters',
@@ -104,9 +112,9 @@ class _CharactersNavigatorState extends State<CharactersNavigator> {
             builder: (context) {
               switch (settings.name) {
                 case '/':
-                  return CharactersScreen();
+                  return const CharactersScreen();
                 case '/characterDetails':
-                  return CharacterDetails();
+                  return const CharacterDetails();
               }
               throw {};
             });
@@ -126,9 +134,9 @@ class _EpisodesNavigatorState extends State<EpisodesNavigator> {
             builder: (context) {
               switch (settings.name) {
                 case '/':
-                  return EpisodesScreen();
+                  return const EpisodesScreen();
                 case '/episodesDetails':
-                  return EpisodeDetails();
+                  return const EpisodeDetails();
               }
               throw {};
             });
@@ -148,9 +156,9 @@ class _LocationsNavigatorState extends State<LocationsNavigator> {
             builder: (context) {
               switch (settings.name) {
                 case '/':
-                  return LocationsScreen();
+                  return const LocationsScreen();
                 case '/locationsDetails':
-                  return LocationDetails();
+                  return const LocationDetails();
               }
               throw {};
             });

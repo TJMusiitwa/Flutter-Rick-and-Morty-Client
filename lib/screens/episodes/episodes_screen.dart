@@ -10,6 +10,8 @@ import 'package:ricky_n_morty/screens/settings_screen.dart';
 import 'episode_details.dart';
 
 class EpisodesScreen extends StatefulWidget {
+  const EpisodesScreen({super.key});
+
   @override
   _EpisodesScreenState createState() => _EpisodesScreenState();
 }
@@ -24,7 +26,7 @@ class _EpisodesScreenState extends State<EpisodesScreen> {
 
   static int pageNum = 1;
 
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
 
   _scrollListener() {
     if (_scrollController.position.pixels ==
@@ -59,15 +61,15 @@ class _EpisodesScreenState extends State<EpisodesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Episodes'),
+        title: const Text('Episodes'),
         automaticallyImplyLeading: false,
         elevation: 0,
         actions: <Widget>[
           IconButton(
-              icon: Icon(Icons.settings),
+              icon: const Icon(Icons.settings),
               iconSize: 30,
               onPressed: () => Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => SettingsScreen()))),
+                  MaterialPageRoute(builder: (_) => const SettingsScreen()))),
         ],
       ),
       body: Operation(
@@ -77,11 +79,11 @@ class _EpisodesScreenState extends State<EpisodesScreen> {
             OperationResponse<GallEpisodesData, GallEpisodesVars?>? response,
             Object? error) {
           if (response!.loading) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (response.hasErrors) {
             return Text(response.graphqlErrors!.first.message);
           } else if (response.data!.episodes!.results == null) {
-            return Center(
+            return const Center(
               child: Text(
                   'Uhh Morty, you do know there is nothing but junk to watch on TV'),
             );
@@ -106,10 +108,10 @@ class _EpisodesScreenState extends State<EpisodesScreen> {
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context)
                         .textTheme
-                        .headline5!
+                        .titleMedium!
                         .copyWith(fontSize: 20),
                   ),
-                  subtitle: Text('Aired: ' + episode.air_date!),
+                  subtitle: Text('Aired: ${episode.air_date!}'),
                   trailing: Text(episode.episode!),
                   onTap: () => Navigator.of(context).push(
                     MaterialPageRoute(

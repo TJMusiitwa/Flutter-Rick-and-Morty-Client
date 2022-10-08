@@ -9,7 +9,7 @@ import 'package:ricky_n_morty/app_nav.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initClient();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 Future<Client> initClient() async {
@@ -34,20 +34,28 @@ Future<Client> initClient() async {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Rick and Morty App',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData.light().copyWith(
+            useMaterial3: true,
             primaryColor: Colors.white,
             visualDensity: VisualDensity.adaptivePlatformDensity,
-            colorScheme: ColorScheme.light().copyWith(
-                brightness: Brightness.light, secondary: Colors.amberAccent)),
+            appBarTheme: const AppBarTheme(),
+            colorScheme: const ColorScheme.light().copyWith(
+                brightness: Brightness.light,
+                primary: Colors.amber,
+                secondary: Colors.amberAccent)),
         darkTheme: ThemeData.dark().copyWith(
-            colorScheme:
-                ColorScheme.dark().copyWith(secondary: Colors.amberAccent),
+            useMaterial3: true,
+            colorScheme: const ColorScheme.dark()
+                .copyWith(primary: Colors.amber, secondary: Colors.amberAccent),
             visualDensity: VisualDensity.adaptivePlatformDensity),
         themeMode: ThemeMode.dark,
-        home: Appnav());
+        home: const Appnav());
   }
 }
