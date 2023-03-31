@@ -13,7 +13,7 @@ class EpisodesScreen extends StatefulWidget {
   const EpisodesScreen({super.key});
 
   @override
-  _EpisodesScreenState createState() => _EpisodesScreenState();
+ State<EpisodesScreen> createState() => _EpisodesScreenState();
 }
 
 class _EpisodesScreenState extends State<EpisodesScreen> {

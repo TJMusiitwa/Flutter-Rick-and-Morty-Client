@@ -48,12 +48,12 @@ class EpisodeDetails extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       'Episode $episode',
-                      style: Theme.of(context).textTheme.headline6,
+                      style: Theme.of(context).textTheme.titleLarge,
                     ),
                     const SizedBox(height: 10),
                     Text(
                       'Aired $episodeDate',
-                      style: Theme.of(context).textTheme.headline6,
+                      style: Theme.of(context).textTheme.titleLarge,
                     ),
                   ],
                 ),

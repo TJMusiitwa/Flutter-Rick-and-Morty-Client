@@ -16,7 +16,7 @@ class CharactersScreen extends StatefulWidget {
   const CharactersScreen({super.key});
 
   @override
-  _CharactersScreenState createState() => _CharactersScreenState();
+  State<CharactersScreen> createState() => _CharactersScreenState();
 }
 
 class _CharactersScreenState extends State<CharactersScreen> {
@@ -133,7 +133,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
                     character.name!,
                     softWrap: true,
                     overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.headline5,
+                    style: Theme.of(context).textTheme.headlineSmall,
                   ),
                   subtitle: Text(character.species!),
                   trailing: Text(character.gender!),

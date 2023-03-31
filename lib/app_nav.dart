@@ -23,28 +23,28 @@ class Appnav extends StatefulWidget {
   const Appnav({super.key});
 
   @override
-  _AppnavState createState() => _AppnavState();
+  State<Appnav> createState() => _AppnavState();
 }
 
 class CharactersNavigator extends StatefulWidget {
   const CharactersNavigator({super.key});
 
   @override
-  _CharactersNavigatorState createState() => _CharactersNavigatorState();
+  State<CharactersNavigator> createState() => _CharactersNavigatorState();
 }
 
 class EpisodesNavigator extends StatefulWidget {
   const EpisodesNavigator({super.key});
 
   @override
-  _EpisodesNavigatorState createState() => _EpisodesNavigatorState();
+  State<EpisodesNavigator> createState() => _EpisodesNavigatorState();
 }
 
 class LocationsNavigator extends StatefulWidget {
   const LocationsNavigator({super.key});
 
   @override
-  _LocationsNavigatorState createState() => _LocationsNavigatorState();
+  State<LocationsNavigator> createState() => _LocationsNavigatorState();
 }
 
 class _AppnavState extends State<Appnav> {

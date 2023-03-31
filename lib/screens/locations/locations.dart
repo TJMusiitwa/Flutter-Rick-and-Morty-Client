@@ -13,7 +13,7 @@ class LocationsScreen extends StatefulWidget {
   const LocationsScreen({super.key});
 
   @override
-  _LocationsScreenState createState() => _LocationsScreenState();
+  State<LocationsScreen> createState() => _LocationsScreenState();
 }
 
 class _LocationsScreenState extends State<LocationsScreen> {
@@ -109,7 +109,7 @@ class _LocationsScreenState extends State<LocationsScreen> {
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context)
                         .textTheme
-                        .headline5!
+                        .headlineSmall!
                         .copyWith(fontSize: 20),
                   ),
                   subtitle: Text(

@@ -52,7 +52,7 @@ class LocationDetails extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       'Location Type: $locationType',
-                      style: Theme.of(context).textTheme.headline6,
+                      style: Theme.of(context).textTheme.titleLarge,
                     ),
                     const SizedBox(height: 10),
                     Text(
