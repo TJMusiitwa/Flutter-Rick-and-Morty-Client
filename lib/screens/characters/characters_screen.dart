@@ -3,11 +3,11 @@ import 'package:ferry/ferry.dart';
 import 'package:ferry_flutter/ferry_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:ricky_n_morty/graphql/allCharacters.data.gql.dart';
-import 'package:ricky_n_morty/graphql/allCharacters.req.gql.dart';
-import 'package:ricky_n_morty/graphql/allCharacters.var.gql.dart';
 import 'package:ricky_n_morty/screens/settings_screen.dart';
 
+import '../../graphql/__generated__/allCharacters.data.gql.dart';
+import '../../graphql/__generated__/allCharacters.req.gql.dart';
+import '../../graphql/__generated__/allCharacters.var.gql.dart';
 import 'character_details.dart';
 
 class CharactersScreen extends StatefulWidget {
@@ -124,7 +124,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
                     height: 100,
                     width: 80,
                     child: CachedNetworkImage(
-                      imageUrl: character.image!,
+                      imageUrl: character!.image!,
                       fit: BoxFit.cover,
                       //fadeInDuration: Duration(milliseconds: 500),
                     ),

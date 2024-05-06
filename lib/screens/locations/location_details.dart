@@ -3,20 +3,20 @@ import 'package:ferry/ferry.dart';
 import 'package:ferry_flutter/ferry_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:ricky_n_morty/graphql/locationDetails.data.gql.dart';
-import 'package:ricky_n_morty/graphql/locationDetails.req.gql.dart';
-import 'package:ricky_n_morty/graphql/locationDetails.var.gql.dart';
+
+import '../../graphql/__generated__/locationDetails.data.gql.dart';
+import '../../graphql/__generated__/locationDetails.req.gql.dart';
+import '../../graphql/__generated__/locationDetails.var.gql.dart';
 
 class LocationDetails extends StatelessWidget {
   final String? id, locationName, locationType, locationDimension;
 
   const LocationDetails(
-      {Key? key,
+      {super.key,
       this.id,
       this.locationName,
       this.locationType,
-      this.locationDimension})
-      : super(key: key);
+      this.locationDimension});
 
   @override
   Widget build(BuildContext context) {
@@ -75,12 +75,12 @@ class LocationDetails extends StatelessWidget {
                       (int index) => Chip(
                             avatar: CircleAvatar(
                                 backgroundImage: CachedNetworkImageProvider(
-                                    residents[index].image ??
+                                    residents[index]?.image ??
                                         'https://rickandmortyapi.com/api/character/avatar/19.jpeg',
                                     scale: 1.5)),
                             label: SizedBox(
                                 height: 30,
-                                child: Text(residents[index].name ?? '')),
+                                child: Text(residents[index]?.name ?? '')),
                           )),
                 ),
               ],

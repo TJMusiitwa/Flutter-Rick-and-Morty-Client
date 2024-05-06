@@ -2,18 +2,18 @@ import 'package:ferry/ferry.dart';
 import 'package:ferry_flutter/ferry_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:ricky_n_morty/graphql/allEpisodes.data.gql.dart';
-import 'package:ricky_n_morty/graphql/allEpisodes.req.gql.dart';
-import 'package:ricky_n_morty/graphql/allEpisodes.var.gql.dart';
 import 'package:ricky_n_morty/screens/settings_screen.dart';
 
+import '../../graphql/__generated__/allEpisodes.data.gql.dart';
+import '../../graphql/__generated__/allEpisodes.req.gql.dart';
+import '../../graphql/__generated__/allEpisodes.var.gql.dart';
 import 'episode_details.dart';
 
 class EpisodesScreen extends StatefulWidget {
   const EpisodesScreen({super.key});
 
   @override
- State<EpisodesScreen> createState() => _EpisodesScreenState();
+  State<EpisodesScreen> createState() => _EpisodesScreenState();
 }
 
 class _EpisodesScreenState extends State<EpisodesScreen> {
@@ -103,7 +103,7 @@ class _EpisodesScreenState extends State<EpisodesScreen> {
                 ),
                 child: ListTile(
                   title: Text(
-                    episode.name!,
+                    episode!.name!,
                     softWrap: true,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context)

@@ -3,9 +3,10 @@ import 'package:ferry/ferry.dart';
 import 'package:ferry_flutter/ferry_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:ricky_n_morty/graphql/characterDetails.data.gql.dart';
-import 'package:ricky_n_morty/graphql/characterDetails.req.gql.dart';
-import 'package:ricky_n_morty/graphql/characterDetails.var.gql.dart';
+
+import '../../graphql/__generated__/characterDetails.data.gql.dart';
+import '../../graphql/__generated__/characterDetails.req.gql.dart';
+import '../../graphql/__generated__/characterDetails.var.gql.dart';
 
 class CharacterDetails extends StatelessWidget {
   final String? id,
@@ -15,13 +16,12 @@ class CharacterDetails extends StatelessWidget {
       characterImage;
 
   const CharacterDetails(
-      {Key? key,
+      {super.key,
       this.id,
       this.characterName,
       this.characterGender,
       this.characterSpecies,
-      this.characterImage})
-      : super(key: key);
+      this.characterImage});
   @override
   Widget build(BuildContext context) {
     final client = GetIt.I<Client>();
@@ -48,10 +48,8 @@ class CharacterDetails extends StatelessWidget {
                 pinned: true,
                 floating: true,
                 expandedHeight: 300,
-                automaticallyImplyLeading: true,
-                leading: const BackButton(
-                  color: Colors.amber,
-                ),
+                //automaticallyImplyLeading: true,
+                leading: const BackButton(color: Colors.amber),
                 elevation: 0,
                 flexibleSpace: FlexibleSpaceBar(
                   background: Hero(
@@ -64,6 +62,7 @@ class CharacterDetails extends StatelessWidget {
                     ),
                   ),
                   title: Text(characterName!),
+                  centerTitle: true,
                 ),
               ),
             ),
@@ -127,7 +126,7 @@ class CharacterDetails extends StatelessWidget {
                           characterEpisodes.length,
                           (index) => Chip(
                                 label: Text(
-                                    characterEpisodes[index].episode ?? ''),
+                                    characterEpisodes[index]?.episode ?? ''),
                               )),
                     ),
                   ],

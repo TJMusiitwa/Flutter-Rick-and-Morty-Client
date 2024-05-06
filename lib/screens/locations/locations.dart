@@ -2,11 +2,11 @@ import 'package:ferry/ferry.dart';
 import 'package:ferry_flutter/ferry_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:ricky_n_morty/graphql/allLocations.data.gql.dart';
-import 'package:ricky_n_morty/graphql/allLocations.req.gql.dart';
-import 'package:ricky_n_morty/graphql/allLocations.var.gql.dart';
 import 'package:ricky_n_morty/screens/settings_screen.dart';
 
+import '../../graphql/__generated__/allLocations.data.gql.dart';
+import '../../graphql/__generated__/allLocations.req.gql.dart';
+import '../../graphql/__generated__/allLocations.var.gql.dart';
 import 'location_details.dart';
 
 class LocationsScreen extends StatefulWidget {
@@ -104,7 +104,7 @@ class _LocationsScreenState extends State<LocationsScreen> {
                 ),
                 child: ListTile(
                   title: Text(
-                    location.name!,
+                    location!.name!,
                     softWrap: true,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context)

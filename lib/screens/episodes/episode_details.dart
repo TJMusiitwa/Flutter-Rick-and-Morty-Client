@@ -3,16 +3,16 @@ import 'package:ferry/ferry.dart';
 import 'package:ferry_flutter/ferry_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:ricky_n_morty/graphql/episodeDetails.data.gql.dart';
-import 'package:ricky_n_morty/graphql/episodeDetails.req.gql.dart';
-import 'package:ricky_n_morty/graphql/episodeDetails.var.gql.dart';
+
+import '../../graphql/__generated__/episodeDetails.data.gql.dart';
+import '../../graphql/__generated__/episodeDetails.req.gql.dart';
+import '../../graphql/__generated__/episodeDetails.var.gql.dart';
 
 class EpisodeDetails extends StatelessWidget {
   final String? id, episodeTitle, episode, episodeDate;
 
   const EpisodeDetails(
-      {Key? key, this.id, this.episodeTitle, this.episode, this.episodeDate})
-      : super(key: key);
+      {super.key, this.id, this.episodeTitle, this.episode, this.episodeDate});
   @override
   Widget build(BuildContext context) {
     final client = GetIt.I<Client>();
@@ -71,11 +71,11 @@ class EpisodeDetails extends StatelessWidget {
                     (index) => Chip(
                       avatar: CircleAvatar(
                         backgroundImage: CachedNetworkImageProvider(
-                            episodeCharacters[index].image!),
+                            episodeCharacters[index]!.image!),
                       ),
                       label: SizedBox(
                           height: 30,
-                          child: Text(episodeCharacters[index].name!)),
+                          child: Text(episodeCharacters[index]!.name!)),
                     ),
                   ),
                 ),

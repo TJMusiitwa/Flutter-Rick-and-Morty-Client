@@ -42,7 +42,6 @@ class MyApp extends StatelessWidget {
         title: 'Rick and Morty App',
         debugShowCheckedModeBanner: false,
         theme: ThemeData.light().copyWith(
-            useMaterial3: true,
             primaryColor: Colors.white,
             visualDensity: VisualDensity.adaptivePlatformDensity,
             appBarTheme: const AppBarTheme(),
@@ -51,7 +50,6 @@ class MyApp extends StatelessWidget {
                 primary: Colors.amber,
                 secondary: Colors.amberAccent)),
         darkTheme: ThemeData.dark().copyWith(
-            useMaterial3: true,
             colorScheme: const ColorScheme.dark()
                 .copyWith(primary: Colors.amber, secondary: Colors.amberAccent),
             visualDensity: VisualDensity.adaptivePlatformDensity),
