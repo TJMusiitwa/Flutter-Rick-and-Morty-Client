@@ -15,7 +15,7 @@ abstract class GLocationDetailsData
   GLocationDetailsData._();
 
   factory GLocationDetailsData(
-          [Function(GLocationDetailsDataBuilder b) updates]) =
+          [void Function(GLocationDetailsDataBuilder b) updates]) =
       _$GLocationDetailsData;
 
   static void _initializeBuilder(GLocationDetailsDataBuilder b) =>
@@ -46,7 +46,7 @@ abstract class GLocationDetailsData_location
   GLocationDetailsData_location._();
 
   factory GLocationDetailsData_location(
-          [Function(GLocationDetailsData_locationBuilder b) updates]) =
+          [void Function(GLocationDetailsData_locationBuilder b) updates]) =
       _$GLocationDetailsData_location;
 
   static void _initializeBuilder(GLocationDetailsData_locationBuilder b) =>
@@ -78,7 +78,7 @@ abstract class GLocationDetailsData_location_residents
   GLocationDetailsData_location_residents._();
 
   factory GLocationDetailsData_location_residents(
-      [Function(GLocationDetailsData_location_residentsBuilder b)
+      [void Function(GLocationDetailsData_location_residentsBuilder b)
           updates]) = _$GLocationDetailsData_location_residents;
 
   static void _initializeBuilder(

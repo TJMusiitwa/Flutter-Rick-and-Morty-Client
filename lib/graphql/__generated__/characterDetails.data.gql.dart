@@ -15,7 +15,7 @@ abstract class GcharacterDetailsData
   GcharacterDetailsData._();
 
   factory GcharacterDetailsData(
-          [Function(GcharacterDetailsDataBuilder b) updates]) =
+          [void Function(GcharacterDetailsDataBuilder b) updates]) =
       _$GcharacterDetailsData;
 
   static void _initializeBuilder(GcharacterDetailsDataBuilder b) =>
@@ -46,7 +46,7 @@ abstract class GcharacterDetailsData_character
   GcharacterDetailsData_character._();
 
   factory GcharacterDetailsData_character(
-          [Function(GcharacterDetailsData_characterBuilder b) updates]) =
+          [void Function(GcharacterDetailsData_characterBuilder b) updates]) =
       _$GcharacterDetailsData_character;
 
   static void _initializeBuilder(GcharacterDetailsData_characterBuilder b) =>
@@ -82,8 +82,8 @@ abstract class GcharacterDetailsData_character_origin
   GcharacterDetailsData_character_origin._();
 
   factory GcharacterDetailsData_character_origin(
-          [Function(GcharacterDetailsData_character_originBuilder b) updates]) =
-      _$GcharacterDetailsData_character_origin;
+      [void Function(GcharacterDetailsData_character_originBuilder b)
+          updates]) = _$GcharacterDetailsData_character_origin;
 
   static void _initializeBuilder(
           GcharacterDetailsData_character_originBuilder b) =>
@@ -115,7 +115,7 @@ abstract class GcharacterDetailsData_character_episode
   GcharacterDetailsData_character_episode._();
 
   factory GcharacterDetailsData_character_episode(
-      [Function(GcharacterDetailsData_character_episodeBuilder b)
+      [void Function(GcharacterDetailsData_character_episodeBuilder b)
           updates]) = _$GcharacterDetailsData_character_episode;
 
   static void _initializeBuilder(

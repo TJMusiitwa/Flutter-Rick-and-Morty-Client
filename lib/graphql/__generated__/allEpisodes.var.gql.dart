@@ -13,7 +13,7 @@ abstract class GallEpisodesVars
     implements Built<GallEpisodesVars, GallEpisodesVarsBuilder> {
   GallEpisodesVars._();
 
-  factory GallEpisodesVars([Function(GallEpisodesVarsBuilder b) updates]) =
+  factory GallEpisodesVars([void Function(GallEpisodesVarsBuilder b) updates]) =
       _$GallEpisodesVars;
 
   int? get page;

@@ -23,7 +23,8 @@ abstract class GallCharactersReq
         _i1.OperationRequest<_i2.GallCharactersData, _i3.GallCharactersVars> {
   GallCharactersReq._();
 
-  factory GallCharactersReq([Function(GallCharactersReqBuilder b) updates]) =
+  factory GallCharactersReq(
+          [void Function(GallCharactersReqBuilder b) updates]) =
       _$GallCharactersReq;
 
   static void _initializeBuilder(GallCharactersReqBuilder b) => b
@@ -41,6 +42,7 @@ abstract class GallCharactersReq
   _i4.Request get execRequest => _i4.Request(
         operation: operation,
         variables: vars.toJson(),
+        context: context ?? const _i4.Context(),
       );
 
   @override
@@ -62,6 +64,9 @@ abstract class GallCharactersReq
   @override
   bool get executeOnListen;
   @override
+  @BuiltValueField(serialize: false)
+  _i4.Context? get context;
+  @override
   _i2.GallCharactersData? parseData(Map<String, dynamic> json) =>
       _i2.GallCharactersData.fromJson(json);
 
@@ -69,7 +74,7 @@ abstract class GallCharactersReq
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+  Map<String, dynamic> dataToJson(_i2.GallCharactersData data) => data.toJson();
 
   @override
   _i1.OperationRequest<_i2.GallCharactersData, _i3.GallCharactersVars>

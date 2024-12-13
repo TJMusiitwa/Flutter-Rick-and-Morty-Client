@@ -23,7 +23,7 @@ abstract class GallLocationsReq
         _i1.OperationRequest<_i2.GallLocationsData, _i3.GallLocationsVars> {
   GallLocationsReq._();
 
-  factory GallLocationsReq([Function(GallLocationsReqBuilder b) updates]) =
+  factory GallLocationsReq([void Function(GallLocationsReqBuilder b) updates]) =
       _$GallLocationsReq;
 
   static void _initializeBuilder(GallLocationsReqBuilder b) => b
@@ -41,6 +41,7 @@ abstract class GallLocationsReq
   _i4.Request get execRequest => _i4.Request(
         operation: operation,
         variables: vars.toJson(),
+        context: context ?? const _i4.Context(),
       );
 
   @override
@@ -62,6 +63,9 @@ abstract class GallLocationsReq
   @override
   bool get executeOnListen;
   @override
+  @BuiltValueField(serialize: false)
+  _i4.Context? get context;
+  @override
   _i2.GallLocationsData? parseData(Map<String, dynamic> json) =>
       _i2.GallLocationsData.fromJson(json);
 
@@ -69,7 +73,7 @@ abstract class GallLocationsReq
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+  Map<String, dynamic> dataToJson(_i2.GallLocationsData data) => data.toJson();
 
   @override
   _i1.OperationRequest<_i2.GallLocationsData, _i3.GallLocationsVars>

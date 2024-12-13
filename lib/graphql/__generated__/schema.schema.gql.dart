@@ -5,7 +5,7 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:gql_code_builder/src/serializers/default_scalar_serializer.dart'
+import 'package:gql_code_builder_serializers/gql_code_builder_serializers.dart'
     as _i2;
 import 'package:ricky_n_morty/graphql/__generated__/serializers.gql.dart'
     as _i1;
@@ -32,7 +32,7 @@ abstract class GFilterCharacter
     implements Built<GFilterCharacter, GFilterCharacterBuilder> {
   GFilterCharacter._();
 
-  factory GFilterCharacter([Function(GFilterCharacterBuilder b) updates]) =
+  factory GFilterCharacter([void Function(GFilterCharacterBuilder b) updates]) =
       _$GFilterCharacter;
 
   String? get name;
@@ -59,7 +59,7 @@ abstract class GFilterEpisode
     implements Built<GFilterEpisode, GFilterEpisodeBuilder> {
   GFilterEpisode._();
 
-  factory GFilterEpisode([Function(GFilterEpisodeBuilder b) updates]) =
+  factory GFilterEpisode([void Function(GFilterEpisodeBuilder b) updates]) =
       _$GFilterEpisode;
 
   String? get name;
@@ -83,7 +83,7 @@ abstract class GFilterLocation
     implements Built<GFilterLocation, GFilterLocationBuilder> {
   GFilterLocation._();
 
-  factory GFilterLocation([Function(GFilterLocationBuilder b) updates]) =
+  factory GFilterLocation([void Function(GFilterLocationBuilder b) updates]) =
       _$GFilterLocation;
 
   String? get name;

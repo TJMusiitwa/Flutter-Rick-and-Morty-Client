@@ -52,7 +52,7 @@ class _AppnavState extends State<Appnav> {
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      onPopInvoked: (_) => _systemBackButtonPressed,
+      onPopInvokedWithResult: (_, __) => _systemBackButtonPressed,
       child: Scaffold(
         body: SafeArea(
             top: false,

@@ -25,7 +25,8 @@ abstract class GLocationDetailsReq
   GLocationDetailsReq._();
 
   factory GLocationDetailsReq(
-      [Function(GLocationDetailsReqBuilder b) updates]) = _$GLocationDetailsReq;
+          [void Function(GLocationDetailsReqBuilder b) updates]) =
+      _$GLocationDetailsReq;
 
   static void _initializeBuilder(GLocationDetailsReqBuilder b) => b
     ..operation = _i4.Operation(
@@ -42,6 +43,7 @@ abstract class GLocationDetailsReq
   _i4.Request get execRequest => _i4.Request(
         operation: operation,
         variables: vars.toJson(),
+        context: context ?? const _i4.Context(),
       );
 
   @override
@@ -63,6 +65,9 @@ abstract class GLocationDetailsReq
   @override
   bool get executeOnListen;
   @override
+  @BuiltValueField(serialize: false)
+  _i4.Context? get context;
+  @override
   _i2.GLocationDetailsData? parseData(Map<String, dynamic> json) =>
       _i2.GLocationDetailsData.fromJson(json);
 
@@ -70,7 +75,8 @@ abstract class GLocationDetailsReq
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+  Map<String, dynamic> dataToJson(_i2.GLocationDetailsData data) =>
+      data.toJson();
 
   @override
   _i1.OperationRequest<_i2.GLocationDetailsData, _i3.GLocationDetailsVars>

@@ -14,7 +14,7 @@ abstract class GallEpisodesData
     implements Built<GallEpisodesData, GallEpisodesDataBuilder> {
   GallEpisodesData._();
 
-  factory GallEpisodesData([Function(GallEpisodesDataBuilder b) updates]) =
+  factory GallEpisodesData([void Function(GallEpisodesDataBuilder b) updates]) =
       _$GallEpisodesData;
 
   static void _initializeBuilder(GallEpisodesDataBuilder b) =>
@@ -44,7 +44,7 @@ abstract class GallEpisodesData_episodes
   GallEpisodesData_episodes._();
 
   factory GallEpisodesData_episodes(
-          [Function(GallEpisodesData_episodesBuilder b) updates]) =
+          [void Function(GallEpisodesData_episodesBuilder b) updates]) =
       _$GallEpisodesData_episodes;
 
   static void _initializeBuilder(GallEpisodesData_episodesBuilder b) =>
@@ -76,7 +76,7 @@ abstract class GallEpisodesData_episodes_info
   GallEpisodesData_episodes_info._();
 
   factory GallEpisodesData_episodes_info(
-          [Function(GallEpisodesData_episodes_infoBuilder b) updates]) =
+          [void Function(GallEpisodesData_episodes_infoBuilder b) updates]) =
       _$GallEpisodesData_episodes_info;
 
   static void _initializeBuilder(GallEpisodesData_episodes_infoBuilder b) =>
@@ -109,7 +109,7 @@ abstract class GallEpisodesData_episodes_results
   GallEpisodesData_episodes_results._();
 
   factory GallEpisodesData_episodes_results(
-          [Function(GallEpisodesData_episodes_resultsBuilder b) updates]) =
+          [void Function(GallEpisodesData_episodes_resultsBuilder b) updates]) =
       _$GallEpisodesData_episodes_results;
 
   static void _initializeBuilder(GallEpisodesData_episodes_resultsBuilder b) =>

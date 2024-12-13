@@ -14,7 +14,8 @@ abstract class GallCharactersData
     implements Built<GallCharactersData, GallCharactersDataBuilder> {
   GallCharactersData._();
 
-  factory GallCharactersData([Function(GallCharactersDataBuilder b) updates]) =
+  factory GallCharactersData(
+          [void Function(GallCharactersDataBuilder b) updates]) =
       _$GallCharactersData;
 
   static void _initializeBuilder(GallCharactersDataBuilder b) =>
@@ -45,7 +46,7 @@ abstract class GallCharactersData_characters
   GallCharactersData_characters._();
 
   factory GallCharactersData_characters(
-          [Function(GallCharactersData_charactersBuilder b) updates]) =
+          [void Function(GallCharactersData_charactersBuilder b) updates]) =
       _$GallCharactersData_characters;
 
   static void _initializeBuilder(GallCharactersData_charactersBuilder b) =>
@@ -77,8 +78,8 @@ abstract class GallCharactersData_characters_info
   GallCharactersData_characters_info._();
 
   factory GallCharactersData_characters_info(
-          [Function(GallCharactersData_characters_infoBuilder b) updates]) =
-      _$GallCharactersData_characters_info;
+      [void Function(GallCharactersData_characters_infoBuilder b)
+          updates]) = _$GallCharactersData_characters_info;
 
   static void _initializeBuilder(GallCharactersData_characters_infoBuilder b) =>
       b..G__typename = 'Info';
@@ -111,8 +112,8 @@ abstract class GallCharactersData_characters_results
   GallCharactersData_characters_results._();
 
   factory GallCharactersData_characters_results(
-          [Function(GallCharactersData_characters_resultsBuilder b) updates]) =
-      _$GallCharactersData_characters_results;
+      [void Function(GallCharactersData_characters_resultsBuilder b)
+          updates]) = _$GallCharactersData_characters_results;
 
   static void _initializeBuilder(
           GallCharactersData_characters_resultsBuilder b) =>

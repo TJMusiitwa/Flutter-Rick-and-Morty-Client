@@ -23,7 +23,8 @@ abstract class GepisodeDetailsReq
         _i1.OperationRequest<_i2.GepisodeDetailsData, _i3.GepisodeDetailsVars> {
   GepisodeDetailsReq._();
 
-  factory GepisodeDetailsReq([Function(GepisodeDetailsReqBuilder b) updates]) =
+  factory GepisodeDetailsReq(
+          [void Function(GepisodeDetailsReqBuilder b) updates]) =
       _$GepisodeDetailsReq;
 
   static void _initializeBuilder(GepisodeDetailsReqBuilder b) => b
@@ -41,6 +42,7 @@ abstract class GepisodeDetailsReq
   _i4.Request get execRequest => _i4.Request(
         operation: operation,
         variables: vars.toJson(),
+        context: context ?? const _i4.Context(),
       );
 
   @override
@@ -62,6 +64,9 @@ abstract class GepisodeDetailsReq
   @override
   bool get executeOnListen;
   @override
+  @BuiltValueField(serialize: false)
+  _i4.Context? get context;
+  @override
   _i2.GepisodeDetailsData? parseData(Map<String, dynamic> json) =>
       _i2.GepisodeDetailsData.fromJson(json);
 
@@ -69,7 +74,8 @@ abstract class GepisodeDetailsReq
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+  Map<String, dynamic> dataToJson(_i2.GepisodeDetailsData data) =>
+      data.toJson();
 
   @override
   _i1.OperationRequest<_i2.GepisodeDetailsData, _i3.GepisodeDetailsVars>

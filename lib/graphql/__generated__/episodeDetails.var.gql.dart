@@ -14,7 +14,8 @@ abstract class GepisodeDetailsVars
   GepisodeDetailsVars._();
 
   factory GepisodeDetailsVars(
-      [Function(GepisodeDetailsVarsBuilder b) updates]) = _$GepisodeDetailsVars;
+          [void Function(GepisodeDetailsVarsBuilder b) updates]) =
+      _$GepisodeDetailsVars;
 
   String get id;
   static Serializer<GepisodeDetailsVars> get serializer =>

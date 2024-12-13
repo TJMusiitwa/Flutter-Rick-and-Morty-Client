@@ -41,9 +41,12 @@ class SettingsScreen extends StatelessWidget {
               onTap: () {
                 Clipboard.setData(const ClipboardData(
                         text: 'https://rickandmortyapi.com/'))
-                    .whenComplete(() => ScaffoldMessenger.of(context)
-                        .showSnackBar(const SnackBar(
-                            content: Text('URL copied to clipboard'))));
+                    .whenComplete(() {
+                  if (context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text('URL copied to clipboard')));
+                  }
+                });
               },
             ),
             ListTile(
@@ -59,9 +62,12 @@ class SettingsScreen extends StatelessWidget {
                 Clipboard.setData(const ClipboardData(
                         text:
                             'https://github.com/TJMusiitwa/Flutter-Rick-and-Morty-Client'))
-                    .whenComplete(() => ScaffoldMessenger.of(context)
-                        .showSnackBar(const SnackBar(
-                            content: Text('Github link copied to clipboard'))));
+                    .whenComplete(() {
+                  if (context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text('Github link copied to clipboard')));
+                  }
+                });
               },
             ),
             ListTile(

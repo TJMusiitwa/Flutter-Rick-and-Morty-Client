@@ -14,7 +14,7 @@ abstract class GcharacterDetailsVars
   GcharacterDetailsVars._();
 
   factory GcharacterDetailsVars(
-          [Function(GcharacterDetailsVarsBuilder b) updates]) =
+          [void Function(GcharacterDetailsVarsBuilder b) updates]) =
       _$GcharacterDetailsVars;
 
   String get id;

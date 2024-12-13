@@ -25,7 +25,7 @@ abstract class GcharacterDetailsReq
   GcharacterDetailsReq._();
 
   factory GcharacterDetailsReq(
-          [Function(GcharacterDetailsReqBuilder b) updates]) =
+          [void Function(GcharacterDetailsReqBuilder b) updates]) =
       _$GcharacterDetailsReq;
 
   static void _initializeBuilder(GcharacterDetailsReqBuilder b) => b
@@ -43,6 +43,7 @@ abstract class GcharacterDetailsReq
   _i4.Request get execRequest => _i4.Request(
         operation: operation,
         variables: vars.toJson(),
+        context: context ?? const _i4.Context(),
       );
 
   @override
@@ -64,6 +65,9 @@ abstract class GcharacterDetailsReq
   @override
   bool get executeOnListen;
   @override
+  @BuiltValueField(serialize: false)
+  _i4.Context? get context;
+  @override
   _i2.GcharacterDetailsData? parseData(Map<String, dynamic> json) =>
       _i2.GcharacterDetailsData.fromJson(json);
 
@@ -71,7 +75,8 @@ abstract class GcharacterDetailsReq
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+  Map<String, dynamic> dataToJson(_i2.GcharacterDetailsData data) =>
+      data.toJson();
 
   @override
   _i1.OperationRequest<_i2.GcharacterDetailsData, _i3.GcharacterDetailsVars>

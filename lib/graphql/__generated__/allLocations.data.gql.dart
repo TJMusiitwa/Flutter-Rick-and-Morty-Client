@@ -14,7 +14,8 @@ abstract class GallLocationsData
     implements Built<GallLocationsData, GallLocationsDataBuilder> {
   GallLocationsData._();
 
-  factory GallLocationsData([Function(GallLocationsDataBuilder b) updates]) =
+  factory GallLocationsData(
+          [void Function(GallLocationsDataBuilder b) updates]) =
       _$GallLocationsData;
 
   static void _initializeBuilder(GallLocationsDataBuilder b) =>
@@ -44,7 +45,7 @@ abstract class GallLocationsData_locations
   GallLocationsData_locations._();
 
   factory GallLocationsData_locations(
-          [Function(GallLocationsData_locationsBuilder b) updates]) =
+          [void Function(GallLocationsData_locationsBuilder b) updates]) =
       _$GallLocationsData_locations;
 
   static void _initializeBuilder(GallLocationsData_locationsBuilder b) =>
@@ -76,7 +77,7 @@ abstract class GallLocationsData_locations_info
   GallLocationsData_locations_info._();
 
   factory GallLocationsData_locations_info(
-          [Function(GallLocationsData_locations_infoBuilder b) updates]) =
+          [void Function(GallLocationsData_locations_infoBuilder b) updates]) =
       _$GallLocationsData_locations_info;
 
   static void _initializeBuilder(GallLocationsData_locations_infoBuilder b) =>
@@ -110,8 +111,8 @@ abstract class GallLocationsData_locations_results
   GallLocationsData_locations_results._();
 
   factory GallLocationsData_locations_results(
-          [Function(GallLocationsData_locations_resultsBuilder b) updates]) =
-      _$GallLocationsData_locations_results;
+      [void Function(GallLocationsData_locations_resultsBuilder b)
+          updates]) = _$GallLocationsData_locations_results;
 
   static void _initializeBuilder(
           GallLocationsData_locations_resultsBuilder b) =>

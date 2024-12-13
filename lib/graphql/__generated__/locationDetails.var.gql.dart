@@ -14,7 +14,7 @@ abstract class GLocationDetailsVars
   GLocationDetailsVars._();
 
   factory GLocationDetailsVars(
-          [Function(GLocationDetailsVarsBuilder b) updates]) =
+          [void Function(GLocationDetailsVarsBuilder b) updates]) =
       _$GLocationDetailsVars;
 
   String get id;

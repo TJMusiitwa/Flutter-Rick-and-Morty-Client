@@ -15,7 +15,8 @@ abstract class GepisodeDetailsData
   GepisodeDetailsData._();
 
   factory GepisodeDetailsData(
-      [Function(GepisodeDetailsDataBuilder b) updates]) = _$GepisodeDetailsData;
+          [void Function(GepisodeDetailsDataBuilder b) updates]) =
+      _$GepisodeDetailsData;
 
   static void _initializeBuilder(GepisodeDetailsDataBuilder b) =>
       b..G__typename = 'Query';
@@ -44,7 +45,7 @@ abstract class GepisodeDetailsData_episode
   GepisodeDetailsData_episode._();
 
   factory GepisodeDetailsData_episode(
-          [Function(GepisodeDetailsData_episodeBuilder b) updates]) =
+          [void Function(GepisodeDetailsData_episodeBuilder b) updates]) =
       _$GepisodeDetailsData_episode;
 
   static void _initializeBuilder(GepisodeDetailsData_episodeBuilder b) =>
@@ -79,8 +80,8 @@ abstract class GepisodeDetailsData_episode_characters
   GepisodeDetailsData_episode_characters._();
 
   factory GepisodeDetailsData_episode_characters(
-          [Function(GepisodeDetailsData_episode_charactersBuilder b) updates]) =
-      _$GepisodeDetailsData_episode_characters;
+      [void Function(GepisodeDetailsData_episode_charactersBuilder b)
+          updates]) = _$GepisodeDetailsData_episode_characters;
 
   static void _initializeBuilder(
           GepisodeDetailsData_episode_charactersBuilder b) =>

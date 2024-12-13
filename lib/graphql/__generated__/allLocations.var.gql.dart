@@ -13,7 +13,8 @@ abstract class GallLocationsVars
     implements Built<GallLocationsVars, GallLocationsVarsBuilder> {
   GallLocationsVars._();
 
-  factory GallLocationsVars([Function(GallLocationsVarsBuilder b) updates]) =
+  factory GallLocationsVars(
+          [void Function(GallLocationsVarsBuilder b) updates]) =
       _$GallLocationsVars;
 
   int? get page;

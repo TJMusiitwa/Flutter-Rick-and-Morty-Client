@@ -13,7 +13,8 @@ abstract class GallCharactersVars
     implements Built<GallCharactersVars, GallCharactersVarsBuilder> {
   GallCharactersVars._();
 
-  factory GallCharactersVars([Function(GallCharactersVarsBuilder b) updates]) =
+  factory GallCharactersVars(
+          [void Function(GallCharactersVarsBuilder b) updates]) =
       _$GallCharactersVars;
 
   int? get page;
