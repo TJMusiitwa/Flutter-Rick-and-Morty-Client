@@ -11,31 +11,35 @@ import '../../graphql/__generated__/locationDetails.var.gql.dart';
 class LocationDetails extends StatelessWidget {
   final String? id, locationName, locationType, locationDimension;
 
-  const LocationDetails(
-      {super.key,
-      this.id,
-      this.locationName,
-      this.locationType,
-      this.locationDimension});
+  const LocationDetails({
+    super.key,
+    this.id,
+    this.locationName,
+    this.locationType,
+    this.locationDimension,
+  });
 
   @override
   Widget build(BuildContext context) {
     final client = GetIt.I<Client>();
     return Scaffold(
       appBar: AppBar(
-          title: Text(
-        locationName!,
-        overflow: TextOverflow.ellipsis,
-      )),
+        title: Text(locationName!, overflow: TextOverflow.ellipsis),
+      ),
       body: Operation(
         client: client,
-        operationRequest: GLocationDetailsReq((d) => d
-          ..vars.id = id
-          ..fetchPolicy = FetchPolicy.CacheFirst),
-        builder: (BuildContext context,
-            OperationResponse<GLocationDetailsData, GLocationDetailsVars?>?
-                response,
-            Object? error) {
+        operationRequest: GLocationDetailsReq(
+          (d) =>
+              d
+                ..vars.id = id
+                ..fetchPolicy = FetchPolicy.CacheFirst,
+        ),
+        builder: (
+          BuildContext context,
+          OperationResponse<GLocationDetailsData, GLocationDetailsVars?>?
+          response,
+          Object? error,
+        ) {
           if (response!.loading) {
             return const Center(child: CircularProgressIndicator());
           }
@@ -49,12 +53,12 @@ class LocationDetails extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  spacing: 10,
                   children: <Widget>[
                     Text(
                       'Location Type: $locationType',
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
-                    const SizedBox(height: 10),
                     Text(
                       'Dimension: $locationDimension',
                       style: Theme.of(context).textTheme.titleLarge,
@@ -71,17 +75,21 @@ class LocationDetails extends StatelessWidget {
                   spacing: 6.0,
                   runSpacing: 6.0,
                   children: List<Widget>.generate(
-                      residents.length,
-                      (int index) => Chip(
-                            avatar: CircleAvatar(
-                                backgroundImage: CachedNetworkImageProvider(
-                                    residents[index]?.image ??
-                                        'https://rickandmortyapi.com/api/character/avatar/19.jpeg',
-                                    scale: 1.5)),
-                            label: SizedBox(
-                                height: 30,
-                                child: Text(residents[index]?.name ?? '')),
-                          )),
+                    residents.length,
+                    (int index) => Chip(
+                      avatar: CircleAvatar(
+                        backgroundImage: CachedNetworkImageProvider(
+                          residents[index]?.image ??
+                              'https://rickandmortyapi.com/api/character/avatar/19.jpeg',
+                          scale: 1.5,
+                        ),
+                      ),
+                      label: SizedBox(
+                        height: 30,
+                        child: Text(residents[index]?.name ?? ''),
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),

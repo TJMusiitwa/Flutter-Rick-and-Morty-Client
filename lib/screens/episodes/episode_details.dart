@@ -11,27 +11,34 @@ import '../../graphql/__generated__/episodeDetails.var.gql.dart';
 class EpisodeDetails extends StatelessWidget {
   final String? id, episodeTitle, episode, episodeDate;
 
-  const EpisodeDetails(
-      {super.key, this.id, this.episodeTitle, this.episode, this.episodeDate});
+  const EpisodeDetails({
+    super.key,
+    this.id,
+    this.episodeTitle,
+    this.episode,
+    this.episodeDate,
+  });
   @override
   Widget build(BuildContext context) {
     final client = GetIt.I<Client>();
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          episodeTitle!,
-          overflow: TextOverflow.ellipsis,
-        ),
+        title: Text(episodeTitle!, overflow: TextOverflow.ellipsis),
       ),
       body: Operation(
         client: client,
-        operationRequest: GepisodeDetailsReq((d) => d
-          ..vars.id = id
-          ..fetchPolicy = FetchPolicy.CacheFirst),
-        builder: (BuildContext context,
-            OperationResponse<GepisodeDetailsData, GepisodeDetailsVars?>?
-                response,
-            Object? error) {
+        operationRequest: GepisodeDetailsReq(
+          (d) =>
+              d
+                ..vars.id = id
+                ..fetchPolicy = FetchPolicy.CacheFirst,
+        ),
+        builder: (
+          BuildContext context,
+          OperationResponse<GepisodeDetailsData, GepisodeDetailsVars?>?
+          response,
+          Object? error,
+        ) {
           if (response!.loading) {
             return const Center(child: CircularProgressIndicator());
           }
@@ -45,12 +52,12 @@ class EpisodeDetails extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  spacing: 10,
                   children: <Widget>[
                     Text(
                       'Episode $episode',
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
-                    const SizedBox(height: 10),
                     Text(
                       'Aired $episodeDate',
                       style: Theme.of(context).textTheme.titleLarge,
@@ -71,11 +78,13 @@ class EpisodeDetails extends StatelessWidget {
                     (index) => Chip(
                       avatar: CircleAvatar(
                         backgroundImage: CachedNetworkImageProvider(
-                            episodeCharacters[index]!.image!),
+                          episodeCharacters[index]!.image!,
+                        ),
                       ),
                       label: SizedBox(
-                          height: 30,
-                          child: Text(episodeCharacters[index]!.name!)),
+                        height: 30,
+                        child: Text(episodeCharacters[index]!.name!),
+                      ),
                     ),
                   ),
                 ),
