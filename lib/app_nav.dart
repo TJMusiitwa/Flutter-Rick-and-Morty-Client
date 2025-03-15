@@ -55,35 +55,36 @@ class _AppnavState extends State<Appnav> {
       onPopInvokedWithResult: (_, __) => _systemBackButtonPressed,
       child: Scaffold(
         body: SafeArea(
-            top: false,
-            child: IndexedStack(
-              index: _currentIndex,
-              children: const <Widget>[
-                CharactersNavigator(),
-                EpisodesNavigator(),
-                LocationsNavigator()
-              ],
-            )),
-        bottomNavigationBar: BottomNavigationBar(
-          items: const [
-            BottomNavigationBarItem(
+          top: false,
+          child: IndexedStack(
+            index: _currentIndex,
+            children: const <Widget>[
+              CharactersNavigator(),
+              EpisodesNavigator(),
+              LocationsNavigator(),
+            ],
+          ),
+        ),
+        bottomNavigationBar: NavigationBar(
+          destinations: const [
+            NavigationDestination(
               icon: Icon(Icons.people),
               label: 'Characters',
             ),
-            BottomNavigationBarItem(
+            NavigationDestination(
               icon: Icon(Icons.local_movies),
               label: 'Episodes',
             ),
-            BottomNavigationBarItem(
+            NavigationDestination(
               icon: Icon(Icons.location_on),
               label: 'Locations',
             ),
           ],
-          type: BottomNavigationBarType.fixed,
-          currentIndex: _currentIndex,
-          onTap: (index) => setState(() => _currentIndex = index),
-          selectedItemColor: Colors.amber,
-          unselectedItemColor: Colors.grey,
+
+          selectedIndex: _currentIndex,
+          onDestinationSelected:
+              (index) => setState(() => _currentIndex = index),
+          indicatorColor: Colors.amber,
         ),
       ),
     );
@@ -91,9 +92,9 @@ class _AppnavState extends State<Appnav> {
 
   Future<bool> _systemBackButtonPressed() async {
     if (_navigatorKeys[_currentIndex].currentState!.canPop()) {
-      _navigatorKeys[_currentIndex]
-          .currentState!
-          .pop(_navigatorKeys[_currentIndex].currentContext);
+      _navigatorKeys[_currentIndex].currentState!.pop(
+        _navigatorKeys[_currentIndex].currentContext,
+      );
     } else {
       SystemChannels.platform.invokeMethod<void>('SystemNavigator.pop');
     }
@@ -108,16 +109,17 @@ class _CharactersNavigatorState extends State<CharactersNavigator> {
       key: _charactersNavigatorKey,
       onGenerateRoute: (settings) {
         return MaterialPageRoute(
-            settings: settings,
-            builder: (context) {
-              switch (settings.name) {
-                case '/':
-                  return const CharactersScreen();
-                case '/characterDetails':
-                  return const CharacterDetails();
-              }
-              throw {};
-            });
+          settings: settings,
+          builder: (context) {
+            switch (settings.name) {
+              case '/':
+                return const CharactersScreen();
+              case '/characterDetails':
+                return const CharacterDetails();
+            }
+            throw {};
+          },
+        );
       },
     );
   }
@@ -130,16 +132,17 @@ class _EpisodesNavigatorState extends State<EpisodesNavigator> {
       key: _episodesNavigatorKey,
       onGenerateRoute: (settings) {
         return MaterialPageRoute(
-            settings: settings,
-            builder: (context) {
-              switch (settings.name) {
-                case '/':
-                  return const EpisodesScreen();
-                case '/episodesDetails':
-                  return const EpisodeDetails();
-              }
-              throw {};
-            });
+          settings: settings,
+          builder: (context) {
+            switch (settings.name) {
+              case '/':
+                return const EpisodesScreen();
+              case '/episodesDetails':
+                return const EpisodeDetails();
+            }
+            throw {};
+          },
+        );
       },
     );
   }
@@ -152,16 +155,17 @@ class _LocationsNavigatorState extends State<LocationsNavigator> {
       key: _locationsNavigatorKey,
       onGenerateRoute: (settings) {
         return MaterialPageRoute(
-            settings: settings,
-            builder: (context) {
-              switch (settings.name) {
-                case '/':
-                  return const LocationsScreen();
-                case '/locationsDetails':
-                  return const LocationDetails();
-              }
-              throw {};
-            });
+          settings: settings,
+          builder: (context) {
+            switch (settings.name) {
+              case '/':
+                return const LocationsScreen();
+              case '/locationsDetails':
+                return const LocationDetails();
+            }
+            throw {};
+          },
+        );
       },
     );
   }
