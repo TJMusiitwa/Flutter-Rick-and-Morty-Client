@@ -18,31 +18,45 @@ class LocationsScreen extends StatefulWidget {
 
 class _LocationsScreenState extends State<LocationsScreen> {
   final Client? client = GetIt.I<Client>();
+  int _pageNum = 1;
+  bool _hasNextPage = true;
 
-  final locationsReq = GallLocationsReq((l) => l
-    ..requestId = 'getLocationsId'
-    ..fetchPolicy = FetchPolicy.CacheFirst
-    ..vars.page = pageNum);
-
-  static int pageNum = 1;
+  late final GallLocationsReq locationsReq = GallLocationsReq(
+    (l) =>
+        l
+          ..requestId = 'getLocationsId'
+          ..fetchPolicy = FetchPolicy.CacheFirst
+          ..vars.page = _pageNum,
+  );
 
   final ScrollController _scrollController = ScrollController();
 
   _scrollListener() {
-    if (_scrollController.position.pixels ==
-        _scrollController.position.maxScrollExtent) {
+    if (!_hasNextPage) return;
+
+    if (_scrollController.position.pixels >=
+        _scrollController.position.maxScrollExtent * 0.9) {
       final paginationLocs = locationsReq.rebuild(
-        (p) => p
-          ..vars.page = pageNum
-          ..updateResult = (previous, next) =>
-              previous?.rebuild((p) =>
-                  p..locations.results.addAll(next!.locations!.results!)) ??
-              next,
+        (p) =>
+            p
+              ..vars.page = _pageNum + 1
+              ..updateResult = (previous, next) {
+                if (next?.locations?.results?.isEmpty ?? true) {
+                  _hasNextPage = false;
+                  return previous;
+                }
+                _pageNum++;
+                return previous?.rebuild(
+                      (p) =>
+                          p
+                            ..locations.results.addAll(
+                              next!.locations!.results!,
+                            ),
+                    ) ??
+                    next;
+              },
       );
       client!.requestController.add(paginationLocs);
-      setState(() {
-        pageNum++;
-      });
     }
   }
 
@@ -67,18 +81,24 @@ class _LocationsScreenState extends State<LocationsScreen> {
         elevation: 0,
         actions: <Widget>[
           IconButton(
-              icon: const Icon(Icons.settings),
-              iconSize: 30,
-              onPressed: () => Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => const SettingsScreen()))),
+            icon: const Icon(Icons.settings),
+            iconSize: 30,
+            onPressed:
+                () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const SettingsScreen()),
+                ),
+          ),
         ],
       ),
       body: Operation(
         client: client!,
         operationRequest: locationsReq,
-        builder: (BuildContext context,
-            OperationResponse<GallLocationsData, GallLocationsVars?>? response,
-            Object? error) {
+        builder: (
+          BuildContext context,
+          OperationResponse<GallLocationsData, GallLocationsVars?>? response,
+          Object? error,
+        ) {
           if (response!.loading) {
             return const Center(child: CircularProgressIndicator());
           }
@@ -107,10 +127,9 @@ class _LocationsScreenState extends State<LocationsScreen> {
                     location!.name!,
                     softWrap: true,
                     overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headlineSmall!
-                        .copyWith(fontSize: 20),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.headlineSmall!.copyWith(fontSize: 20),
                   ),
                   subtitle: Text(
                     'Dimension: ${location.dimension!}',
@@ -118,16 +137,18 @@ class _LocationsScreenState extends State<LocationsScreen> {
                     overflow: TextOverflow.ellipsis,
                   ),
                   trailing: Text(location.type!),
-                  onTap: () => Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (_) => LocationDetails(
-                        id: location.id,
-                        locationName: location.name,
-                        locationDimension: location.dimension,
-                        locationType: location.type,
+                  onTap:
+                      () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder:
+                              (_) => LocationDetails(
+                                id: location.id,
+                                locationName: location.name,
+                                locationDimension: location.dimension,
+                                locationType: location.type,
+                              ),
+                        ),
                       ),
-                    ),
-                  ),
                 ),
               );
             },

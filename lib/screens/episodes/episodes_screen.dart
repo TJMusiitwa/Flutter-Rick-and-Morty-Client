@@ -18,30 +18,45 @@ class EpisodesScreen extends StatefulWidget {
 
 class _EpisodesScreenState extends State<EpisodesScreen> {
   final Client? client = GetIt.I<Client>();
+  int _currentPage = 1;
+  bool _isLoading = false;
 
-  final episodesReq = GallEpisodesReq((l) => l
-    ..requestId = 'getEpisodesId'
-    ..fetchPolicy = FetchPolicy.CacheFirst
-    ..vars.page = pageNum);
-
-  static int pageNum = 1;
+  late final episodesReq = GallEpisodesReq(
+    (l) =>
+        l
+          ..requestId = 'getEpisodesId'
+          ..fetchPolicy = FetchPolicy.CacheFirst
+          ..vars.page = _currentPage,
+  );
 
   final ScrollController _scrollController = ScrollController();
 
-  _scrollListener() {
-    if (_scrollController.position.pixels ==
-        _scrollController.position.maxScrollExtent) {
-      final paginationEps = episodesReq.rebuild(
-        (p) {
-          return p
-            ..vars.page = pageNum++
-            ..updateResult = (previous, next) =>
-                previous?.rebuild((p) =>
-                    p..episodes.results.addAll(next!.episodes!.results!)) ??
-                next;
-        },
-      );
-      client!.requestController.add(paginationEps);
+  _scrollListener() async {
+    if (_isLoading) return;
+
+    if (_scrollController.position.pixels >=
+        _scrollController.position.maxScrollExtent * 0.8) {
+      setState(() {
+        _isLoading = true;
+      });
+
+      final paginationEps = episodesReq.rebuild((p) {
+        return p
+          ..vars.page = _currentPage + 1
+          ..updateResult = (previous, next) {
+            if (previous == null || next == null) return next;
+            return previous.rebuild(
+              (p) => p..episodes.results.addAll(next.episodes!.results!),
+            );
+          };
+      });
+
+      await client!.request(paginationEps).first;
+
+      setState(() {
+        _currentPage++;
+        _isLoading = false;
+      });
     }
   }
 
@@ -66,18 +81,24 @@ class _EpisodesScreenState extends State<EpisodesScreen> {
         elevation: 0,
         actions: <Widget>[
           IconButton(
-              icon: const Icon(Icons.settings),
-              iconSize: 30,
-              onPressed: () => Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => const SettingsScreen()))),
+            icon: const Icon(Icons.settings),
+            iconSize: 30,
+            onPressed:
+                () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const SettingsScreen()),
+                ),
+          ),
         ],
       ),
       body: Operation(
         client: client!,
         operationRequest: episodesReq,
-        builder: (BuildContext context,
-            OperationResponse<GallEpisodesData, GallEpisodesVars?>? response,
-            Object? error) {
+        builder: (
+          BuildContext context,
+          OperationResponse<GallEpisodesData, GallEpisodesVars?>? response,
+          Object? error,
+        ) {
           if (response!.loading) {
             return const Center(child: CircularProgressIndicator());
           } else if (response.hasErrors) {
@@ -85,7 +106,8 @@ class _EpisodesScreenState extends State<EpisodesScreen> {
           } else if (response.data!.episodes!.results == null) {
             return const Center(
               child: Text(
-                  'Uhh Morty, you do know there is nothing but junk to watch on TV'),
+                'Uhh Morty, you do know there is nothing but junk to watch on TV',
+              ),
             );
           }
 
@@ -106,23 +128,24 @@ class _EpisodesScreenState extends State<EpisodesScreen> {
                     episode!.name!,
                     softWrap: true,
                     overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium!
-                        .copyWith(fontSize: 20),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.titleMedium!.copyWith(fontSize: 20),
                   ),
                   subtitle: Text('Aired: ${episode.air_date!}'),
                   trailing: Text(episode.episode!),
-                  onTap: () => Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (_) => EpisodeDetails(
-                        id: episode.id,
-                        episodeTitle: episode.name,
-                        episode: episode.episode,
-                        episodeDate: episode.air_date,
+                  onTap:
+                      () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder:
+                              (_) => EpisodeDetails(
+                                id: episode.id,
+                                episodeTitle: episode.name,
+                                episode: episode.episode,
+                                episodeDate: episode.air_date,
+                              ),
+                        ),
                       ),
-                    ),
-                  ),
                 ),
               );
             },

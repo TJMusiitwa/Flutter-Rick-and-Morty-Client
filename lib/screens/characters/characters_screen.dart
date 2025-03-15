@@ -11,8 +11,6 @@ import '../../graphql/__generated__/allCharacters.var.gql.dart';
 import 'character_details.dart';
 
 class CharactersScreen extends StatefulWidget {
-  static int pageNum = 1;
-
   const CharactersScreen({super.key});
 
   @override
@@ -21,26 +19,54 @@ class CharactersScreen extends StatefulWidget {
 
 class _CharactersScreenState extends State<CharactersScreen> {
   final Client? client = GetIt.I<Client>();
+  int _currentPage = 1;
+  bool _isLoading = false;
+  final SearchController _characterSearchController = SearchController();
 
-  final charactersRequest = GallCharactersReq((c) => c
-    ..requestId = 'getCharactersId'
-    ..vars.page = CharactersScreen.pageNum);
+  late final charactersRequest = GallCharactersReq(
+    (c) =>
+        c
+          ..requestId = 'getCharactersId'
+          ..fetchPolicy = FetchPolicy.CacheFirst
+          ..vars.page = _currentPage,
+  );
 
   final ScrollController _scrollController = ScrollController();
 
-  _scrollListener() {
-    if (_scrollController.position.pixels ==
-        _scrollController.position.maxScrollExtent) {
-      final paginationChars = charactersRequest.rebuild(
-        (p) => p
-          ..vars.page = CharactersScreen.pageNum + 1
-          ..updateResult = (previous, next) => previous!.rebuild(
-              (p) => p..characters.results.addAll(next!.characters!.results!)),
-      );
-      client!.requestController.add(paginationChars);
+  _scrollListener() async {
+    if (_isLoading) return;
+
+    if (_scrollController.position.pixels >=
+        _scrollController.position.maxScrollExtent * 0.8) {
       setState(() {
-        CharactersScreen.pageNum++;
+        _isLoading = true;
       });
+
+      final paginationChars = charactersRequest.rebuild((p) {
+        return p
+          ..vars.page = _currentPage + 1
+          ..updateResult = (previous, next) {
+            if (previous == null || next == null) return next;
+            return previous.rebuild(
+              (p) => p..characters.results.addAll(next.characters!.results!),
+            );
+          };
+      });
+
+      try {
+        await client!.request(paginationChars).first;
+        setState(() {
+          _currentPage++;
+        });
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Failed to load more characters')),
+        );
+      } finally {
+        setState(() {
+          _isLoading = false;
+        });
+      }
     }
   }
 
@@ -63,41 +89,70 @@ class _CharactersScreenState extends State<CharactersScreen> {
         title: const Text('Characters'),
         automaticallyImplyLeading: false,
         actions: <Widget>[
+          SearchAnchor(
+            searchController: _characterSearchController,
+            builder: (_, controller) {
+              return IconButton(
+                icon: Icon(Icons.search),
+                onPressed: () => controller.openView(),
+              );
+            },
+            suggestionsBuilder: (_, controller) {
+              final randomCharacters = [
+                'Rick',
+                'Morty',
+                'Summer',
+                'Jerry',
+                'Beth',
+              ];
+              return randomCharacters.map((location) {
+                return ListTile(
+                  title: Text(location),
+                  onTap: () => controller.closeView(null),
+                );
+              }).toList();
+            },
+          ),
           IconButton(
-              icon: const Icon(Icons.settings),
-              iconSize: 30,
-              onPressed: () => Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => const SettingsScreen()))),
+            icon: const Icon(Icons.settings),
+            iconSize: 30,
+            onPressed:
+                () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const SettingsScreen()),
+                ),
+          ),
         ],
       ),
       body: Operation(
         client: client!,
         operationRequest: charactersRequest,
-        builder: (BuildContext context,
-            OperationResponse<GallCharactersData, GallCharactersVars?>?
-                response,
-            Object? error) {
+        builder: (
+          BuildContext context,
+          OperationResponse<GallCharactersData, GallCharactersVars?>? response,
+          Object? error,
+        ) {
           if (response!.loading) {
             return const Center(child: CircularProgressIndicator());
           }
           if (response.hasErrors) {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text(
-                response.graphqlErrors!.first.message,
-                softWrap: true,
-                overflow: TextOverflow.ellipsis,
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(
+                  response.graphqlErrors!.first.message,
+                  softWrap: true,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                action: SnackBarAction(label: 'RETRY', onPressed: () {}),
+                behavior: SnackBarBehavior.fixed,
               ),
-              action: SnackBarAction(label: 'RETRY', onPressed: () {}),
-              behavior: SnackBarBehavior.fixed,
-            ));
+            );
           }
 
           if (response.data!.characters == null) {
             return Column(
               children: [
-                Center(
-                  child: Image.asset('assets/rick_mort_splash.png'),
-                ),
+                Center(child: Image.asset('assets/rick_mort_splash.png')),
                 const SizedBox(height: 10),
                 const Center(
                   child: Text(
@@ -109,47 +164,63 @@ class _CharactersScreenState extends State<CharactersScreen> {
             );
           }
           final characters = response.data!.characters!.results!.toBuiltList();
-          return ListView.builder(
-            controller: _scrollController,
-            itemCount: characters.length,
-            //itemExtent: 10,
-            itemBuilder: (BuildContext context, int index) {
-              final character = characters[index];
-              return Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: ListTile(
-                  leading: SizedBox(
-                    height: 100,
-                    width: 80,
-                    child: CachedNetworkImage(
-                      imageUrl: character!.image!,
-                      fit: BoxFit.cover,
-                      //fadeInDuration: Duration(milliseconds: 500),
+          return Stack(
+            children: [
+              ListView.builder(
+                controller: _scrollController,
+                itemCount: characters.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final character = characters[index];
+                  return Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
                     ),
-                  ),
-                  title: Text(
-                    character.name!,
-                    softWrap: true,
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
-                  subtitle: Text(character.species!),
-                  trailing: Text(character.gender!),
-                  onTap: () => Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (_) => CharacterDetails(
-                        id: character.id,
-                        characterName: character.name,
-                        characterGender: character.gender,
-                        characterSpecies: character.species,
+                    child: ListTile(
+                      leading: SizedBox(
+                        height: 100,
+                        width: 80,
+                        child: CachedNetworkImage(
+                          imageUrl: character!.image!,
+                          fit: BoxFit.cover,
+                        ),
                       ),
+                      title: Text(
+                        character.name!,
+                        softWrap: true,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.headlineSmall,
+                      ),
+                      subtitle: Text(character.species!),
+                      trailing: Text(character.gender!),
+                      onTap:
+                          () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder:
+                                  (_) => CharacterDetails(
+                                    id: character.id,
+                                    characterName: character.name,
+                                    characterGender: character.gender,
+                                    characterSpecies: character.species,
+                                  ),
+                            ),
+                          ),
+                    ),
+                  );
+                },
+              ),
+              if (_isLoading)
+                const Positioned(
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  child: Center(
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: CircularProgressIndicator(),
                     ),
                   ),
                 ),
-              );
-            },
+            ],
           );
         },
       ),
