@@ -22,16 +22,15 @@ class _EpisodesScreenState extends State<EpisodesScreen> {
   bool _isLoading = false;
 
   late final episodesReq = GallEpisodesReq(
-    (l) =>
-        l
-          ..requestId = 'getEpisodesId'
-          ..fetchPolicy = FetchPolicy.CacheFirst
-          ..vars.page = _currentPage,
+    (l) => l
+      ..requestId = 'getEpisodesId'
+      ..fetchPolicy = FetchPolicy.CacheFirst
+      ..vars.page = _currentPage,
   );
 
   final ScrollController _scrollController = ScrollController();
 
-  _scrollListener() async {
+  Future<void> _scrollListener() async {
     if (_isLoading) return;
 
     if (_scrollController.position.pixels >=
@@ -83,74 +82,72 @@ class _EpisodesScreenState extends State<EpisodesScreen> {
           IconButton(
             icon: const Icon(Icons.settings),
             iconSize: 30,
-            onPressed:
-                () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => const SettingsScreen()),
-                ),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const SettingsScreen()),
+            ),
           ),
         ],
       ),
       body: Operation(
         client: client!,
         operationRequest: episodesReq,
-        builder: (
-          BuildContext context,
-          OperationResponse<GallEpisodesData, GallEpisodesVars?>? response,
-          Object? error,
-        ) {
-          if (response!.loading) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (response.hasErrors) {
-            return Text(response.graphqlErrors!.first.message);
-          } else if (response.data!.episodes!.results == null) {
-            return const Center(
-              child: Text(
-                'Uhh Morty, you do know there is nothing but junk to watch on TV',
-              ),
-            );
-          }
-
-          final episodes = response.data!.episodes!.results!.toBuiltList();
-          return ListView.builder(
-            controller: _scrollController,
-            itemCount: episodes.length,
-            shrinkWrap: true,
-            itemExtent: 100,
-            itemBuilder: (BuildContext context, int index) {
-              final episode = episodes[index];
-              return Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: ListTile(
-                  title: Text(
-                    episode!.name!,
-                    softWrap: true,
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(
-                      context,
-                    ).textTheme.titleMedium!.copyWith(fontSize: 20),
+        builder:
+            (
+              BuildContext context,
+              OperationResponse<GallEpisodesData, GallEpisodesVars?>? response,
+              Object? error,
+            ) {
+              if (response!.loading) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (response.hasErrors) {
+                return Text(response.graphqlErrors!.first.message);
+              } else if (response.data!.episodes!.results == null) {
+                return const Center(
+                  child: Text(
+                    'Uhh Morty, you do know there is nothing but junk to watch on TV',
                   ),
-                  subtitle: Text('Aired: ${episode.air_date!}'),
-                  trailing: Text(episode.episode!),
-                  onTap:
-                      () => Navigator.of(context).push(
+                );
+              }
+
+              final episodes = response.data!.episodes!.results!.toBuiltList();
+              return ListView.builder(
+                controller: _scrollController,
+                itemCount: episodes.length,
+                shrinkWrap: true,
+                itemExtent: 100,
+                itemBuilder: (BuildContext context, int index) {
+                  final episode = episodes[index];
+                  return Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: ListTile(
+                      title: Text(
+                        episode!.name!,
+                        softWrap: true,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(
+                          context,
+                        ).textTheme.titleMedium!.copyWith(fontSize: 20),
+                      ),
+                      subtitle: Text('Aired: ${episode.air_date!}'),
+                      trailing: Text(episode.episode!),
+                      onTap: () => Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder:
-                              (_) => EpisodeDetails(
-                                id: episode.id,
-                                episodeTitle: episode.name,
-                                episode: episode.episode,
-                                episodeDate: episode.air_date,
-                              ),
+                          builder: (_) => EpisodeDetails(
+                            id: episode.id,
+                            episodeTitle: episode.name,
+                            episode: episode.episode,
+                            episodeDate: episode.air_date,
+                          ),
                         ),
                       ),
-                ),
+                    ),
+                  );
+                },
               );
             },
-          );
-        },
       ),
     );
   }

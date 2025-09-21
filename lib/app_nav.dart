@@ -52,7 +52,7 @@ class _AppnavState extends State<Appnav> {
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      onPopInvokedWithResult: (_, __) => _systemBackButtonPressed,
+      onPopInvokedWithResult: (_, _) => _systemBackButtonPressed,
       child: Scaffold(
         body: SafeArea(
           top: false,
@@ -82,8 +82,8 @@ class _AppnavState extends State<Appnav> {
           ],
 
           selectedIndex: _currentIndex,
-          onDestinationSelected:
-              (index) => setState(() => _currentIndex = index),
+          onDestinationSelected: (index) =>
+              setState(() => _currentIndex = index),
           indicatorColor: Colors.amber,
         ),
       ),

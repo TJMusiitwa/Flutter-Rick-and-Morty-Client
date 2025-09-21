@@ -24,16 +24,15 @@ class _CharactersScreenState extends State<CharactersScreen> {
   final SearchController _characterSearchController = SearchController();
 
   late final charactersRequest = GallCharactersReq(
-    (c) =>
-        c
-          ..requestId = 'getCharactersId'
-          ..fetchPolicy = FetchPolicy.CacheFirst
-          ..vars.page = _currentPage,
+    (c) => c
+      ..requestId = 'getCharactersId'
+      ..fetchPolicy = FetchPolicy.CacheFirst
+      ..vars.page = _currentPage,
   );
 
   final ScrollController _scrollController = ScrollController();
 
-  _scrollListener() async {
+  Future<void> _scrollListener() async {
     if (_isLoading) return;
 
     if (_scrollController.position.pixels >=
@@ -59,6 +58,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
           _currentPage++;
         });
       } catch (e) {
+        if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Failed to load more characters')),
         );
@@ -116,113 +116,113 @@ class _CharactersScreenState extends State<CharactersScreen> {
           IconButton(
             icon: const Icon(Icons.settings),
             iconSize: 30,
-            onPressed:
-                () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => const SettingsScreen()),
-                ),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const SettingsScreen()),
+            ),
           ),
         ],
       ),
       body: Operation(
         client: client!,
         operationRequest: charactersRequest,
-        builder: (
-          BuildContext context,
-          OperationResponse<GallCharactersData, GallCharactersVars?>? response,
-          Object? error,
-        ) {
-          if (response!.loading) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          if (response.hasErrors) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                  response.graphqlErrors!.first.message,
-                  softWrap: true,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                action: SnackBarAction(label: 'RETRY', onPressed: () {}),
-                behavior: SnackBarBehavior.fixed,
-              ),
-            );
-          }
-
-          if (response.data!.characters == null) {
-            return Column(
-              children: [
-                Center(child: Image.asset('assets/rick_mort_splash.png')),
-                const SizedBox(height: 10),
-                const Center(
-                  child: Text(
-                    'Uhh Morty, you do know there is nothing but junk to watch on TV',
-                    softWrap: true,
-                  ),
-                ),
-              ],
-            );
-          }
-          final characters = response.data!.characters!.results!.toBuiltList();
-          return Stack(
-            children: [
-              ListView.builder(
-                controller: _scrollController,
-                itemCount: characters.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final character = characters[index];
-                  return Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
+        builder:
+            (
+              BuildContext context,
+              OperationResponse<GallCharactersData, GallCharactersVars?>?
+              response,
+              Object? error,
+            ) {
+              if (response!.loading) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              if (response.hasErrors) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      response.graphqlErrors!.first.message,
+                      softWrap: true,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                    child: ListTile(
-                      leading: SizedBox(
-                        height: 100,
-                        width: 80,
-                        child: CachedNetworkImage(
-                          imageUrl: character!.image!,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      title: Text(
-                        character.name!,
+                    action: SnackBarAction(label: 'RETRY', onPressed: () {}),
+                    behavior: SnackBarBehavior.fixed,
+                  ),
+                );
+              }
+
+              if (response.data!.characters == null) {
+                return Column(
+                  children: [
+                    Center(child: Image.asset('assets/rick_mort_splash.png')),
+                    const SizedBox(height: 10),
+                    const Center(
+                      child: Text(
+                        'Uhh Morty, you do know there is nothing but junk to watch on TV',
                         softWrap: true,
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.headlineSmall,
                       ),
-                      subtitle: Text(character.species!),
-                      trailing: Text(character.gender!),
-                      onTap:
-                          () => Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder:
-                                  (_) => CharacterDetails(
-                                    id: character.id,
-                                    characterName: character.name,
-                                    characterGender: character.gender,
-                                    characterSpecies: character.species,
-                                  ),
+                    ),
+                  ],
+                );
+              }
+              final characters = response.data!.characters!.results!
+                  .toBuiltList();
+              return Stack(
+                children: [
+                  ListView.builder(
+                    controller: _scrollController,
+                    itemCount: characters.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      final character = characters[index];
+                      return Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: ListTile(
+                          leading: SizedBox(
+                            height: 100,
+                            width: 80,
+                            child: CachedNetworkImage(
+                              imageUrl: character!.image!,
+                              fit: BoxFit.cover,
                             ),
                           ),
-                    ),
-                  );
-                },
-              ),
-              if (_isLoading)
-                const Positioned(
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  child: Center(
-                    child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: CircularProgressIndicator(),
-                    ),
+                          title: Text(
+                            character.name!,
+                            softWrap: true,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.headlineSmall,
+                          ),
+                          subtitle: Text(character.species!),
+                          trailing: Text(character.gender!),
+                          onTap: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (_) => CharacterDetails(
+                                id: character.id,
+                                characterName: character.name,
+                                characterGender: character.gender,
+                                characterSpecies: character.species,
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
                   ),
-                ),
-            ],
-          );
-        },
+                  if (_isLoading)
+                    const Positioned(
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      child: Center(
+                        child: Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: CircularProgressIndicator(),
+                        ),
+                      ),
+                    ),
+                ],
+              );
+            },
       ),
     );
   }

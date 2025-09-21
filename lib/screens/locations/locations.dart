@@ -22,39 +22,33 @@ class _LocationsScreenState extends State<LocationsScreen> {
   bool _hasNextPage = true;
 
   late final GallLocationsReq locationsReq = GallLocationsReq(
-    (l) =>
-        l
-          ..requestId = 'getLocationsId'
-          ..fetchPolicy = FetchPolicy.CacheFirst
-          ..vars.page = _pageNum,
+    (l) => l
+      ..requestId = 'getLocationsId'
+      ..fetchPolicy = FetchPolicy.CacheFirst
+      ..vars.page = _pageNum,
   );
 
   final ScrollController _scrollController = ScrollController();
 
-  _scrollListener() {
+  void _scrollListener() {
     if (!_hasNextPage) return;
 
     if (_scrollController.position.pixels >=
         _scrollController.position.maxScrollExtent * 0.9) {
       final paginationLocs = locationsReq.rebuild(
-        (p) =>
-            p
-              ..vars.page = _pageNum + 1
-              ..updateResult = (previous, next) {
-                if (next?.locations?.results?.isEmpty ?? true) {
-                  _hasNextPage = false;
-                  return previous;
-                }
-                _pageNum++;
-                return previous?.rebuild(
-                      (p) =>
-                          p
-                            ..locations.results.addAll(
-                              next!.locations!.results!,
-                            ),
-                    ) ??
-                    next;
-              },
+        (p) => p
+          ..vars.page = _pageNum + 1
+          ..updateResult = (previous, next) {
+            if (next?.locations?.results?.isEmpty ?? true) {
+              _hasNextPage = false;
+              return previous;
+            }
+            _pageNum++;
+            return previous?.rebuild(
+                  (p) => p..locations.results.addAll(next!.locations!.results!),
+                ) ??
+                next;
+          },
       );
       client!.requestController.add(paginationLocs);
     }
@@ -83,77 +77,77 @@ class _LocationsScreenState extends State<LocationsScreen> {
           IconButton(
             icon: const Icon(Icons.settings),
             iconSize: 30,
-            onPressed:
-                () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => const SettingsScreen()),
-                ),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const SettingsScreen()),
+            ),
           ),
         ],
       ),
       body: Operation(
         client: client!,
         operationRequest: locationsReq,
-        builder: (
-          BuildContext context,
-          OperationResponse<GallLocationsData, GallLocationsVars?>? response,
-          Object? error,
-        ) {
-          if (response!.loading) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          if (response.hasErrors) {
-            return Text(response.graphqlErrors!.first.message);
-          }
+        builder:
+            (
+              BuildContext context,
+              OperationResponse<GallLocationsData, GallLocationsVars?>?
+              response,
+              Object? error,
+            ) {
+              if (response!.loading) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              if (response.hasErrors) {
+                return Text(response.graphqlErrors!.first.message);
+              }
 
-          if (response.data!.locations == null) {
-            return const Center(
-              child: Text('Uhh Rick, There are no locations here'),
-            );
-          }
+              if (response.data!.locations == null) {
+                return const Center(
+                  child: Text('Uhh Rick, There are no locations here'),
+                );
+              }
 
-          final locations = response.data!.locations!.results!.toBuiltList();
-          return ListView.builder(
-            controller: _scrollController,
-            itemCount: locations.length,
-            itemBuilder: (BuildContext context, int index) {
-              final location = locations[index];
-              return Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: ListTile(
-                  title: Text(
-                    location!.name!,
-                    softWrap: true,
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(
-                      context,
-                    ).textTheme.headlineSmall!.copyWith(fontSize: 20),
-                  ),
-                  subtitle: Text(
-                    'Dimension: ${location.dimension!}',
-                    softWrap: true,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  trailing: Text(location.type!),
-                  onTap:
-                      () => Navigator.of(context).push(
+              final locations = response.data!.locations!.results!
+                  .toBuiltList();
+              return ListView.builder(
+                controller: _scrollController,
+                itemCount: locations.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final location = locations[index];
+                  return Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: ListTile(
+                      title: Text(
+                        location!.name!,
+                        softWrap: true,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(
+                          context,
+                        ).textTheme.headlineSmall!.copyWith(fontSize: 20),
+                      ),
+                      subtitle: Text(
+                        'Dimension: ${location.dimension!}',
+                        softWrap: true,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      trailing: Text(location.type!),
+                      onTap: () => Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder:
-                              (_) => LocationDetails(
-                                id: location.id,
-                                locationName: location.name,
-                                locationDimension: location.dimension,
-                                locationType: location.type,
-                              ),
+                          builder: (_) => LocationDetails(
+                            id: location.id,
+                            locationName: location.name,
+                            locationDimension: location.dimension,
+                            locationType: location.type,
+                          ),
                         ),
                       ),
-                ),
+                    ),
+                  );
+                },
               );
             },
-          );
-        },
       ),
     );
   }
