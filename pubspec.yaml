@@ -6,13 +6,15 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 3.2.1
 
 environment:
-  sdk: '>=3.9.2 <4.0.0'
+  sdk: '>=3.10.8 <4.0.0'
+  flutter: '>=3.38.9'
 
 dependencies:
   cached_network_image: ^3.4.1
+  cupertino_icons: ^1.0.5
   ferry: ^0.16.1+2
   ferry_flutter: ^0.9.1+1
-  ferry_hive_store: ^0.6.0
+  ferry_hive_store: ^0.6.0+1
   flutter:
     sdk: flutter
   get_it: ^9.0.5
@@ -31,16 +33,12 @@ flutter_icons:
   image_path: "assets/rick_mort_icon.png"
   remove_alpha_ios: true
 
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.5
-
 dev_dependencies:
   build_runner: ^2.5.4
-  ferry_generator: ^0.12.0+2
+  ferry_generator: ^0.12.1-dev.2
   flutter_launcher_icons: ^0.14.4
   flutter_lints: ^6.0.0
-  flutter_native_splash: ^2.4.6
+  flutter_native_splash: ^2.4.7
   flutter_test:
     sdk: flutter
 
