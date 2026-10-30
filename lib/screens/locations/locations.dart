@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:material_ui/material_ui.dart';
+import 'package:flutter/material.dart';
 import 'package:ricky_n_morty/screens/settings_screen.dart';
+
+import '../../design/app_theme.dart';
 
 import '../../graphql/allLocations.graphql.dart';
 import 'location_details.dart';
@@ -107,12 +109,11 @@ class _LocationsScreenState extends State<LocationsScreen> {
                         color: colorScheme.primary,
                       ),
                     );
-                  } else if (response.hasException) {
-                    return Center(
-                      child: Text(
-                        response.exception.toString(),
-                        style: TextStyle(color: colorScheme.error),
-                      ),
+                  } else if (response.hasException &&
+                      response.parsedData == null) {
+                    return CatalogState(
+                      message: 'Could not load locations. Check your connection and try again.',
+                      onRetry: () => refetch?.call(),
                     );
                   } else if (response.parsedData?.locations?.results == null) {
                     return const Center(
@@ -160,46 +161,15 @@ class _LocationsScreenState extends State<LocationsScreen> {
     );
   }
 
-  Widget _buildHeader(BuildContext context, ColorScheme colorScheme) {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'GALACTIC',
-                style: TextStyle(
-                  color: colorScheme.primary,
-                  fontSize: 10,
-                  fontWeight: FontWeight.w900,
-                  letterSpacing: 4,
-                ),
-              ),
-              const Text(
-                'LOCATION MAP',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 28,
-                  fontWeight: FontWeight.w900,
-                  height: 1.1,
-                ),
-              ),
-            ],
-          ),
-          IconButton(
-            icon: const Icon(Icons.settings_outlined, color: Colors.white60),
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => const SettingsScreen()),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  Widget _buildHeader(BuildContext context, ColorScheme colorScheme) =>
+      CatalogHeader(
+        title: 'Locations',
+        subtitle: 'Discover places across dimensions.',
+        onSettings: () => Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const SettingsScreen()),
+        ),
+      );
 
   Widget _buildLocationNode(
     BuildContext context,
@@ -207,142 +177,62 @@ class _LocationsScreenState extends State<LocationsScreen> {
     ColorScheme colorScheme,
   ) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 24),
-      child: IntrinsicHeight(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Node connector UI
-            Column(
-              children: [
-                Container(
-                  width: 12,
-                  height: 12,
-                  decoration: BoxDecoration(
-                    color: colorScheme.primary,
-                    shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                        color: colorScheme.primary.withValues(alpha: 0.5),
-                        blurRadius: 8,
-                        spreadRadius: 2,
-                      ),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    width: 2,
-                    margin: const EdgeInsets.symmetric(vertical: 4),
-                    color: colorScheme.primary.withValues(alpha: 0.2),
-                  ),
-                ),
-              ],
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Material(
+        color: AppColors.surface,
+        borderRadius: BorderRadius.circular(16),
+        clipBehavior: Clip.antiAlias,
+        child: Theme(
+          data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+          child: ExpansionTile(
+            tilePadding: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 8,
             ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.05),
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(
-                    color: Colors.white.withValues(alpha: 0.1),
-                    width: 1,
-                  ),
-                ),
-                child: Theme(
-                  data: Theme.of(context)
-                      .copyWith(dividerColor: Colors.transparent),
-                  child: ExpansionTile(
-                    tilePadding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 8,
+            childrenPadding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
+            title: Text(
+              location.name ?? 'Unknown location',
+              style: Theme.of(context).textTheme.titleMedium
+                  ?.copyWith(fontWeight: FontWeight.bold),
+            ),
+            subtitle: Text(
+              [
+                location.type,
+                location.dimension,
+              ].whereType<String>().where((s) => s.isNotEmpty).join(' · '),
+              style: Theme.of(context).textTheme.bodyMedium
+                  ?.copyWith(color: AppColors.muted),
+            ),
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      'Residents',
+                      style: Theme.of(context).textTheme.labelLarge,
                     ),
-                    childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-                    iconColor: colorScheme.primary,
-                    collapsedIconColor: Colors.white38,
-                    title: Text(
-                      location.name ?? '',
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
+                  ),
+                  TextButton(
+                    onPressed: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => LocationDetails(
+                          id: location.id,
+                          locationName: location.name,
+                          locationDimension: location.dimension,
+                          locationType: location.type,
+                        ),
                       ),
                     ),
-                    subtitle: Row(
-                      children: [
-                        Text(
-                          location.type ?? '',
-                          style: TextStyle(
-                            color: colorScheme.primary.withValues(alpha: 0.7),
-                            fontSize: 12,
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        Text(
-                          '•',
-                          style: TextStyle(
-                            color: Colors.white.withValues(alpha: 0.3),
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: Text(
-                            location.dimension ?? '',
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              color: Colors.white.withValues(alpha: 0.5),
-                              fontSize: 12,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    children: [
-                      const Divider(color: Colors.white10),
-                      const SizedBox(height: 12),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'RESIDENTS:',
-                            style: TextStyle(
-                              color: Colors.white.withValues(alpha: 0.3),
-                              fontSize: 9,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 1.5,
-                            ),
-                          ),
-                          TextButton(
-                            onPressed: () => Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (_) => LocationDetails(
-                                  id: location.id,
-                                  locationName: location.name,
-                                  locationDimension: location.dimension,
-                                  locationType: location.type,
-                                ),
-                              ),
-                            ),
-                            child: Text(
-                              'DETAILS',
-                              style: TextStyle(
-                                color: colorScheme.primary,
-                                fontSize: 10,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 8),
-                      _buildResidentAvatars(location, colorScheme),
-                    ],
+                    child: const Text('View details'),
                   ),
-                ),
+                ],
               ),
-            ),
-          ],
+              Align(
+                alignment: Alignment.centerLeft,
+                child: _buildResidentAvatars(location, colorScheme),
+              ),
+            ],
+          ),
         ),
       ),
     );

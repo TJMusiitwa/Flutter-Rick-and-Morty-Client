@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:material_ui/material_ui.dart';
+import 'package:flutter/material.dart';
 import 'package:ricky_n_morty/screens/settings_screen.dart';
+
+import '../../design/app_theme.dart';
 
 import '../../graphql/allEpisodes.graphql.dart';
 import 'episode_details.dart';
@@ -107,12 +109,11 @@ class _EpisodesScreenState extends State<EpisodesScreen> {
                         color: colorScheme.primary,
                       ),
                     );
-                  } else if (response.hasException) {
-                    return Center(
-                      child: Text(
-                        response.exception.toString(),
-                        style: TextStyle(color: colorScheme.secondary),
-                      ),
+                  } else if (response.hasException &&
+                      response.parsedData == null) {
+                    return CatalogState(
+                      message: 'Could not load episodes. Check your connection and try again.',
+                      onRetry: () => refetch?.call(),
                     );
                   } else if (response.parsedData?.episodes?.results == null) {
                     return const Center(
@@ -156,46 +157,15 @@ class _EpisodesScreenState extends State<EpisodesScreen> {
     );
   }
 
-  Widget _buildHeader(BuildContext context, ColorScheme colorScheme) {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'INTERDIMENSIONAL',
-                style: TextStyle(
-                  color: colorScheme.primary,
-                  fontSize: 10,
-                  fontWeight: FontWeight.w900,
-                  letterSpacing: 4,
-                ),
-              ),
-              const Text(
-                'EPISODE LOG',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 28,
-                  fontWeight: FontWeight.w900,
-                  height: 1.1,
-                ),
-              ),
-            ],
-          ),
-          IconButton(
-            icon: const Icon(Icons.settings_outlined, color: Colors.white60),
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => const SettingsScreen()),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  Widget _buildHeader(BuildContext context, ColorScheme colorScheme) =>
+      CatalogHeader(
+        title: 'Episodes',
+        subtitle: 'Explore every adventure.',
+        onSettings: () => Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const SettingsScreen()),
+        ),
+      );
 
   Widget _buildEpisodeCard(
     BuildContext context,
@@ -203,119 +173,55 @@ class _EpisodesScreenState extends State<EpisodesScreen> {
     ColorScheme colorScheme,
   ) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 16),
-      child: GestureDetector(
-        onTap: () => Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (_) => EpisodeDetails(
-              id: episode.id,
-              episodeTitle: episode.name,
-              episode: episode.episode,
-              episodeDate: episode.air_date,
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Material(
+        color: AppColors.surface,
+        borderRadius: BorderRadius.circular(16),
+        clipBehavior: Clip.antiAlias,
+        child: InkWell(
+          onTap: () => Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => EpisodeDetails(
+                id: episode.id,
+                episodeTitle: episode.name,
+                episode: episode.episode,
+                episodeDate: episode.air_date,
+              ),
             ),
           ),
-        ),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white.withValues(alpha: 0.05),
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: Colors.white10),
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Stack(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Glitchy horizontal lines effect
-                Positioned.fill(child: CustomPaint(painter: ScanlinePainter())),
-                Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 10,
-                              vertical: 4,
-                            ),
-                            decoration: BoxDecoration(
-                              color: colorScheme.primary,
-                              borderRadius: BorderRadius.circular(4),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: colorScheme.primary.withValues(
-                                    alpha: 0.3,
-                                  ),
-                                  blurRadius: 10,
-                                  spreadRadius: 1,
-                                ),
-                              ],
-                            ),
-                            child: Text(
-                              episode.episode ?? '',
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w900,
-                                fontSize: 12,
-                              ),
-                            ),
-                          ),
-                          Text(
-                            'ID: ${episode.id}-C137',
-                            style: TextStyle(
-                              color: colorScheme.primary,
-                              fontSize: 8,
-                              fontFamily: 'monospace',
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 16),
-                      Text(
-                        episode.name ?? '',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 22,
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        episode.episode ?? 'Episode',
+                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                          color: AppColors.accent,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      const SizedBox(height: 4),
-                      Text(
-                        'First Contact: ${episode.air_date}',
-                        style: TextStyle(
-                          color: Colors.white.withValues(alpha: 0.5),
-                          fontSize: 12,
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      Row(
-                        children: [
-                          Text(
-                            'CHARACTERS PRESENT:',
-                            style: TextStyle(
-                              color: Colors.white.withValues(alpha: 0.3),
-                              fontSize: 9,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 1.5,
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          Expanded(
-                            child: Container(
-                              height: 1,
-                              color: Colors.white.withValues(alpha: 0.05),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 12),
-                      _buildCharacterAvatars(episode, colorScheme),
-                    ],
-                  ),
+                    ),
+                    const Icon(Icons.chevron_right, color: AppColors.muted),
+                  ],
                 ),
+                const SizedBox(height: 8),
+                Text(
+                  episode.name ?? 'Unknown episode',
+                  style: Theme.of(context).textTheme.titleLarge
+                      ?.copyWith(fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  episode.air_date ?? 'Air date unknown',
+                  style: Theme.of(context).textTheme.bodyMedium
+                      ?.copyWith(color: AppColors.muted),
+                ),
+                const SizedBox(height: 16),
+                _buildCharacterAvatars(episode, colorScheme),
               ],
             ),
           ),
@@ -397,20 +303,4 @@ class _EpisodesScreenState extends State<EpisodesScreen> {
       ),
     );
   }
-}
-
-class ScanlinePainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = Colors.white.withValues(alpha: 0.02)
-      ..strokeWidth = 1.0;
-
-    for (var i = 0.0; i < size.height; i += 4.0) {
-      canvas.drawLine(Offset(0, i), Offset(size.width, i), paint);
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

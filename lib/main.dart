@@ -1,6 +1,7 @@
-import 'package:material_ui/material_ui.dart';
+import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:ricky_n_morty/app_nav.dart';
+import 'package:ricky_n_morty/design/app_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,23 +23,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Rick and Morty App',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.light().copyWith(
-        primaryColor: Colors.white,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-        appBarTheme: const AppBarTheme(),
-        colorScheme: const ColorScheme.light().copyWith(
-          brightness: Brightness.light,
-          primary: Colors.amber,
-          secondary: Colors.amberAccent,
-        ),
-      ),
-      darkTheme: ThemeData.dark().copyWith(
-        colorScheme: const ColorScheme.dark().copyWith(
-          primary: Colors.amber,
-          secondary: Colors.amberAccent,
-        ),
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+      theme: buildAppTheme(),
+      darkTheme: buildAppTheme(),
       themeMode: ThemeMode.dark,
       home: const Appnav(),
     );

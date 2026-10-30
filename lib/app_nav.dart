@@ -1,5 +1,5 @@
-import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/material.dart';
 import 'package:ricky_n_morty/screens/characters/character_details.dart';
 import 'package:ricky_n_morty/screens/characters/characters_screen.dart';
 import 'package:ricky_n_morty/screens/episodes/episode_details.dart';
@@ -51,54 +51,81 @@ class _AppnavState extends State<Appnav> {
   int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
+    final destinations = const [
+      NavigationDestination(
+        icon: Icon(Icons.people_outline),
+        selectedIcon: Icon(Icons.people),
+        label: 'Characters',
+      ),
+      NavigationDestination(
+        icon: Icon(Icons.movie_outlined),
+        selectedIcon: Icon(Icons.movie),
+        label: 'Episodes',
+      ),
+      NavigationDestination(
+        icon: Icon(Icons.place_outlined),
+        selectedIcon: Icon(Icons.place),
+        label: 'Locations',
+      ),
+    ];
+    final content = IndexedStack(
+      index: _currentIndex,
+      children: const [
+        CharactersNavigator(),
+        EpisodesNavigator(),
+        LocationsNavigator(),
+      ],
+    );
     return PopScope(
-      onPopInvokedWithResult: (_, _) => _systemBackButtonPressed,
-      child: Scaffold(
-        body: SafeArea(
-          top: false,
-          child: IndexedStack(
-            index: _currentIndex,
-            children: const <Widget>[
-              CharactersNavigator(),
-              EpisodesNavigator(),
-              LocationsNavigator(),
-            ],
-          ),
-        ),
-        bottomNavigationBar: NavigationBar(
-          destinations: const [
-            NavigationDestination(
-              icon: Icon(Icons.people),
-              label: 'Characters',
+      canPop: false,
+      onPopInvokedWithResult: (didPop, _) async {
+        if (didPop) return;
+        final navigator = _navigatorKeys[_currentIndex].currentState;
+        if (navigator != null && navigator.canPop()) {
+          navigator.pop();
+        } else if (_currentIndex != 0) {
+          setState(() => _currentIndex = 0);
+        } else if (context.mounted) {
+          await SystemNavigator.pop();
+        }
+      },
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          if (constraints.maxWidth >= 600) {
+            return Scaffold(
+              body: Row(
+                children: [
+                  NavigationRail(
+                    selectedIndex: _currentIndex,
+                    onDestinationSelected: (index) =>
+                        setState(() => _currentIndex = index),
+                    labelType: NavigationRailLabelType.all,
+                    destinations: [
+                      for (final destination in destinations)
+                        NavigationRailDestination(
+                          icon: destination.icon,
+                          selectedIcon: destination.selectedIcon,
+                          label: Text(destination.label),
+                        ),
+                    ],
+                  ),
+                  Expanded(child: content),
+                ],
+              ),
+            );
+          }
+          return Scaffold(
+            body: content,
+            bottomNavigationBar: NavigationBar(
+              destinations: destinations,
+              selectedIndex: _currentIndex,
+              onDestinationSelected: (index) =>
+                  setState(() => _currentIndex = index),
             ),
-            NavigationDestination(
-              icon: Icon(Icons.local_movies),
-              label: 'Episodes',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.location_on),
-              label: 'Locations',
-            ),
-          ],
-
-          selectedIndex: _currentIndex,
-          onDestinationSelected: (index) =>
-              setState(() => _currentIndex = index),
-          indicatorColor: Colors.amber,
-        ),
+          );
+        },
       ),
     );
-  }
-
-  Future<bool> _systemBackButtonPressed() async {
-    if (_navigatorKeys[_currentIndex].currentState!.canPop()) {
-      _navigatorKeys[_currentIndex].currentState!.pop(
-        _navigatorKeys[_currentIndex].currentContext,
-      );
-    } else {
-      SystemChannels.platform.invokeMethod<void>('SystemNavigator.pop');
-    }
-    return false;
   }
 }
 

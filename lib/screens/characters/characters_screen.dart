@@ -1,9 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:material_ui/material_ui.dart';
+import 'package:flutter/material.dart';
 import 'package:ricky_n_morty/screens/settings_screen.dart';
 
 import '../../graphql/allCharacters.graphql.dart';
+import '../../design/app_theme.dart';
 import 'character_details.dart';
 
 class CharactersScreen extends StatefulWidget {
@@ -17,7 +18,6 @@ class _CharactersScreenState extends State<CharactersScreen> {
   FetchMore? _fetchMore;
   int? _nextPage;
   bool _isLoading = false;
-  final SearchController _characterSearchController = SearchController();
 
   final ScrollController _scrollController = ScrollController();
 
@@ -78,138 +78,147 @@ class _CharactersScreenState extends State<CharactersScreen> {
   @override
   void dispose() {
     _scrollController.dispose();
-    _characterSearchController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Characters'),
-        automaticallyImplyLeading: false,
-        actions: <Widget>[
-          SearchAnchor(
-            searchController: _characterSearchController,
-            builder: (_, controller) {
-              return IconButton(
-                icon: Icon(Icons.search),
-                onPressed: () => controller.openView(),
-              );
-            },
-            suggestionsBuilder: (_, controller) {
-              final randomCharacters = [
-                'Rick',
-                'Morty',
-                'Summer',
-                'Jerry',
-                'Beth',
-              ];
-              return randomCharacters.map((location) {
-                return ListTile(
-                  title: Text(location),
-                  onTap: () => controller.closeView(null),
-                );
-              }).toList();
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.settings),
-            iconSize: 30,
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => const SettingsScreen()),
+      body: SafeArea(
+        child: Column(
+          children: [
+            CatalogHeader(
+              title: 'Characters',
+              subtitle: 'Meet the people of the multiverse.',
+              onSettings: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const SettingsScreen()),
+              ),
             ),
-          ),
-        ],
-      ),
-      body: Query$allCharacters$Widget(
-        options: Options$Query$allCharacters(
-          variables: Variables$Query$allCharacters(page: 1),
-          fetchPolicy: FetchPolicy.cacheFirst,
-        ),
-        builder: (response, {fetchMore, refetch}) {
-          _fetchMore = fetchMore;
-          _nextPage = response.parsedData?.characters?.info?.next;
-          if (response.isLoading) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          if (response.hasException && response.parsedData == null) {
-            return Center(child: Text(response.exception.toString()));
-          }
-
-          if (response.parsedData?.characters?.results == null) {
-            return Column(
-              children: [
-                Center(child: Image.asset('assets/rick_mort_splash.png')),
-                const SizedBox(height: 10),
-                const Center(
-                  child: Text(
-                    'Uhh Morty, you do know there is nothing but junk to watch on TV',
-                    softWrap: true,
-                  ),
+            Expanded(
+              child: Query$allCharacters$Widget(
+                options: Options$Query$allCharacters(
+                  variables: Variables$Query$allCharacters(page: 1),
+                  fetchPolicy: FetchPolicy.cacheFirst,
                 ),
-              ],
-            );
-          }
-          final characters = response.parsedData!.characters!.results!.toList();
-          return Stack(
-            children: [
-              ListView.builder(
-                controller: _scrollController,
-                itemCount: characters.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final character = characters[index];
-                  return Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: ListTile(
-                      leading: SizedBox(
-                        height: 100,
-                        width: 80,
-                        child: CachedNetworkImage(
-                          imageUrl: character!.image!,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      title: Text(
-                        character.name!,
-                        softWrap: true,
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.headlineSmall,
-                      ),
-                      subtitle: Text(character.species!),
-                      trailing: Text(character.gender!),
-                      onTap: () => Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (_) => CharacterDetails(
-                            id: character.id,
-                            characterName: character.name,
-                            characterGender: character.gender,
-                            characterSpecies: character.species,
+                builder: (response, {fetchMore, refetch}) {
+                  _fetchMore = fetchMore;
+                  _nextPage = response.parsedData?.characters?.info?.next;
+                  if (response.isLoading && response.parsedData == null) {
+                    return const CatalogState(
+                      message: 'Loading characters...',
+                      loading: true,
+                    );
+                  }
+                  if (response.hasException && response.parsedData == null) {
+                    return CatalogState(
+                      message: 'Could not load characters. Check your connection and try again.',
+                      onRetry: () => refetch?.call(),
+                    );
+                  }
+                  final characters =
+                      response.parsedData?.characters?.results
+                          ?.whereType<Query$allCharacters$characters$results>()
+                          .toList() ??
+                      [];
+                  if (characters.isEmpty) {
+                    return const CatalogState(message: 'No characters found.');
+                  }
+                  return ListView.separated(
+                    controller: _scrollController,
+                    padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+                    itemCount: characters.length + (_isLoading ? 1 : 0),
+                    separatorBuilder: (_, _) => const SizedBox(height: 12),
+                    itemBuilder: (context, index) {
+                      if (index == characters.length) {
+                        return const Center(
+                          child: Padding(
+                            padding: EdgeInsets.all(16),
+                            child: CircularProgressIndicator(),
+                          ),
+                        );
+                      }
+                      final character = characters[index];
+                      return Material(
+                        color: AppColors.surface,
+                        borderRadius: BorderRadius.circular(16),
+                        clipBehavior: Clip.antiAlias,
+                        child: InkWell(
+                          onTap: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (_) => CharacterDetails(
+                                id: character.id,
+                                characterName: character.name,
+                                characterGender: character.gender,
+                                characterSpecies: character.species,
+                              ),
+                            ),
+                          ),
+                          child: Row(
+                            children: [
+                              CachedNetworkImage(
+                                imageUrl: character.image ?? '',
+                                width: 100,
+                                height: 100,
+                                fit: BoxFit.cover,
+                                errorWidget: (_, _, _) => const SizedBox(
+                                  width: 100,
+                                  height: 100,
+                                  child: Icon(Icons.person_outline),
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 16,
+                                    vertical: 12,
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        character.name ?? 'Unknown',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleMedium
+                                            ?.copyWith(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      ),
+                                      const SizedBox(height: 6),
+                                      Text(
+                                        [character.species, character.gender]
+                                            .whereType<String>()
+                                            .where((s) => s.isNotEmpty)
+                                            .join(' · '),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium
+                                            ?.copyWith(color: AppColors.muted),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              const Padding(
+                                padding: EdgeInsets.only(right: 12),
+                                child: Icon(
+                                  Icons.chevron_right,
+                                  color: AppColors.muted,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                      ),
-                    ),
+                      );
+                    },
                   );
                 },
               ),
-              if (_isLoading)
-                const Positioned(
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  child: Center(
-                    child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: CircularProgressIndicator(),
-                    ),
-                  ),
-                ),
-            ],
-          );
-        },
+            ),
+          ],
+        ),
       ),
     );
   }
