@@ -11,6 +11,10 @@ query allEpisodes($page: Int)  {
       air_date
       episode
       created
+      characters {
+        name
+        image
+      }
     }
   }
 }

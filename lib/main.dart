@@ -1,36 +1,17 @@
-import 'package:ferry/ferry.dart';
-import 'package:ferry_hive_store/ferry_hive_store.dart';
-import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
-import 'package:gql_http_link/gql_http_link.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:material_ui/material_ui.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:ricky_n_morty/app_nav.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await initClient();
-  runApp(const MyApp());
-}
-
-Future<Client> initClient() async {
-  await Hive.initFlutter();
-
-  final box = await Hive.openBox("rickMortyBox");
-
-  final store = HiveStore(box);
-
-  final cache = Cache(store: store);
-
-  final link = HttpLink('https://rickandmortyapi.com/graphql');
-
-  final client = Client(
-    link: link,
-    cache: cache,
+  await initHiveForFlutter();
+  final client = ValueNotifier(
+    GraphQLClient(
+      link: HttpLink('https://rickandmortyapi.com/graphql'),
+      cache: GraphQLCache(store: HiveStore()),
+    ),
   );
-
-  GetIt.I.registerSingleton<Client>(client);
-
-  return client;
+  runApp(GraphQLProvider(client: client, child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -39,21 +20,27 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Rick and Morty App',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData.light().copyWith(
-            primaryColor: Colors.white,
-            visualDensity: VisualDensity.adaptivePlatformDensity,
-            appBarTheme: const AppBarTheme(),
-            colorScheme: const ColorScheme.light().copyWith(
-                brightness: Brightness.light,
-                primary: Colors.amber,
-                secondary: Colors.amberAccent)),
-        darkTheme: ThemeData.dark().copyWith(
-            colorScheme: const ColorScheme.dark()
-                .copyWith(primary: Colors.amber, secondary: Colors.amberAccent),
-            visualDensity: VisualDensity.adaptivePlatformDensity),
-        themeMode: ThemeMode.dark,
-        home: const Appnav());
+      title: 'Rick and Morty App',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData.light().copyWith(
+        primaryColor: Colors.white,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        appBarTheme: const AppBarTheme(),
+        colorScheme: const ColorScheme.light().copyWith(
+          brightness: Brightness.light,
+          primary: Colors.amber,
+          secondary: Colors.amberAccent,
+        ),
+      ),
+      darkTheme: ThemeData.dark().copyWith(
+        colorScheme: const ColorScheme.dark().copyWith(
+          primary: Colors.amber,
+          secondary: Colors.amberAccent,
+        ),
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      themeMode: ThemeMode.dark,
+      home: const Appnav(),
+    );
   }
 }

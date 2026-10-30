@@ -1,12 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:ferry/ferry.dart';
-import 'package:ferry_flutter/ferry_flutter.dart';
-import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:material_ui/material_ui.dart';
 
-import '../../graphql/__generated__/characterDetails.data.gql.dart';
-import '../../graphql/__generated__/characterDetails.req.gql.dart';
-import '../../graphql/__generated__/characterDetails.var.gql.dart';
+import '../../graphql/characterDetails.graphql.dart';
 
 class CharacterDetails extends StatelessWidget {
   final String? id,
@@ -25,27 +21,23 @@ class CharacterDetails extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    final client = GetIt.I<Client>();
     return Scaffold(
-      body: Operation(
-        client: client,
-        operationRequest: GcharacterDetailsReq(
-          (d) =>
-              d
-                ..vars.id = id
-                ..fetchPolicy = FetchPolicy.CacheFirst,
+      body: Query$characterDetails$Widget(
+        options: Options$Query$characterDetails(
+          variables: Variables$Query$characterDetails(id: id ?? ''),
+          fetchPolicy: FetchPolicy.cacheFirst,
         ),
-        builder: (
-          BuildContext context,
-          OperationResponse<GcharacterDetailsData, GcharacterDetailsVars?>?
-          response,
-          Object? error,
-        ) {
-          if (response!.loading) {
+        builder: (response, {fetchMore, refetch}) {
+          if (response.isLoading) {
             return const Center(child: CircularProgressIndicator());
           }
-          final characterDetails = response.data!.character!;
-          final characterEpisodes = characterDetails.episode!.asList();
+          if (response.hasException || response.parsedData?.character == null) {
+            return Center(
+              child: Text(response.exception?.toString() ?? 'No data found'),
+            );
+          }
+          final characterDetails = response.parsedData!.character!;
+          final characterEpisodes = characterDetails.episode!.toList();
           return CustomScrollView(
             slivers: <Widget>[
               SliverSafeArea(

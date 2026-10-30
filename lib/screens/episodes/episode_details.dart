@@ -1,12 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:ferry/ferry.dart';
-import 'package:ferry_flutter/ferry_flutter.dart';
-import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:material_ui/material_ui.dart';
 
-import '../../graphql/__generated__/episodeDetails.data.gql.dart';
-import '../../graphql/__generated__/episodeDetails.req.gql.dart';
-import '../../graphql/__generated__/episodeDetails.var.gql.dart';
+import '../../graphql/episodeDetails.graphql.dart';
 
 class EpisodeDetails extends StatelessWidget {
   final String? id, episodeTitle, episode, episodeDate;
@@ -20,30 +16,26 @@ class EpisodeDetails extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    final client = GetIt.I<Client>();
     return Scaffold(
       appBar: AppBar(
         title: Text(episodeTitle!, overflow: TextOverflow.ellipsis),
       ),
-      body: Operation(
-        client: client,
-        operationRequest: GepisodeDetailsReq(
-          (d) =>
-              d
-                ..vars.id = id
-                ..fetchPolicy = FetchPolicy.CacheFirst,
+      body: Query$episodeDetails$Widget(
+        options: Options$Query$episodeDetails(
+          variables: Variables$Query$episodeDetails(id: id ?? ''),
+          fetchPolicy: FetchPolicy.cacheFirst,
         ),
-        builder: (
-          BuildContext context,
-          OperationResponse<GepisodeDetailsData, GepisodeDetailsVars?>?
-          response,
-          Object? error,
-        ) {
-          if (response!.loading) {
+        builder: (response, {fetchMore, refetch}) {
+          if (response.isLoading) {
             return const Center(child: CircularProgressIndicator());
           }
-          final episodeDetails = response.data!.episode!;
-          final episodeCharacters = episodeDetails.characters!.asList();
+          if (response.hasException || response.parsedData?.episode == null) {
+            return Center(
+              child: Text(response.exception?.toString() ?? 'No data found'),
+            );
+          }
+          final episodeDetails = response.parsedData!.episode!;
+          final episodeCharacters = episodeDetails.characters!.toList();
           return SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
             child: Column(

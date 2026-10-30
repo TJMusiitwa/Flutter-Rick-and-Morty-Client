@@ -101,6 +101,28 @@ const allLocations = _i1.OperationDefinitionNode(
               directives: [],
               selectionSet: null,
             ),
+            _i1.FieldNode(
+              name: _i1.NameNode(value: 'residents'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: _i1.SelectionSetNode(selections: [
+                _i1.FieldNode(
+                  name: _i1.NameNode(value: 'name'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                _i1.FieldNode(
+                  name: _i1.NameNode(value: 'image'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+              ]),
+            ),
           ]),
         ),
       ]),

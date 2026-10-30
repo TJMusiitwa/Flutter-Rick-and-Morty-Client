@@ -2,6 +2,8 @@ include: package:flutter_lints/flutter.yaml
 
 analyzer:
   exclude:
+    - lib/graphql/__generated__/**
+    - lib/graphql/*.graphql.dart
     - lib/graphql/*.ast.gql.dart
     - lib/graphql/*.req.gql.dart
     - lib/graphql/*.data.gql.dart
@@ -9,4 +11,7 @@ analyzer:
     - lib/graphql/*.gql.g.dart
     - lib/graphql/serializers.gql.dart
     - lib/graphql/schema.schema.gql.dart
+    - build/**
+    - android/**
+    - ios/**
 

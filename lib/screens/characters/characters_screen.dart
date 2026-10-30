@@ -1,13 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:ferry/ferry.dart';
-import 'package:ferry_flutter/ferry_flutter.dart';
-import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:ricky_n_morty/screens/settings_screen.dart';
 
-import '../../graphql/__generated__/allCharacters.data.gql.dart';
-import '../../graphql/__generated__/allCharacters.req.gql.dart';
-import '../../graphql/__generated__/allCharacters.var.gql.dart';
+import '../../graphql/allCharacters.graphql.dart';
 import 'character_details.dart';
 
 class CharactersScreen extends StatefulWidget {
@@ -18,55 +14,58 @@ class CharactersScreen extends StatefulWidget {
 }
 
 class _CharactersScreenState extends State<CharactersScreen> {
-  final Client? client = GetIt.I<Client>();
-  int _currentPage = 1;
+  FetchMore? _fetchMore;
+  int? _nextPage;
   bool _isLoading = false;
   final SearchController _characterSearchController = SearchController();
-
-  late final charactersRequest = GallCharactersReq(
-    (c) => c
-      ..requestId = 'getCharactersId'
-      ..fetchPolicy = FetchPolicy.CacheFirst
-      ..vars.page = _currentPage,
-  );
 
   final ScrollController _scrollController = ScrollController();
 
   Future<void> _scrollListener() async {
-    if (_isLoading) return;
-
-    if (_scrollController.position.pixels >=
-        _scrollController.position.maxScrollExtent * 0.8) {
-      setState(() {
-        _isLoading = true;
-      });
-
-      final paginationChars = charactersRequest.rebuild((p) {
-        return p
-          ..vars.page = _currentPage + 1
-          ..updateResult = (previous, next) {
-            if (previous == null || next == null) return next;
-            return previous.rebuild(
-              (p) => p..characters.results.addAll(next.characters!.results!),
-            );
-          };
-      });
-
-      try {
-        await client!.request(paginationChars).first;
-        setState(() {
-          _currentPage++;
-        });
-      } catch (e) {
-        if (!mounted) return;
+    final nextPage = _nextPage;
+    final fetchMore = _fetchMore;
+    if (_isLoading ||
+        nextPage == null ||
+        fetchMore == null ||
+        _scrollController.position.pixels <
+            _scrollController.position.maxScrollExtent * 0.8) {
+      return;
+    }
+    setState(() => _isLoading = true);
+    try {
+      final result = await fetchMore(
+        FetchMoreOptions$Query$allCharacters(
+          variables: Variables$Query$allCharacters(page: nextPage),
+          updateQuery: (previous, next) {
+            if (previous == null ||
+                next == null ||
+                next['characters'] == null) {
+              return previous;
+            }
+            final oldPage = previous['characters'] as Map<String, dynamic>?;
+            final newPage = next['characters'] as Map<String, dynamic>;
+            return {
+              ...previous,
+              'characters': {
+                ...newPage,
+                'results': [
+                  ...?oldPage?['results'] as List<dynamic>?,
+                  ...?newPage['results'] as List<dynamic>?,
+                ],
+              },
+            };
+          },
+        ),
+      );
+      if (result.hasException) throw result.exception!;
+    } catch (_) {
+      if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Failed to load more characters')),
         );
-      } finally {
-        setState(() {
-          _isLoading = false;
-        });
       }
+    } finally {
+      if (mounted) setState(() => _isLoading = false);
     }
   }
 
@@ -79,6 +78,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
   @override
   void dispose() {
     _scrollController.dispose();
+    _characterSearchController.dispose();
     super.dispose();
   }
 
@@ -123,106 +123,93 @@ class _CharactersScreenState extends State<CharactersScreen> {
           ),
         ],
       ),
-      body: Operation(
-        client: client!,
-        operationRequest: charactersRequest,
-        builder:
-            (
-              BuildContext context,
-              OperationResponse<GallCharactersData, GallCharactersVars?>?
-              response,
-              Object? error,
-            ) {
-              if (response!.loading) {
-                return const Center(child: CircularProgressIndicator());
-              }
-              if (response.hasErrors) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      response.graphqlErrors!.first.message,
-                      softWrap: true,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    action: SnackBarAction(label: 'RETRY', onPressed: () {}),
-                    behavior: SnackBarBehavior.fixed,
-                  ),
-                );
-              }
+      body: Query$allCharacters$Widget(
+        options: Options$Query$allCharacters(
+          variables: Variables$Query$allCharacters(page: 1),
+          fetchPolicy: FetchPolicy.cacheFirst,
+        ),
+        builder: (response, {fetchMore, refetch}) {
+          _fetchMore = fetchMore;
+          _nextPage = response.parsedData?.characters?.info?.next;
+          if (response.isLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (response.hasException && response.parsedData == null) {
+            return Center(child: Text(response.exception.toString()));
+          }
 
-              if (response.data!.characters == null) {
-                return Column(
-                  children: [
-                    Center(child: Image.asset('assets/rick_mort_splash.png')),
-                    const SizedBox(height: 10),
-                    const Center(
-                      child: Text(
-                        'Uhh Morty, you do know there is nothing but junk to watch on TV',
-                        softWrap: true,
-                      ),
-                    ),
-                  ],
-                );
-              }
-              final characters = response.data!.characters!.results!
-                  .toBuiltList();
-              return Stack(
-                children: [
-                  ListView.builder(
-                    controller: _scrollController,
-                    itemCount: characters.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      final character = characters[index];
-                      return Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: ListTile(
-                          leading: SizedBox(
-                            height: 100,
-                            width: 80,
-                            child: CachedNetworkImage(
-                              imageUrl: character!.image!,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          title: Text(
-                            character.name!,
-                            softWrap: true,
-                            overflow: TextOverflow.ellipsis,
-                            style: Theme.of(context).textTheme.headlineSmall,
-                          ),
-                          subtitle: Text(character.species!),
-                          trailing: Text(character.gender!),
-                          onTap: () => Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (_) => CharacterDetails(
-                                id: character.id,
-                                characterName: character.name,
-                                characterGender: character.gender,
-                                characterSpecies: character.species,
-                              ),
-                            ),
-                          ),
-                        ),
-                      );
-                    },
+          if (response.parsedData?.characters?.results == null) {
+            return Column(
+              children: [
+                Center(child: Image.asset('assets/rick_mort_splash.png')),
+                const SizedBox(height: 10),
+                const Center(
+                  child: Text(
+                    'Uhh Morty, you do know there is nothing but junk to watch on TV',
+                    softWrap: true,
                   ),
-                  if (_isLoading)
-                    const Positioned(
-                      left: 0,
-                      right: 0,
-                      bottom: 0,
-                      child: Center(
-                        child: Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: CircularProgressIndicator(),
+                ),
+              ],
+            );
+          }
+          final characters = response.parsedData!.characters!.results!.toList();
+          return Stack(
+            children: [
+              ListView.builder(
+                controller: _scrollController,
+                itemCount: characters.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final character = characters[index];
+                  return Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: ListTile(
+                      leading: SizedBox(
+                        height: 100,
+                        width: 80,
+                        child: CachedNetworkImage(
+                          imageUrl: character!.image!,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      title: Text(
+                        character.name!,
+                        softWrap: true,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.headlineSmall,
+                      ),
+                      subtitle: Text(character.species!),
+                      trailing: Text(character.gender!),
+                      onTap: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => CharacterDetails(
+                            id: character.id,
+                            characterName: character.name,
+                            characterGender: character.gender,
+                            characterSpecies: character.species,
+                          ),
                         ),
                       ),
                     ),
-                ],
-              );
-            },
+                  );
+                },
+              ),
+              if (_isLoading)
+                const Positioned(
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  child: Center(
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: CircularProgressIndicator(),
+                    ),
+                  ),
+                ),
+            ],
+          );
+        },
       ),
     );
   }

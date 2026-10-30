@@ -7,52 +7,62 @@ part of 'characterDetails.data.gql.dart';
 // **************************************************************************
 
 Serializer<GcharacterDetailsData> _$gcharacterDetailsDataSerializer =
-    new _$GcharacterDetailsDataSerializer();
+    _$GcharacterDetailsDataSerializer();
 Serializer<GcharacterDetailsData_character>
-    _$gcharacterDetailsDataCharacterSerializer =
-    new _$GcharacterDetailsData_characterSerializer();
+_$gcharacterDetailsDataCharacterSerializer =
+    _$GcharacterDetailsData_characterSerializer();
 Serializer<GcharacterDetailsData_character_origin>
-    _$gcharacterDetailsDataCharacterOriginSerializer =
-    new _$GcharacterDetailsData_character_originSerializer();
+_$gcharacterDetailsDataCharacterOriginSerializer =
+    _$GcharacterDetailsData_character_originSerializer();
 Serializer<GcharacterDetailsData_character_episode>
-    _$gcharacterDetailsDataCharacterEpisodeSerializer =
-    new _$GcharacterDetailsData_character_episodeSerializer();
+_$gcharacterDetailsDataCharacterEpisodeSerializer =
+    _$GcharacterDetailsData_character_episodeSerializer();
 
 class _$GcharacterDetailsDataSerializer
     implements StructuredSerializer<GcharacterDetailsData> {
   @override
   final Iterable<Type> types = const [
     GcharacterDetailsData,
-    _$GcharacterDetailsData
+    _$GcharacterDetailsData,
   ];
   @override
   final String wireName = 'GcharacterDetailsData';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GcharacterDetailsData object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GcharacterDetailsData object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
     ];
     Object? value;
     value = object.character;
     if (value != null) {
       result
         ..add('character')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(GcharacterDetailsData_character)));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(GcharacterDetailsData_character),
+          ),
+        );
     }
     return result;
   }
 
   @override
   GcharacterDetailsData deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new GcharacterDetailsDataBuilder();
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = GcharacterDetailsDataBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -61,14 +71,23 @@ class _$GcharacterDetailsDataSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'character':
-          result.character.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(GcharacterDetailsData_character))!
-              as GcharacterDetailsData_character);
+          result.character.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(
+                    GcharacterDetailsData_character,
+                  ),
+                )!
+                as GcharacterDetailsData_character,
+          );
           break;
       }
     }
@@ -82,74 +101,93 @@ class _$GcharacterDetailsData_characterSerializer
   @override
   final Iterable<Type> types = const [
     GcharacterDetailsData_character,
-    _$GcharacterDetailsData_character
+    _$GcharacterDetailsData_character,
   ];
   @override
   final String wireName = 'GcharacterDetailsData_character';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GcharacterDetailsData_character object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GcharacterDetailsData_character object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
     ];
     Object? value;
     value = object.id;
     if (value != null) {
       result
         ..add('id')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.status;
     if (value != null) {
       result
         ..add('status')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.type;
     if (value != null) {
       result
         ..add('type')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.image;
     if (value != null) {
       result
         ..add('image')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.origin;
     if (value != null) {
       result
         ..add('origin')
-        ..add(serializers.serialize(value,
-            specifiedType:
-                const FullType(GcharacterDetailsData_character_origin)));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(
+              GcharacterDetailsData_character_origin,
+            ),
+          ),
+        );
     }
     value = object.episode;
     if (value != null) {
       result
         ..add('episode')
-        ..add(serializers.serialize(value,
+        ..add(
+          serializers.serialize(
+            value,
             specifiedType: const FullType(BuiltList, const [
-              const FullType.nullable(GcharacterDetailsData_character_episode)
-            ])));
+              const FullType.nullable(GcharacterDetailsData_character_episode),
+            ]),
+          ),
+        );
     }
     return result;
   }
 
   @override
   GcharacterDetailsData_character deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new GcharacterDetailsData_characterBuilder();
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = GcharacterDetailsData_characterBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -158,36 +196,68 @@ class _$GcharacterDetailsData_characterSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'id':
-          result.id = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.id =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'status':
-          result.status = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.status =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'type':
-          result.type = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.type =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'image':
-          result.image = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.image =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'origin':
-          result.origin.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(GcharacterDetailsData_character_origin))!
-              as GcharacterDetailsData_character_origin);
+          result.origin.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(
+                    GcharacterDetailsData_character_origin,
+                  ),
+                )!
+                as GcharacterDetailsData_character_origin,
+          );
           break;
         case 'episode':
-          result.episode.replace(serializers.deserialize(value,
-              specifiedType: const FullType(BuiltList, const [
-                const FullType.nullable(GcharacterDetailsData_character_episode)
-              ]))! as BuiltList<Object?>);
+          result.episode.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType.nullable(
+                      GcharacterDetailsData_character_episode,
+                    ),
+                  ]),
+                )!
+                as BuiltList<Object?>,
+          );
           break;
       }
     }
@@ -201,36 +271,43 @@ class _$GcharacterDetailsData_character_originSerializer
   @override
   final Iterable<Type> types = const [
     GcharacterDetailsData_character_origin,
-    _$GcharacterDetailsData_character_origin
+    _$GcharacterDetailsData_character_origin,
   ];
   @override
   final String wireName = 'GcharacterDetailsData_character_origin';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GcharacterDetailsData_character_origin object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GcharacterDetailsData_character_origin object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
     ];
     Object? value;
     value = object.name;
     if (value != null) {
       result
         ..add('name')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     return result;
   }
 
   @override
   GcharacterDetailsData_character_origin deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new GcharacterDetailsData_character_originBuilder();
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = GcharacterDetailsData_character_originBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -239,12 +316,20 @@ class _$GcharacterDetailsData_character_originSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'name':
-          result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.name =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
       }
     }
@@ -258,36 +343,43 @@ class _$GcharacterDetailsData_character_episodeSerializer
   @override
   final Iterable<Type> types = const [
     GcharacterDetailsData_character_episode,
-    _$GcharacterDetailsData_character_episode
+    _$GcharacterDetailsData_character_episode,
   ];
   @override
   final String wireName = 'GcharacterDetailsData_character_episode';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GcharacterDetailsData_character_episode object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GcharacterDetailsData_character_episode object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
     ];
     Object? value;
     value = object.episode;
     if (value != null) {
       result
         ..add('episode')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     return result;
   }
 
   @override
   GcharacterDetailsData_character_episode deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new GcharacterDetailsData_character_episodeBuilder();
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = GcharacterDetailsData_character_episodeBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -296,12 +388,20 @@ class _$GcharacterDetailsData_character_episodeSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'episode':
-          result.episode = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.episode =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
       }
     }
@@ -316,24 +416,20 @@ class _$GcharacterDetailsData extends GcharacterDetailsData {
   @override
   final GcharacterDetailsData_character? character;
 
-  factory _$GcharacterDetailsData(
-          [void Function(GcharacterDetailsDataBuilder)? updates]) =>
-      (new GcharacterDetailsDataBuilder()..update(updates))._build();
+  factory _$GcharacterDetailsData([
+    void Function(GcharacterDetailsDataBuilder)? updates,
+  ]) => (GcharacterDetailsDataBuilder()..update(updates))._build();
 
   _$GcharacterDetailsData._({required this.G__typename, this.character})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GcharacterDetailsData', 'G__typename');
-  }
-
+    : super._();
   @override
   GcharacterDetailsData rebuild(
-          void Function(GcharacterDetailsDataBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GcharacterDetailsDataBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GcharacterDetailsDataBuilder toBuilder() =>
-      new GcharacterDetailsDataBuilder()..replace(this);
+      GcharacterDetailsDataBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -371,7 +467,7 @@ class GcharacterDetailsDataBuilder
 
   GcharacterDetailsData_characterBuilder? _character;
   GcharacterDetailsData_characterBuilder get character =>
-      _$this._character ??= new GcharacterDetailsData_characterBuilder();
+      _$this._character ??= GcharacterDetailsData_characterBuilder();
   set character(GcharacterDetailsData_characterBuilder? character) =>
       _$this._character = character;
 
@@ -391,7 +487,6 @@ class GcharacterDetailsDataBuilder
 
   @override
   void replace(GcharacterDetailsData other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GcharacterDetailsData;
   }
 
@@ -406,19 +501,27 @@ class GcharacterDetailsDataBuilder
   _$GcharacterDetailsData _build() {
     _$GcharacterDetailsData _$result;
     try {
-      _$result = _$v ??
-          new _$GcharacterDetailsData._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GcharacterDetailsData', 'G__typename'),
-              character: _character?.build());
+      _$result =
+          _$v ??
+          _$GcharacterDetailsData._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename,
+              r'GcharacterDetailsData',
+              'G__typename',
+            ),
+            character: _character?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'character';
         _character?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            r'GcharacterDetailsData', _$failedField, e.toString());
+        throw BuiltValueNestedFieldError(
+          r'GcharacterDetailsData',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
@@ -444,31 +547,27 @@ class _$GcharacterDetailsData_character
   @override
   final BuiltList<GcharacterDetailsData_character_episode?>? episode;
 
-  factory _$GcharacterDetailsData_character(
-          [void Function(GcharacterDetailsData_characterBuilder)? updates]) =>
-      (new GcharacterDetailsData_characterBuilder()..update(updates))._build();
+  factory _$GcharacterDetailsData_character([
+    void Function(GcharacterDetailsData_characterBuilder)? updates,
+  ]) => (GcharacterDetailsData_characterBuilder()..update(updates))._build();
 
-  _$GcharacterDetailsData_character._(
-      {required this.G__typename,
-      this.id,
-      this.status,
-      this.type,
-      this.image,
-      this.origin,
-      this.episode})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GcharacterDetailsData_character', 'G__typename');
-  }
-
+  _$GcharacterDetailsData_character._({
+    required this.G__typename,
+    this.id,
+    this.status,
+    this.type,
+    this.image,
+    this.origin,
+    this.episode,
+  }) : super._();
   @override
   GcharacterDetailsData_character rebuild(
-          void Function(GcharacterDetailsData_characterBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GcharacterDetailsData_characterBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GcharacterDetailsData_characterBuilder toBuilder() =>
-      new GcharacterDetailsData_characterBuilder()..replace(this);
+      GcharacterDetailsData_characterBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -513,8 +612,10 @@ class _$GcharacterDetailsData_character
 
 class GcharacterDetailsData_characterBuilder
     implements
-        Builder<GcharacterDetailsData_character,
-            GcharacterDetailsData_characterBuilder> {
+        Builder<
+          GcharacterDetailsData_character,
+          GcharacterDetailsData_characterBuilder
+        > {
   _$GcharacterDetailsData_character? _$v;
 
   String? _G__typename;
@@ -539,14 +640,14 @@ class GcharacterDetailsData_characterBuilder
 
   GcharacterDetailsData_character_originBuilder? _origin;
   GcharacterDetailsData_character_originBuilder get origin =>
-      _$this._origin ??= new GcharacterDetailsData_character_originBuilder();
+      _$this._origin ??= GcharacterDetailsData_character_originBuilder();
   set origin(GcharacterDetailsData_character_originBuilder? origin) =>
       _$this._origin = origin;
 
   ListBuilder<GcharacterDetailsData_character_episode?>? _episode;
   ListBuilder<GcharacterDetailsData_character_episode?> get episode =>
       _$this._episode ??=
-          new ListBuilder<GcharacterDetailsData_character_episode?>();
+          ListBuilder<GcharacterDetailsData_character_episode?>();
   set episode(ListBuilder<GcharacterDetailsData_character_episode?>? episode) =>
       _$this._episode = episode;
 
@@ -571,7 +672,6 @@ class GcharacterDetailsData_characterBuilder
 
   @override
   void replace(GcharacterDetailsData_character other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GcharacterDetailsData_character;
   }
 
@@ -586,16 +686,21 @@ class GcharacterDetailsData_characterBuilder
   _$GcharacterDetailsData_character _build() {
     _$GcharacterDetailsData_character _$result;
     try {
-      _$result = _$v ??
-          new _$GcharacterDetailsData_character._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                  r'GcharacterDetailsData_character', 'G__typename'),
-              id: id,
-              status: status,
-              type: type,
-              image: image,
-              origin: _origin?.build(),
-              episode: _episode?.build());
+      _$result =
+          _$v ??
+          _$GcharacterDetailsData_character._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename,
+              r'GcharacterDetailsData_character',
+              'G__typename',
+            ),
+            id: id,
+            status: status,
+            type: type,
+            image: image,
+            origin: _origin?.build(),
+            episode: _episode?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -604,8 +709,11 @@ class GcharacterDetailsData_characterBuilder
         _$failedField = 'episode';
         _episode?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            r'GcharacterDetailsData_character', _$failedField, e.toString());
+        throw BuiltValueNestedFieldError(
+          r'GcharacterDetailsData_character',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
@@ -621,28 +729,23 @@ class _$GcharacterDetailsData_character_origin
   @override
   final String? name;
 
-  factory _$GcharacterDetailsData_character_origin(
-          [void Function(GcharacterDetailsData_character_originBuilder)?
-              updates]) =>
-      (new GcharacterDetailsData_character_originBuilder()..update(updates))
-          ._build();
+  factory _$GcharacterDetailsData_character_origin([
+    void Function(GcharacterDetailsData_character_originBuilder)? updates,
+  ]) => (GcharacterDetailsData_character_originBuilder()..update(updates))
+      ._build();
 
-  _$GcharacterDetailsData_character_origin._(
-      {required this.G__typename, this.name})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GcharacterDetailsData_character_origin', 'G__typename');
-  }
-
+  _$GcharacterDetailsData_character_origin._({
+    required this.G__typename,
+    this.name,
+  }) : super._();
   @override
   GcharacterDetailsData_character_origin rebuild(
-          void Function(GcharacterDetailsData_character_originBuilder)
-              updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GcharacterDetailsData_character_originBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GcharacterDetailsData_character_originBuilder toBuilder() =>
-      new GcharacterDetailsData_character_originBuilder()..replace(this);
+      GcharacterDetailsData_character_originBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -664,7 +767,8 @@ class _$GcharacterDetailsData_character_origin
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            r'GcharacterDetailsData_character_origin')
+            r'GcharacterDetailsData_character_origin',
+          )
           ..add('G__typename', G__typename)
           ..add('name', name))
         .toString();
@@ -673,8 +777,10 @@ class _$GcharacterDetailsData_character_origin
 
 class GcharacterDetailsData_character_originBuilder
     implements
-        Builder<GcharacterDetailsData_character_origin,
-            GcharacterDetailsData_character_originBuilder> {
+        Builder<
+          GcharacterDetailsData_character_origin,
+          GcharacterDetailsData_character_originBuilder
+        > {
   _$GcharacterDetailsData_character_origin? _$v;
 
   String? _G__typename;
@@ -701,13 +807,13 @@ class GcharacterDetailsData_character_originBuilder
 
   @override
   void replace(GcharacterDetailsData_character_origin other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GcharacterDetailsData_character_origin;
   }
 
   @override
   void update(
-      void Function(GcharacterDetailsData_character_originBuilder)? updates) {
+    void Function(GcharacterDetailsData_character_originBuilder)? updates,
+  ) {
     if (updates != null) updates(this);
   }
 
@@ -715,11 +821,16 @@ class GcharacterDetailsData_character_originBuilder
   GcharacterDetailsData_character_origin build() => _build();
 
   _$GcharacterDetailsData_character_origin _build() {
-    final _$result = _$v ??
-        new _$GcharacterDetailsData_character_origin._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                r'GcharacterDetailsData_character_origin', 'G__typename'),
-            name: name);
+    final _$result =
+        _$v ??
+        _$GcharacterDetailsData_character_origin._(
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+            G__typename,
+            r'GcharacterDetailsData_character_origin',
+            'G__typename',
+          ),
+          name: name,
+        );
     replace(_$result);
     return _$result;
   }
@@ -732,28 +843,23 @@ class _$GcharacterDetailsData_character_episode
   @override
   final String? episode;
 
-  factory _$GcharacterDetailsData_character_episode(
-          [void Function(GcharacterDetailsData_character_episodeBuilder)?
-              updates]) =>
-      (new GcharacterDetailsData_character_episodeBuilder()..update(updates))
-          ._build();
+  factory _$GcharacterDetailsData_character_episode([
+    void Function(GcharacterDetailsData_character_episodeBuilder)? updates,
+  ]) => (GcharacterDetailsData_character_episodeBuilder()..update(updates))
+      ._build();
 
-  _$GcharacterDetailsData_character_episode._(
-      {required this.G__typename, this.episode})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GcharacterDetailsData_character_episode', 'G__typename');
-  }
-
+  _$GcharacterDetailsData_character_episode._({
+    required this.G__typename,
+    this.episode,
+  }) : super._();
   @override
   GcharacterDetailsData_character_episode rebuild(
-          void Function(GcharacterDetailsData_character_episodeBuilder)
-              updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GcharacterDetailsData_character_episodeBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GcharacterDetailsData_character_episodeBuilder toBuilder() =>
-      new GcharacterDetailsData_character_episodeBuilder()..replace(this);
+      GcharacterDetailsData_character_episodeBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -775,7 +881,8 @@ class _$GcharacterDetailsData_character_episode
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            r'GcharacterDetailsData_character_episode')
+            r'GcharacterDetailsData_character_episode',
+          )
           ..add('G__typename', G__typename)
           ..add('episode', episode))
         .toString();
@@ -784,8 +891,10 @@ class _$GcharacterDetailsData_character_episode
 
 class GcharacterDetailsData_character_episodeBuilder
     implements
-        Builder<GcharacterDetailsData_character_episode,
-            GcharacterDetailsData_character_episodeBuilder> {
+        Builder<
+          GcharacterDetailsData_character_episode,
+          GcharacterDetailsData_character_episodeBuilder
+        > {
   _$GcharacterDetailsData_character_episode? _$v;
 
   String? _G__typename;
@@ -812,13 +921,13 @@ class GcharacterDetailsData_character_episodeBuilder
 
   @override
   void replace(GcharacterDetailsData_character_episode other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GcharacterDetailsData_character_episode;
   }
 
   @override
   void update(
-      void Function(GcharacterDetailsData_character_episodeBuilder)? updates) {
+    void Function(GcharacterDetailsData_character_episodeBuilder)? updates,
+  ) {
     if (updates != null) updates(this);
   }
 
@@ -826,11 +935,16 @@ class GcharacterDetailsData_character_episodeBuilder
   GcharacterDetailsData_character_episode build() => _build();
 
   _$GcharacterDetailsData_character_episode _build() {
-    final _$result = _$v ??
-        new _$GcharacterDetailsData_character_episode._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                r'GcharacterDetailsData_character_episode', 'G__typename'),
-            episode: episode);
+    final _$result =
+        _$v ??
+        _$GcharacterDetailsData_character_episode._(
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+            G__typename,
+            r'GcharacterDetailsData_character_episode',
+            'G__typename',
+          ),
+          episode: episode,
+        );
     replace(_$result);
     return _$result;
   }

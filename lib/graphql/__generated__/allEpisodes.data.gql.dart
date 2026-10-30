@@ -122,6 +122,7 @@ abstract class GallEpisodesData_episodes_results
   String? get air_date;
   String? get episode;
   String? get created;
+  BuiltList<GallEpisodesData_episodes_results_characters?>? get characters;
   static Serializer<GallEpisodesData_episodes_results> get serializer =>
       _$gallEpisodesDataEpisodesResultsSerializer;
 
@@ -134,6 +135,40 @@ abstract class GallEpisodesData_episodes_results
           Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GallEpisodesData_episodes_results.serializer,
+        json,
+      );
+}
+
+abstract class GallEpisodesData_episodes_results_characters
+    implements
+        Built<GallEpisodesData_episodes_results_characters,
+            GallEpisodesData_episodes_results_charactersBuilder> {
+  GallEpisodesData_episodes_results_characters._();
+
+  factory GallEpisodesData_episodes_results_characters(
+      [void Function(GallEpisodesData_episodes_results_charactersBuilder b)
+          updates]) = _$GallEpisodesData_episodes_results_characters;
+
+  static void _initializeBuilder(
+          GallEpisodesData_episodes_results_charactersBuilder b) =>
+      b..G__typename = 'Character';
+
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  String? get name;
+  String? get image;
+  static Serializer<GallEpisodesData_episodes_results_characters>
+      get serializer => _$gallEpisodesDataEpisodesResultsCharactersSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GallEpisodesData_episodes_results_characters.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GallEpisodesData_episodes_results_characters? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GallEpisodesData_episodes_results_characters.serializer,
         json,
       );
 }

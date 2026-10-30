@@ -7,78 +7,104 @@ part of 'characterDetails.req.gql.dart';
 // **************************************************************************
 
 Serializer<GcharacterDetailsReq> _$gcharacterDetailsReqSerializer =
-    new _$GcharacterDetailsReqSerializer();
+    _$GcharacterDetailsReqSerializer();
 
 class _$GcharacterDetailsReqSerializer
     implements StructuredSerializer<GcharacterDetailsReq> {
   @override
   final Iterable<Type> types = const [
     GcharacterDetailsReq,
-    _$GcharacterDetailsReq
+    _$GcharacterDetailsReq,
   ];
   @override
   final String wireName = 'GcharacterDetailsReq';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GcharacterDetailsReq object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GcharacterDetailsReq object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'vars',
-      serializers.serialize(object.vars,
-          specifiedType: const FullType(_i3.GcharacterDetailsVars)),
+      serializers.serialize(
+        object.vars,
+        specifiedType: const FullType(_i3.GcharacterDetailsVars),
+      ),
       'operation',
-      serializers.serialize(object.operation,
-          specifiedType: const FullType(_i4.Operation)),
+      serializers.serialize(
+        object.operation,
+        specifiedType: const FullType(_i4.Operation),
+      ),
       'executeOnListen',
-      serializers.serialize(object.executeOnListen,
-          specifiedType: const FullType(bool)),
+      serializers.serialize(
+        object.executeOnListen,
+        specifiedType: const FullType(bool),
+      ),
     ];
     Object? value;
     value = object.requestId;
     if (value != null) {
       result
         ..add('requestId')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.optimisticResponse;
     if (value != null) {
       result
         ..add('optimisticResponse')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(_i2.GcharacterDetailsData)));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(_i2.GcharacterDetailsData),
+          ),
+        );
     }
     value = object.updateCacheHandlerKey;
     if (value != null) {
       result
         ..add('updateCacheHandlerKey')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.updateCacheHandlerContext;
     if (value != null) {
       result
         ..add('updateCacheHandlerContext')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(
-                Map, const [const FullType(String), const FullType(dynamic)])));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(Map, const [
+              const FullType(String),
+              const FullType(dynamic),
+            ]),
+          ),
+        );
     }
     value = object.fetchPolicy;
     if (value != null) {
       result
         ..add('fetchPolicy')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(_i1.FetchPolicy)));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(_i1.FetchPolicy),
+          ),
+        );
     }
     return result;
   }
 
   @override
   GcharacterDetailsReq deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new GcharacterDetailsReqBuilder();
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = GcharacterDetailsReqBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -87,42 +113,73 @@ class _$GcharacterDetailsReqSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'vars':
-          result.vars.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(_i3.GcharacterDetailsVars))!
-              as _i3.GcharacterDetailsVars);
+          result.vars.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(_i3.GcharacterDetailsVars),
+                )!
+                as _i3.GcharacterDetailsVars,
+          );
           break;
         case 'operation':
-          result.operation = serializers.deserialize(value,
-              specifiedType: const FullType(_i4.Operation))! as _i4.Operation;
+          result.operation =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(_i4.Operation),
+                  )!
+                  as _i4.Operation;
           break;
         case 'requestId':
-          result.requestId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.requestId =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'optimisticResponse':
-          result.optimisticResponse.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(_i2.GcharacterDetailsData))!
-              as _i2.GcharacterDetailsData);
+          result.optimisticResponse.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(_i2.GcharacterDetailsData),
+                )!
+                as _i2.GcharacterDetailsData,
+          );
           break;
         case 'updateCacheHandlerKey':
-          result.updateCacheHandlerKey = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.updateCacheHandlerKey =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'updateCacheHandlerContext':
-          result.updateCacheHandlerContext = serializers.deserialize(value,
-              specifiedType: const FullType(Map, const [
-                const FullType(String),
-                const FullType(dynamic)
-              ])) as Map<String, dynamic>?;
+          result.updateCacheHandlerContext =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(Map, const [
+                      const FullType(String),
+                      const FullType(dynamic),
+                    ]),
+                  )
+                  as Map<String, dynamic>?;
           break;
         case 'fetchPolicy':
-          result.fetchPolicy = serializers.deserialize(value,
-                  specifiedType: const FullType(_i1.FetchPolicy))
-              as _i1.FetchPolicy?;
+          result.fetchPolicy =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(_i1.FetchPolicy),
+                  )
+                  as _i1.FetchPolicy?;
           break;
         case 'executeOnListen':
-          result.executeOnListen = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+          result.executeOnListen =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
           break;
       }
     }
@@ -140,7 +197,10 @@ class _$GcharacterDetailsReq extends GcharacterDetailsReq {
   final String? requestId;
   @override
   final _i2.GcharacterDetailsData? Function(
-      _i2.GcharacterDetailsData?, _i2.GcharacterDetailsData?)? updateResult;
+    _i2.GcharacterDetailsData?,
+    _i2.GcharacterDetailsData?,
+  )?
+  updateResult;
   @override
   final _i2.GcharacterDetailsData? optimisticResponse;
   @override
@@ -154,38 +214,30 @@ class _$GcharacterDetailsReq extends GcharacterDetailsReq {
   @override
   final _i4.Context? context;
 
-  factory _$GcharacterDetailsReq(
-          [void Function(GcharacterDetailsReqBuilder)? updates]) =>
-      (new GcharacterDetailsReqBuilder()..update(updates))._build();
+  factory _$GcharacterDetailsReq([
+    void Function(GcharacterDetailsReqBuilder)? updates,
+  ]) => (GcharacterDetailsReqBuilder()..update(updates))._build();
 
-  _$GcharacterDetailsReq._(
-      {required this.vars,
-      required this.operation,
-      this.requestId,
-      this.updateResult,
-      this.optimisticResponse,
-      this.updateCacheHandlerKey,
-      this.updateCacheHandlerContext,
-      this.fetchPolicy,
-      required this.executeOnListen,
-      this.context})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        vars, r'GcharacterDetailsReq', 'vars');
-    BuiltValueNullFieldError.checkNotNull(
-        operation, r'GcharacterDetailsReq', 'operation');
-    BuiltValueNullFieldError.checkNotNull(
-        executeOnListen, r'GcharacterDetailsReq', 'executeOnListen');
-  }
-
+  _$GcharacterDetailsReq._({
+    required this.vars,
+    required this.operation,
+    this.requestId,
+    this.updateResult,
+    this.optimisticResponse,
+    this.updateCacheHandlerKey,
+    this.updateCacheHandlerContext,
+    this.fetchPolicy,
+    required this.executeOnListen,
+    this.context,
+  }) : super._();
   @override
   GcharacterDetailsReq rebuild(
-          void Function(GcharacterDetailsReqBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GcharacterDetailsReqBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GcharacterDetailsReqBuilder toBuilder() =>
-      new GcharacterDetailsReqBuilder()..replace(this);
+      GcharacterDetailsReqBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -244,7 +296,7 @@ class GcharacterDetailsReqBuilder
 
   _i3.GcharacterDetailsVarsBuilder? _vars;
   _i3.GcharacterDetailsVarsBuilder get vars =>
-      _$this._vars ??= new _i3.GcharacterDetailsVarsBuilder();
+      _$this._vars ??= _i3.GcharacterDetailsVarsBuilder();
   set vars(_i3.GcharacterDetailsVarsBuilder? vars) => _$this._vars = vars;
 
   _i4.Operation? _operation;
@@ -256,22 +308,29 @@ class GcharacterDetailsReqBuilder
   set requestId(String? requestId) => _$this._requestId = requestId;
 
   _i2.GcharacterDetailsData? Function(
-      _i2.GcharacterDetailsData?, _i2.GcharacterDetailsData?)? _updateResult;
+    _i2.GcharacterDetailsData?,
+    _i2.GcharacterDetailsData?,
+  )?
+  _updateResult;
   _i2.GcharacterDetailsData? Function(
-          _i2.GcharacterDetailsData?, _i2.GcharacterDetailsData?)?
-      get updateResult => _$this._updateResult;
+    _i2.GcharacterDetailsData?,
+    _i2.GcharacterDetailsData?,
+  )?
+  get updateResult => _$this._updateResult;
   set updateResult(
-          _i2.GcharacterDetailsData? Function(
-                  _i2.GcharacterDetailsData?, _i2.GcharacterDetailsData?)?
-              updateResult) =>
-      _$this._updateResult = updateResult;
+    _i2.GcharacterDetailsData? Function(
+      _i2.GcharacterDetailsData?,
+      _i2.GcharacterDetailsData?,
+    )?
+    updateResult,
+  ) => _$this._updateResult = updateResult;
 
   _i2.GcharacterDetailsDataBuilder? _optimisticResponse;
   _i2.GcharacterDetailsDataBuilder get optimisticResponse =>
-      _$this._optimisticResponse ??= new _i2.GcharacterDetailsDataBuilder();
+      _$this._optimisticResponse ??= _i2.GcharacterDetailsDataBuilder();
   set optimisticResponse(
-          _i2.GcharacterDetailsDataBuilder? optimisticResponse) =>
-      _$this._optimisticResponse = optimisticResponse;
+    _i2.GcharacterDetailsDataBuilder? optimisticResponse,
+  ) => _$this._optimisticResponse = optimisticResponse;
 
   String? _updateCacheHandlerKey;
   String? get updateCacheHandlerKey => _$this._updateCacheHandlerKey;
@@ -282,8 +341,8 @@ class GcharacterDetailsReqBuilder
   Map<String, dynamic>? get updateCacheHandlerContext =>
       _$this._updateCacheHandlerContext;
   set updateCacheHandlerContext(
-          Map<String, dynamic>? updateCacheHandlerContext) =>
-      _$this._updateCacheHandlerContext = updateCacheHandlerContext;
+    Map<String, dynamic>? updateCacheHandlerContext,
+  ) => _$this._updateCacheHandlerContext = updateCacheHandlerContext;
 
   _i1.FetchPolicy? _fetchPolicy;
   _i1.FetchPolicy? get fetchPolicy => _$this._fetchPolicy;
@@ -323,7 +382,6 @@ class GcharacterDetailsReqBuilder
 
   @override
   void replace(GcharacterDetailsReq other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GcharacterDetailsReq;
   }
 
@@ -338,20 +396,28 @@ class GcharacterDetailsReqBuilder
   _$GcharacterDetailsReq _build() {
     _$GcharacterDetailsReq _$result;
     try {
-      _$result = _$v ??
-          new _$GcharacterDetailsReq._(
-              vars: vars.build(),
-              operation: BuiltValueNullFieldError.checkNotNull(
-                  operation, r'GcharacterDetailsReq', 'operation'),
-              requestId: requestId,
-              updateResult: updateResult,
-              optimisticResponse: _optimisticResponse?.build(),
-              updateCacheHandlerKey: updateCacheHandlerKey,
-              updateCacheHandlerContext: updateCacheHandlerContext,
-              fetchPolicy: fetchPolicy,
-              executeOnListen: BuiltValueNullFieldError.checkNotNull(
-                  executeOnListen, r'GcharacterDetailsReq', 'executeOnListen'),
-              context: context);
+      _$result =
+          _$v ??
+          _$GcharacterDetailsReq._(
+            vars: vars.build(),
+            operation: BuiltValueNullFieldError.checkNotNull(
+              operation,
+              r'GcharacterDetailsReq',
+              'operation',
+            ),
+            requestId: requestId,
+            updateResult: updateResult,
+            optimisticResponse: _optimisticResponse?.build(),
+            updateCacheHandlerKey: updateCacheHandlerKey,
+            updateCacheHandlerContext: updateCacheHandlerContext,
+            fetchPolicy: fetchPolicy,
+            executeOnListen: BuiltValueNullFieldError.checkNotNull(
+              executeOnListen,
+              r'GcharacterDetailsReq',
+              'executeOnListen',
+            ),
+            context: context,
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -361,8 +427,11 @@ class GcharacterDetailsReqBuilder
         _$failedField = 'optimisticResponse';
         _optimisticResponse?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            r'GcharacterDetailsReq', _$failedField, e.toString());
+        throw BuiltValueNestedFieldError(
+          r'GcharacterDetailsReq',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }

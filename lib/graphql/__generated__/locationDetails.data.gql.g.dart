@@ -7,49 +7,59 @@ part of 'locationDetails.data.gql.dart';
 // **************************************************************************
 
 Serializer<GLocationDetailsData> _$gLocationDetailsDataSerializer =
-    new _$GLocationDetailsDataSerializer();
+    _$GLocationDetailsDataSerializer();
 Serializer<GLocationDetailsData_location>
-    _$gLocationDetailsDataLocationSerializer =
-    new _$GLocationDetailsData_locationSerializer();
+_$gLocationDetailsDataLocationSerializer =
+    _$GLocationDetailsData_locationSerializer();
 Serializer<GLocationDetailsData_location_residents>
-    _$gLocationDetailsDataLocationResidentsSerializer =
-    new _$GLocationDetailsData_location_residentsSerializer();
+_$gLocationDetailsDataLocationResidentsSerializer =
+    _$GLocationDetailsData_location_residentsSerializer();
 
 class _$GLocationDetailsDataSerializer
     implements StructuredSerializer<GLocationDetailsData> {
   @override
   final Iterable<Type> types = const [
     GLocationDetailsData,
-    _$GLocationDetailsData
+    _$GLocationDetailsData,
   ];
   @override
   final String wireName = 'GLocationDetailsData';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GLocationDetailsData object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GLocationDetailsData object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
     ];
     Object? value;
     value = object.location;
     if (value != null) {
       result
         ..add('location')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(GLocationDetailsData_location)));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(GLocationDetailsData_location),
+          ),
+        );
     }
     return result;
   }
 
   @override
   GLocationDetailsData deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new GLocationDetailsDataBuilder();
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = GLocationDetailsDataBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -58,13 +68,21 @@ class _$GLocationDetailsDataSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'location':
-          result.location.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(GLocationDetailsData_location))!
-              as GLocationDetailsData_location);
+          result.location.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(GLocationDetailsData_location),
+                )!
+                as GLocationDetailsData_location,
+          );
           break;
       }
     }
@@ -78,45 +96,56 @@ class _$GLocationDetailsData_locationSerializer
   @override
   final Iterable<Type> types = const [
     GLocationDetailsData_location,
-    _$GLocationDetailsData_location
+    _$GLocationDetailsData_location,
   ];
   @override
   final String wireName = 'GLocationDetailsData_location';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GLocationDetailsData_location object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GLocationDetailsData_location object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
     ];
     Object? value;
     value = object.id;
     if (value != null) {
       result
         ..add('id')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.residents;
     if (value != null) {
       result
         ..add('residents')
-        ..add(serializers.serialize(value,
+        ..add(
+          serializers.serialize(
+            value,
             specifiedType: const FullType(BuiltList, const [
-              const FullType.nullable(GLocationDetailsData_location_residents)
-            ])));
+              const FullType.nullable(GLocationDetailsData_location_residents),
+            ]),
+          ),
+        );
     }
     return result;
   }
 
   @override
   GLocationDetailsData_location deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new GLocationDetailsData_locationBuilder();
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = GLocationDetailsData_locationBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -125,18 +154,33 @@ class _$GLocationDetailsData_locationSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'id':
-          result.id = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.id =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'residents':
-          result.residents.replace(serializers.deserialize(value,
-              specifiedType: const FullType(BuiltList, const [
-                const FullType.nullable(GLocationDetailsData_location_residents)
-              ]))! as BuiltList<Object?>);
+          result.residents.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType.nullable(
+                      GLocationDetailsData_location_residents,
+                    ),
+                  ]),
+                )!
+                as BuiltList<Object?>,
+          );
           break;
       }
     }
@@ -150,43 +194,51 @@ class _$GLocationDetailsData_location_residentsSerializer
   @override
   final Iterable<Type> types = const [
     GLocationDetailsData_location_residents,
-    _$GLocationDetailsData_location_residents
+    _$GLocationDetailsData_location_residents,
   ];
   @override
   final String wireName = 'GLocationDetailsData_location_residents';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GLocationDetailsData_location_residents object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GLocationDetailsData_location_residents object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
     ];
     Object? value;
     value = object.name;
     if (value != null) {
       result
         ..add('name')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.image;
     if (value != null) {
       result
         ..add('image')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     return result;
   }
 
   @override
   GLocationDetailsData_location_residents deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new GLocationDetailsData_location_residentsBuilder();
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = GLocationDetailsData_location_residentsBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -195,16 +247,28 @@ class _$GLocationDetailsData_location_residentsSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'name':
-          result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.name =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'image':
-          result.image = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.image =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
       }
     }
@@ -219,24 +283,20 @@ class _$GLocationDetailsData extends GLocationDetailsData {
   @override
   final GLocationDetailsData_location? location;
 
-  factory _$GLocationDetailsData(
-          [void Function(GLocationDetailsDataBuilder)? updates]) =>
-      (new GLocationDetailsDataBuilder()..update(updates))._build();
+  factory _$GLocationDetailsData([
+    void Function(GLocationDetailsDataBuilder)? updates,
+  ]) => (GLocationDetailsDataBuilder()..update(updates))._build();
 
   _$GLocationDetailsData._({required this.G__typename, this.location})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GLocationDetailsData', 'G__typename');
-  }
-
+    : super._();
   @override
   GLocationDetailsData rebuild(
-          void Function(GLocationDetailsDataBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GLocationDetailsDataBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GLocationDetailsDataBuilder toBuilder() =>
-      new GLocationDetailsDataBuilder()..replace(this);
+      GLocationDetailsDataBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -274,7 +334,7 @@ class GLocationDetailsDataBuilder
 
   GLocationDetailsData_locationBuilder? _location;
   GLocationDetailsData_locationBuilder get location =>
-      _$this._location ??= new GLocationDetailsData_locationBuilder();
+      _$this._location ??= GLocationDetailsData_locationBuilder();
   set location(GLocationDetailsData_locationBuilder? location) =>
       _$this._location = location;
 
@@ -294,7 +354,6 @@ class GLocationDetailsDataBuilder
 
   @override
   void replace(GLocationDetailsData other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GLocationDetailsData;
   }
 
@@ -309,19 +368,27 @@ class GLocationDetailsDataBuilder
   _$GLocationDetailsData _build() {
     _$GLocationDetailsData _$result;
     try {
-      _$result = _$v ??
-          new _$GLocationDetailsData._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GLocationDetailsData', 'G__typename'),
-              location: _location?.build());
+      _$result =
+          _$v ??
+          _$GLocationDetailsData._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename,
+              r'GLocationDetailsData',
+              'G__typename',
+            ),
+            location: _location?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'location';
         _location?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            r'GLocationDetailsData', _$failedField, e.toString());
+        throw BuiltValueNestedFieldError(
+          r'GLocationDetailsData',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
@@ -338,25 +405,23 @@ class _$GLocationDetailsData_location extends GLocationDetailsData_location {
   @override
   final BuiltList<GLocationDetailsData_location_residents?>? residents;
 
-  factory _$GLocationDetailsData_location(
-          [void Function(GLocationDetailsData_locationBuilder)? updates]) =>
-      (new GLocationDetailsData_locationBuilder()..update(updates))._build();
+  factory _$GLocationDetailsData_location([
+    void Function(GLocationDetailsData_locationBuilder)? updates,
+  ]) => (GLocationDetailsData_locationBuilder()..update(updates))._build();
 
-  _$GLocationDetailsData_location._(
-      {required this.G__typename, this.id, this.residents})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GLocationDetailsData_location', 'G__typename');
-  }
-
+  _$GLocationDetailsData_location._({
+    required this.G__typename,
+    this.id,
+    this.residents,
+  }) : super._();
   @override
   GLocationDetailsData_location rebuild(
-          void Function(GLocationDetailsData_locationBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GLocationDetailsData_locationBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GLocationDetailsData_locationBuilder toBuilder() =>
-      new GLocationDetailsData_locationBuilder()..replace(this);
+      GLocationDetailsData_locationBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -389,8 +454,10 @@ class _$GLocationDetailsData_location extends GLocationDetailsData_location {
 
 class GLocationDetailsData_locationBuilder
     implements
-        Builder<GLocationDetailsData_location,
-            GLocationDetailsData_locationBuilder> {
+        Builder<
+          GLocationDetailsData_location,
+          GLocationDetailsData_locationBuilder
+        > {
   _$GLocationDetailsData_location? _$v;
 
   String? _G__typename;
@@ -404,10 +471,10 @@ class GLocationDetailsData_locationBuilder
   ListBuilder<GLocationDetailsData_location_residents?>? _residents;
   ListBuilder<GLocationDetailsData_location_residents?> get residents =>
       _$this._residents ??=
-          new ListBuilder<GLocationDetailsData_location_residents?>();
+          ListBuilder<GLocationDetailsData_location_residents?>();
   set residents(
-          ListBuilder<GLocationDetailsData_location_residents?>? residents) =>
-      _$this._residents = residents;
+    ListBuilder<GLocationDetailsData_location_residents?>? residents,
+  ) => _$this._residents = residents;
 
   GLocationDetailsData_locationBuilder() {
     GLocationDetailsData_location._initializeBuilder(this);
@@ -426,7 +493,6 @@ class GLocationDetailsData_locationBuilder
 
   @override
   void replace(GLocationDetailsData_location other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GLocationDetailsData_location;
   }
 
@@ -441,20 +507,28 @@ class GLocationDetailsData_locationBuilder
   _$GLocationDetailsData_location _build() {
     _$GLocationDetailsData_location _$result;
     try {
-      _$result = _$v ??
-          new _$GLocationDetailsData_location._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GLocationDetailsData_location', 'G__typename'),
-              id: id,
-              residents: _residents?.build());
+      _$result =
+          _$v ??
+          _$GLocationDetailsData_location._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename,
+              r'GLocationDetailsData_location',
+              'G__typename',
+            ),
+            id: id,
+            residents: _residents?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'residents';
         _residents?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            r'GLocationDetailsData_location', _$failedField, e.toString());
+        throw BuiltValueNestedFieldError(
+          r'GLocationDetailsData_location',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
@@ -472,28 +546,24 @@ class _$GLocationDetailsData_location_residents
   @override
   final String? image;
 
-  factory _$GLocationDetailsData_location_residents(
-          [void Function(GLocationDetailsData_location_residentsBuilder)?
-              updates]) =>
-      (new GLocationDetailsData_location_residentsBuilder()..update(updates))
-          ._build();
+  factory _$GLocationDetailsData_location_residents([
+    void Function(GLocationDetailsData_location_residentsBuilder)? updates,
+  ]) => (GLocationDetailsData_location_residentsBuilder()..update(updates))
+      ._build();
 
-  _$GLocationDetailsData_location_residents._(
-      {required this.G__typename, this.name, this.image})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GLocationDetailsData_location_residents', 'G__typename');
-  }
-
+  _$GLocationDetailsData_location_residents._({
+    required this.G__typename,
+    this.name,
+    this.image,
+  }) : super._();
   @override
   GLocationDetailsData_location_residents rebuild(
-          void Function(GLocationDetailsData_location_residentsBuilder)
-              updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GLocationDetailsData_location_residentsBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GLocationDetailsData_location_residentsBuilder toBuilder() =>
-      new GLocationDetailsData_location_residentsBuilder()..replace(this);
+      GLocationDetailsData_location_residentsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -517,7 +587,8 @@ class _$GLocationDetailsData_location_residents
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            r'GLocationDetailsData_location_residents')
+            r'GLocationDetailsData_location_residents',
+          )
           ..add('G__typename', G__typename)
           ..add('name', name)
           ..add('image', image))
@@ -527,8 +598,10 @@ class _$GLocationDetailsData_location_residents
 
 class GLocationDetailsData_location_residentsBuilder
     implements
-        Builder<GLocationDetailsData_location_residents,
-            GLocationDetailsData_location_residentsBuilder> {
+        Builder<
+          GLocationDetailsData_location_residents,
+          GLocationDetailsData_location_residentsBuilder
+        > {
   _$GLocationDetailsData_location_residents? _$v;
 
   String? _G__typename;
@@ -560,13 +633,13 @@ class GLocationDetailsData_location_residentsBuilder
 
   @override
   void replace(GLocationDetailsData_location_residents other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GLocationDetailsData_location_residents;
   }
 
   @override
   void update(
-      void Function(GLocationDetailsData_location_residentsBuilder)? updates) {
+    void Function(GLocationDetailsData_location_residentsBuilder)? updates,
+  ) {
     if (updates != null) updates(this);
   }
 
@@ -574,12 +647,17 @@ class GLocationDetailsData_location_residentsBuilder
   GLocationDetailsData_location_residents build() => _build();
 
   _$GLocationDetailsData_location_residents _build() {
-    final _$result = _$v ??
-        new _$GLocationDetailsData_location_residents._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                r'GLocationDetailsData_location_residents', 'G__typename'),
-            name: name,
-            image: image);
+    final _$result =
+        _$v ??
+        _$GLocationDetailsData_location_residents._(
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+            G__typename,
+            r'GLocationDetailsData_location_residents',
+            'G__typename',
+          ),
+          name: name,
+          image: image,
+        );
     replace(_$result);
     return _$result;
   }

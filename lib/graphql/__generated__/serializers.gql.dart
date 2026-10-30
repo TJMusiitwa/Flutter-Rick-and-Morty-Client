@@ -22,7 +22,8 @@ import 'package:ricky_n_morty/graphql/__generated__/allEpisodes.data.gql.dart'
         GallEpisodesData,
         GallEpisodesData_episodes,
         GallEpisodesData_episodes_info,
-        GallEpisodesData_episodes_results;
+        GallEpisodesData_episodes_results,
+        GallEpisodesData_episodes_results_characters;
 import 'package:ricky_n_morty/graphql/__generated__/allEpisodes.req.gql.dart'
     show GallEpisodesReq;
 import 'package:ricky_n_morty/graphql/__generated__/allEpisodes.var.gql.dart'
@@ -32,7 +33,8 @@ import 'package:ricky_n_morty/graphql/__generated__/allLocations.data.gql.dart'
         GallLocationsData,
         GallLocationsData_locations,
         GallLocationsData_locations_info,
-        GallLocationsData_locations_results;
+        GallLocationsData_locations_results,
+        GallLocationsData_locations_results_residents;
 import 'package:ricky_n_morty/graphql/__generated__/allLocations.req.gql.dart'
     show GallLocationsReq;
 import 'package:ricky_n_morty/graphql/__generated__/allLocations.var.gql.dart'
@@ -99,12 +101,14 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GallEpisodesData_episodes,
   GallEpisodesData_episodes_info,
   GallEpisodesData_episodes_results,
+  GallEpisodesData_episodes_results_characters,
   GallEpisodesReq,
   GallEpisodesVars,
   GallLocationsData,
   GallLocationsData_locations,
   GallLocationsData_locations_info,
   GallLocationsData_locations_results,
+  GallLocationsData_locations_results_residents,
   GallLocationsReq,
   GallLocationsVars,
   GcharacterDetailsData,

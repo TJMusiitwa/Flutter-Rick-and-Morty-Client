@@ -7,7 +7,7 @@ part of 'allLocations.var.gql.dart';
 // **************************************************************************
 
 Serializer<GallLocationsVars> _$gallLocationsVarsSerializer =
-    new _$GallLocationsVarsSerializer();
+    _$GallLocationsVarsSerializer();
 
 class _$GallLocationsVarsSerializer
     implements StructuredSerializer<GallLocationsVars> {
@@ -17,8 +17,11 @@ class _$GallLocationsVarsSerializer
   final String wireName = 'GallLocationsVars';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, GallLocationsVars object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GallLocationsVars object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[];
     Object? value;
     value = object.page;
@@ -32,9 +35,11 @@ class _$GallLocationsVarsSerializer
 
   @override
   GallLocationsVars deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new GallLocationsVarsBuilder();
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = GallLocationsVarsBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -43,8 +48,9 @@ class _$GallLocationsVarsSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'page':
-          result.page = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
+          result.page =
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
           break;
       }
     }
@@ -57,19 +63,18 @@ class _$GallLocationsVars extends GallLocationsVars {
   @override
   final int? page;
 
-  factory _$GallLocationsVars(
-          [void Function(GallLocationsVarsBuilder)? updates]) =>
-      (new GallLocationsVarsBuilder()..update(updates))._build();
+  factory _$GallLocationsVars([
+    void Function(GallLocationsVarsBuilder)? updates,
+  ]) => (GallLocationsVarsBuilder()..update(updates))._build();
 
   _$GallLocationsVars._({this.page}) : super._();
-
   @override
   GallLocationsVars rebuild(void Function(GallLocationsVarsBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
   GallLocationsVarsBuilder toBuilder() =>
-      new GallLocationsVarsBuilder()..replace(this);
+      GallLocationsVarsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -87,9 +92,9 @@ class _$GallLocationsVars extends GallLocationsVars {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'GallLocationsVars')
-          ..add('page', page))
-        .toString();
+    return (newBuiltValueToStringHelper(
+      r'GallLocationsVars',
+    )..add('page', page)).toString();
   }
 }
 
@@ -114,7 +119,6 @@ class GallLocationsVarsBuilder
 
   @override
   void replace(GallLocationsVars other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GallLocationsVars;
   }
 
@@ -127,7 +131,7 @@ class GallLocationsVarsBuilder
   GallLocationsVars build() => _build();
 
   _$GallLocationsVars _build() {
-    final _$result = _$v ?? new _$GallLocationsVars._(page: page);
+    final _$result = _$v ?? _$GallLocationsVars._(page: page);
     replace(_$result);
     return _$result;
   }

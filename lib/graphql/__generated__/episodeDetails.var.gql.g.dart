@@ -7,22 +7,24 @@ part of 'episodeDetails.var.gql.dart';
 // **************************************************************************
 
 Serializer<GepisodeDetailsVars> _$gepisodeDetailsVarsSerializer =
-    new _$GepisodeDetailsVarsSerializer();
+    _$GepisodeDetailsVarsSerializer();
 
 class _$GepisodeDetailsVarsSerializer
     implements StructuredSerializer<GepisodeDetailsVars> {
   @override
   final Iterable<Type> types = const [
     GepisodeDetailsVars,
-    _$GepisodeDetailsVars
+    _$GepisodeDetailsVars,
   ];
   @override
   final String wireName = 'GepisodeDetailsVars';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GepisodeDetailsVars object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GepisodeDetailsVars object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
@@ -33,9 +35,11 @@ class _$GepisodeDetailsVarsSerializer
 
   @override
   GepisodeDetailsVars deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new GepisodeDetailsVarsBuilder();
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = GepisodeDetailsVarsBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -44,8 +48,12 @@ class _$GepisodeDetailsVarsSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'id':
-          result.id = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.id =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
       }
     }
@@ -58,22 +66,19 @@ class _$GepisodeDetailsVars extends GepisodeDetailsVars {
   @override
   final String id;
 
-  factory _$GepisodeDetailsVars(
-          [void Function(GepisodeDetailsVarsBuilder)? updates]) =>
-      (new GepisodeDetailsVarsBuilder()..update(updates))._build();
+  factory _$GepisodeDetailsVars([
+    void Function(GepisodeDetailsVarsBuilder)? updates,
+  ]) => (GepisodeDetailsVarsBuilder()..update(updates))._build();
 
-  _$GepisodeDetailsVars._({required this.id}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(id, r'GepisodeDetailsVars', 'id');
-  }
-
+  _$GepisodeDetailsVars._({required this.id}) : super._();
   @override
   GepisodeDetailsVars rebuild(
-          void Function(GepisodeDetailsVarsBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GepisodeDetailsVarsBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GepisodeDetailsVarsBuilder toBuilder() =>
-      new GepisodeDetailsVarsBuilder()..replace(this);
+      GepisodeDetailsVarsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -91,8 +96,9 @@ class _$GepisodeDetailsVars extends GepisodeDetailsVars {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'GepisodeDetailsVars')..add('id', id))
-        .toString();
+    return (newBuiltValueToStringHelper(
+      r'GepisodeDetailsVars',
+    )..add('id', id)).toString();
   }
 }
 
@@ -117,7 +123,6 @@ class GepisodeDetailsVarsBuilder
 
   @override
   void replace(GepisodeDetailsVars other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GepisodeDetailsVars;
   }
 
@@ -130,10 +135,15 @@ class GepisodeDetailsVarsBuilder
   GepisodeDetailsVars build() => _build();
 
   _$GepisodeDetailsVars _build() {
-    final _$result = _$v ??
-        new _$GepisodeDetailsVars._(
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GepisodeDetailsVars', 'id'));
+    final _$result =
+        _$v ??
+        _$GepisodeDetailsVars._(
+          id: BuiltValueNullFieldError.checkNotNull(
+            id,
+            r'GepisodeDetailsVars',
+            'id',
+          ),
+        );
     replace(_$result);
     return _$result;
   }

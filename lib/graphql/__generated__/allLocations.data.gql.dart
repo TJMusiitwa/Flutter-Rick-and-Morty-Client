@@ -125,6 +125,7 @@ abstract class GallLocationsData_locations_results
   String? get type;
   String? get dimension;
   String? get created;
+  BuiltList<GallLocationsData_locations_results_residents?>? get residents;
   static Serializer<GallLocationsData_locations_results> get serializer =>
       _$gallLocationsDataLocationsResultsSerializer;
 
@@ -137,6 +138,40 @@ abstract class GallLocationsData_locations_results
           Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GallLocationsData_locations_results.serializer,
+        json,
+      );
+}
+
+abstract class GallLocationsData_locations_results_residents
+    implements
+        Built<GallLocationsData_locations_results_residents,
+            GallLocationsData_locations_results_residentsBuilder> {
+  GallLocationsData_locations_results_residents._();
+
+  factory GallLocationsData_locations_results_residents(
+      [void Function(GallLocationsData_locations_results_residentsBuilder b)
+          updates]) = _$GallLocationsData_locations_results_residents;
+
+  static void _initializeBuilder(
+          GallLocationsData_locations_results_residentsBuilder b) =>
+      b..G__typename = 'Character';
+
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  String? get name;
+  String? get image;
+  static Serializer<GallLocationsData_locations_results_residents>
+      get serializer => _$gallLocationsDataLocationsResultsResidentsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GallLocationsData_locations_results_residents.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GallLocationsData_locations_results_residents? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GallLocationsData_locations_results_residents.serializer,
         json,
       );
 }

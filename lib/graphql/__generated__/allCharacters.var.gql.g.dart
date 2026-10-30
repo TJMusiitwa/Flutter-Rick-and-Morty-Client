@@ -7,7 +7,7 @@ part of 'allCharacters.var.gql.dart';
 // **************************************************************************
 
 Serializer<GallCharactersVars> _$gallCharactersVarsSerializer =
-    new _$GallCharactersVarsSerializer();
+    _$GallCharactersVarsSerializer();
 
 class _$GallCharactersVarsSerializer
     implements StructuredSerializer<GallCharactersVars> {
@@ -18,8 +18,10 @@ class _$GallCharactersVarsSerializer
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GallCharactersVars object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GallCharactersVars object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[];
     Object? value;
     value = object.page;
@@ -33,9 +35,11 @@ class _$GallCharactersVarsSerializer
 
   @override
   GallCharactersVars deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new GallCharactersVarsBuilder();
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = GallCharactersVarsBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -44,8 +48,9 @@ class _$GallCharactersVarsSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'page':
-          result.page = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
+          result.page =
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
           break;
       }
     }
@@ -58,20 +63,19 @@ class _$GallCharactersVars extends GallCharactersVars {
   @override
   final int? page;
 
-  factory _$GallCharactersVars(
-          [void Function(GallCharactersVarsBuilder)? updates]) =>
-      (new GallCharactersVarsBuilder()..update(updates))._build();
+  factory _$GallCharactersVars([
+    void Function(GallCharactersVarsBuilder)? updates,
+  ]) => (GallCharactersVarsBuilder()..update(updates))._build();
 
   _$GallCharactersVars._({this.page}) : super._();
-
   @override
   GallCharactersVars rebuild(
-          void Function(GallCharactersVarsBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GallCharactersVarsBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GallCharactersVarsBuilder toBuilder() =>
-      new GallCharactersVarsBuilder()..replace(this);
+      GallCharactersVarsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -89,9 +93,9 @@ class _$GallCharactersVars extends GallCharactersVars {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'GallCharactersVars')
-          ..add('page', page))
-        .toString();
+    return (newBuiltValueToStringHelper(
+      r'GallCharactersVars',
+    )..add('page', page)).toString();
   }
 }
 
@@ -116,7 +120,6 @@ class GallCharactersVarsBuilder
 
   @override
   void replace(GallCharactersVars other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GallCharactersVars;
   }
 
@@ -129,7 +132,7 @@ class GallCharactersVarsBuilder
   GallCharactersVars build() => _build();
 
   _$GallCharactersVars _build() {
-    final _$result = _$v ?? new _$GallCharactersVars._(page: page);
+    final _$result = _$v ?? _$GallCharactersVars._(page: page);
     replace(_$result);
     return _$result;
   }

@@ -7,22 +7,24 @@ part of 'characterDetails.var.gql.dart';
 // **************************************************************************
 
 Serializer<GcharacterDetailsVars> _$gcharacterDetailsVarsSerializer =
-    new _$GcharacterDetailsVarsSerializer();
+    _$GcharacterDetailsVarsSerializer();
 
 class _$GcharacterDetailsVarsSerializer
     implements StructuredSerializer<GcharacterDetailsVars> {
   @override
   final Iterable<Type> types = const [
     GcharacterDetailsVars,
-    _$GcharacterDetailsVars
+    _$GcharacterDetailsVars,
   ];
   @override
   final String wireName = 'GcharacterDetailsVars';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GcharacterDetailsVars object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GcharacterDetailsVars object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
@@ -33,9 +35,11 @@ class _$GcharacterDetailsVarsSerializer
 
   @override
   GcharacterDetailsVars deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new GcharacterDetailsVarsBuilder();
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = GcharacterDetailsVarsBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -44,8 +48,12 @@ class _$GcharacterDetailsVarsSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'id':
-          result.id = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.id =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
       }
     }
@@ -58,22 +66,19 @@ class _$GcharacterDetailsVars extends GcharacterDetailsVars {
   @override
   final String id;
 
-  factory _$GcharacterDetailsVars(
-          [void Function(GcharacterDetailsVarsBuilder)? updates]) =>
-      (new GcharacterDetailsVarsBuilder()..update(updates))._build();
+  factory _$GcharacterDetailsVars([
+    void Function(GcharacterDetailsVarsBuilder)? updates,
+  ]) => (GcharacterDetailsVarsBuilder()..update(updates))._build();
 
-  _$GcharacterDetailsVars._({required this.id}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(id, r'GcharacterDetailsVars', 'id');
-  }
-
+  _$GcharacterDetailsVars._({required this.id}) : super._();
   @override
   GcharacterDetailsVars rebuild(
-          void Function(GcharacterDetailsVarsBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GcharacterDetailsVarsBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GcharacterDetailsVarsBuilder toBuilder() =>
-      new GcharacterDetailsVarsBuilder()..replace(this);
+      GcharacterDetailsVarsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -91,9 +96,9 @@ class _$GcharacterDetailsVars extends GcharacterDetailsVars {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'GcharacterDetailsVars')
-          ..add('id', id))
-        .toString();
+    return (newBuiltValueToStringHelper(
+      r'GcharacterDetailsVars',
+    )..add('id', id)).toString();
   }
 }
 
@@ -118,7 +123,6 @@ class GcharacterDetailsVarsBuilder
 
   @override
   void replace(GcharacterDetailsVars other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GcharacterDetailsVars;
   }
 
@@ -131,10 +135,15 @@ class GcharacterDetailsVarsBuilder
   GcharacterDetailsVars build() => _build();
 
   _$GcharacterDetailsVars _build() {
-    final _$result = _$v ??
-        new _$GcharacterDetailsVars._(
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GcharacterDetailsVars', 'id'));
+    final _$result =
+        _$v ??
+        _$GcharacterDetailsVars._(
+          id: BuiltValueNullFieldError.checkNotNull(
+            id,
+            r'GcharacterDetailsVars',
+            'id',
+          ),
+        );
     replace(_$result);
     return _$result;
   }

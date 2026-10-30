@@ -7,48 +7,58 @@ part of 'episodeDetails.data.gql.dart';
 // **************************************************************************
 
 Serializer<GepisodeDetailsData> _$gepisodeDetailsDataSerializer =
-    new _$GepisodeDetailsDataSerializer();
+    _$GepisodeDetailsDataSerializer();
 Serializer<GepisodeDetailsData_episode> _$gepisodeDetailsDataEpisodeSerializer =
-    new _$GepisodeDetailsData_episodeSerializer();
+    _$GepisodeDetailsData_episodeSerializer();
 Serializer<GepisodeDetailsData_episode_characters>
-    _$gepisodeDetailsDataEpisodeCharactersSerializer =
-    new _$GepisodeDetailsData_episode_charactersSerializer();
+_$gepisodeDetailsDataEpisodeCharactersSerializer =
+    _$GepisodeDetailsData_episode_charactersSerializer();
 
 class _$GepisodeDetailsDataSerializer
     implements StructuredSerializer<GepisodeDetailsData> {
   @override
   final Iterable<Type> types = const [
     GepisodeDetailsData,
-    _$GepisodeDetailsData
+    _$GepisodeDetailsData,
   ];
   @override
   final String wireName = 'GepisodeDetailsData';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GepisodeDetailsData object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GepisodeDetailsData object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
     ];
     Object? value;
     value = object.episode;
     if (value != null) {
       result
         ..add('episode')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(GepisodeDetailsData_episode)));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(GepisodeDetailsData_episode),
+          ),
+        );
     }
     return result;
   }
 
   @override
   GepisodeDetailsData deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new GepisodeDetailsDataBuilder();
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = GepisodeDetailsDataBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -57,13 +67,21 @@ class _$GepisodeDetailsDataSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'episode':
-          result.episode.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(GepisodeDetailsData_episode))!
-              as GepisodeDetailsData_episode);
+          result.episode.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(GepisodeDetailsData_episode),
+                )!
+                as GepisodeDetailsData_episode,
+          );
           break;
       }
     }
@@ -77,66 +95,80 @@ class _$GepisodeDetailsData_episodeSerializer
   @override
   final Iterable<Type> types = const [
     GepisodeDetailsData_episode,
-    _$GepisodeDetailsData_episode
+    _$GepisodeDetailsData_episode,
   ];
   @override
   final String wireName = 'GepisodeDetailsData_episode';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GepisodeDetailsData_episode object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GepisodeDetailsData_episode object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
     ];
     Object? value;
     value = object.id;
     if (value != null) {
       result
         ..add('id')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.name;
     if (value != null) {
       result
         ..add('name')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.air_date;
     if (value != null) {
       result
         ..add('air_date')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.episode;
     if (value != null) {
       result
         ..add('episode')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.characters;
     if (value != null) {
       result
         ..add('characters')
-        ..add(serializers.serialize(value,
+        ..add(
+          serializers.serialize(
+            value,
             specifiedType: const FullType(BuiltList, const [
-              const FullType.nullable(GepisodeDetailsData_episode_characters)
-            ])));
+              const FullType.nullable(GepisodeDetailsData_episode_characters),
+            ]),
+          ),
+        );
     }
     return result;
   }
 
   @override
   GepisodeDetailsData_episode deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new GepisodeDetailsData_episodeBuilder();
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = GepisodeDetailsData_episodeBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -145,30 +177,57 @@ class _$GepisodeDetailsData_episodeSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'id':
-          result.id = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.id =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'name':
-          result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.name =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'air_date':
-          result.air_date = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.air_date =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'episode':
-          result.episode = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.episode =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'characters':
-          result.characters.replace(serializers.deserialize(value,
-              specifiedType: const FullType(BuiltList, const [
-                const FullType.nullable(GepisodeDetailsData_episode_characters)
-              ]))! as BuiltList<Object?>);
+          result.characters.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType.nullable(
+                      GepisodeDetailsData_episode_characters,
+                    ),
+                  ]),
+                )!
+                as BuiltList<Object?>,
+          );
           break;
       }
     }
@@ -182,43 +241,51 @@ class _$GepisodeDetailsData_episode_charactersSerializer
   @override
   final Iterable<Type> types = const [
     GepisodeDetailsData_episode_characters,
-    _$GepisodeDetailsData_episode_characters
+    _$GepisodeDetailsData_episode_characters,
   ];
   @override
   final String wireName = 'GepisodeDetailsData_episode_characters';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GepisodeDetailsData_episode_characters object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GepisodeDetailsData_episode_characters object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
     ];
     Object? value;
     value = object.name;
     if (value != null) {
       result
         ..add('name')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.image;
     if (value != null) {
       result
         ..add('image')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     return result;
   }
 
   @override
   GepisodeDetailsData_episode_characters deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new GepisodeDetailsData_episode_charactersBuilder();
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = GepisodeDetailsData_episode_charactersBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -227,16 +294,28 @@ class _$GepisodeDetailsData_episode_charactersSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'name':
-          result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.name =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'image':
-          result.image = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.image =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
       }
     }
@@ -251,24 +330,20 @@ class _$GepisodeDetailsData extends GepisodeDetailsData {
   @override
   final GepisodeDetailsData_episode? episode;
 
-  factory _$GepisodeDetailsData(
-          [void Function(GepisodeDetailsDataBuilder)? updates]) =>
-      (new GepisodeDetailsDataBuilder()..update(updates))._build();
+  factory _$GepisodeDetailsData([
+    void Function(GepisodeDetailsDataBuilder)? updates,
+  ]) => (GepisodeDetailsDataBuilder()..update(updates))._build();
 
   _$GepisodeDetailsData._({required this.G__typename, this.episode})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GepisodeDetailsData', 'G__typename');
-  }
-
+    : super._();
   @override
   GepisodeDetailsData rebuild(
-          void Function(GepisodeDetailsDataBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GepisodeDetailsDataBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GepisodeDetailsDataBuilder toBuilder() =>
-      new GepisodeDetailsDataBuilder()..replace(this);
+      GepisodeDetailsDataBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -306,7 +381,7 @@ class GepisodeDetailsDataBuilder
 
   GepisodeDetailsData_episodeBuilder? _episode;
   GepisodeDetailsData_episodeBuilder get episode =>
-      _$this._episode ??= new GepisodeDetailsData_episodeBuilder();
+      _$this._episode ??= GepisodeDetailsData_episodeBuilder();
   set episode(GepisodeDetailsData_episodeBuilder? episode) =>
       _$this._episode = episode;
 
@@ -326,7 +401,6 @@ class GepisodeDetailsDataBuilder
 
   @override
   void replace(GepisodeDetailsData other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GepisodeDetailsData;
   }
 
@@ -341,19 +415,27 @@ class GepisodeDetailsDataBuilder
   _$GepisodeDetailsData _build() {
     _$GepisodeDetailsData _$result;
     try {
-      _$result = _$v ??
-          new _$GepisodeDetailsData._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GepisodeDetailsData', 'G__typename'),
-              episode: _episode?.build());
+      _$result =
+          _$v ??
+          _$GepisodeDetailsData._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename,
+              r'GepisodeDetailsData',
+              'G__typename',
+            ),
+            episode: _episode?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'episode';
         _episode?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            r'GepisodeDetailsData', _$failedField, e.toString());
+        throw BuiltValueNestedFieldError(
+          r'GepisodeDetailsData',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
@@ -376,30 +458,26 @@ class _$GepisodeDetailsData_episode extends GepisodeDetailsData_episode {
   @override
   final BuiltList<GepisodeDetailsData_episode_characters?>? characters;
 
-  factory _$GepisodeDetailsData_episode(
-          [void Function(GepisodeDetailsData_episodeBuilder)? updates]) =>
-      (new GepisodeDetailsData_episodeBuilder()..update(updates))._build();
+  factory _$GepisodeDetailsData_episode([
+    void Function(GepisodeDetailsData_episodeBuilder)? updates,
+  ]) => (GepisodeDetailsData_episodeBuilder()..update(updates))._build();
 
-  _$GepisodeDetailsData_episode._(
-      {required this.G__typename,
-      this.id,
-      this.name,
-      this.air_date,
-      this.episode,
-      this.characters})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GepisodeDetailsData_episode', 'G__typename');
-  }
-
+  _$GepisodeDetailsData_episode._({
+    required this.G__typename,
+    this.id,
+    this.name,
+    this.air_date,
+    this.episode,
+    this.characters,
+  }) : super._();
   @override
   GepisodeDetailsData_episode rebuild(
-          void Function(GepisodeDetailsData_episodeBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GepisodeDetailsData_episodeBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GepisodeDetailsData_episodeBuilder toBuilder() =>
-      new GepisodeDetailsData_episodeBuilder()..replace(this);
+      GepisodeDetailsData_episodeBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -441,8 +519,10 @@ class _$GepisodeDetailsData_episode extends GepisodeDetailsData_episode {
 
 class GepisodeDetailsData_episodeBuilder
     implements
-        Builder<GepisodeDetailsData_episode,
-            GepisodeDetailsData_episodeBuilder> {
+        Builder<
+          GepisodeDetailsData_episode,
+          GepisodeDetailsData_episodeBuilder
+        > {
   _$GepisodeDetailsData_episode? _$v;
 
   String? _G__typename;
@@ -468,10 +548,10 @@ class GepisodeDetailsData_episodeBuilder
   ListBuilder<GepisodeDetailsData_episode_characters?>? _characters;
   ListBuilder<GepisodeDetailsData_episode_characters?> get characters =>
       _$this._characters ??=
-          new ListBuilder<GepisodeDetailsData_episode_characters?>();
+          ListBuilder<GepisodeDetailsData_episode_characters?>();
   set characters(
-          ListBuilder<GepisodeDetailsData_episode_characters?>? characters) =>
-      _$this._characters = characters;
+    ListBuilder<GepisodeDetailsData_episode_characters?>? characters,
+  ) => _$this._characters = characters;
 
   GepisodeDetailsData_episodeBuilder() {
     GepisodeDetailsData_episode._initializeBuilder(this);
@@ -493,7 +573,6 @@ class GepisodeDetailsData_episodeBuilder
 
   @override
   void replace(GepisodeDetailsData_episode other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GepisodeDetailsData_episode;
   }
 
@@ -508,23 +587,31 @@ class GepisodeDetailsData_episodeBuilder
   _$GepisodeDetailsData_episode _build() {
     _$GepisodeDetailsData_episode _$result;
     try {
-      _$result = _$v ??
-          new _$GepisodeDetailsData_episode._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GepisodeDetailsData_episode', 'G__typename'),
-              id: id,
-              name: name,
-              air_date: air_date,
-              episode: episode,
-              characters: _characters?.build());
+      _$result =
+          _$v ??
+          _$GepisodeDetailsData_episode._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename,
+              r'GepisodeDetailsData_episode',
+              'G__typename',
+            ),
+            id: id,
+            name: name,
+            air_date: air_date,
+            episode: episode,
+            characters: _characters?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'characters';
         _characters?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            r'GepisodeDetailsData_episode', _$failedField, e.toString());
+        throw BuiltValueNestedFieldError(
+          r'GepisodeDetailsData_episode',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
@@ -542,28 +629,24 @@ class _$GepisodeDetailsData_episode_characters
   @override
   final String? image;
 
-  factory _$GepisodeDetailsData_episode_characters(
-          [void Function(GepisodeDetailsData_episode_charactersBuilder)?
-              updates]) =>
-      (new GepisodeDetailsData_episode_charactersBuilder()..update(updates))
-          ._build();
+  factory _$GepisodeDetailsData_episode_characters([
+    void Function(GepisodeDetailsData_episode_charactersBuilder)? updates,
+  ]) => (GepisodeDetailsData_episode_charactersBuilder()..update(updates))
+      ._build();
 
-  _$GepisodeDetailsData_episode_characters._(
-      {required this.G__typename, this.name, this.image})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GepisodeDetailsData_episode_characters', 'G__typename');
-  }
-
+  _$GepisodeDetailsData_episode_characters._({
+    required this.G__typename,
+    this.name,
+    this.image,
+  }) : super._();
   @override
   GepisodeDetailsData_episode_characters rebuild(
-          void Function(GepisodeDetailsData_episode_charactersBuilder)
-              updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GepisodeDetailsData_episode_charactersBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GepisodeDetailsData_episode_charactersBuilder toBuilder() =>
-      new GepisodeDetailsData_episode_charactersBuilder()..replace(this);
+      GepisodeDetailsData_episode_charactersBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -587,7 +670,8 @@ class _$GepisodeDetailsData_episode_characters
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            r'GepisodeDetailsData_episode_characters')
+            r'GepisodeDetailsData_episode_characters',
+          )
           ..add('G__typename', G__typename)
           ..add('name', name)
           ..add('image', image))
@@ -597,8 +681,10 @@ class _$GepisodeDetailsData_episode_characters
 
 class GepisodeDetailsData_episode_charactersBuilder
     implements
-        Builder<GepisodeDetailsData_episode_characters,
-            GepisodeDetailsData_episode_charactersBuilder> {
+        Builder<
+          GepisodeDetailsData_episode_characters,
+          GepisodeDetailsData_episode_charactersBuilder
+        > {
   _$GepisodeDetailsData_episode_characters? _$v;
 
   String? _G__typename;
@@ -630,13 +716,13 @@ class GepisodeDetailsData_episode_charactersBuilder
 
   @override
   void replace(GepisodeDetailsData_episode_characters other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GepisodeDetailsData_episode_characters;
   }
 
   @override
   void update(
-      void Function(GepisodeDetailsData_episode_charactersBuilder)? updates) {
+    void Function(GepisodeDetailsData_episode_charactersBuilder)? updates,
+  ) {
     if (updates != null) updates(this);
   }
 
@@ -644,12 +730,17 @@ class GepisodeDetailsData_episode_charactersBuilder
   GepisodeDetailsData_episode_characters build() => _build();
 
   _$GepisodeDetailsData_episode_characters _build() {
-    final _$result = _$v ??
-        new _$GepisodeDetailsData_episode_characters._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                r'GepisodeDetailsData_episode_characters', 'G__typename'),
-            name: name,
-            image: image);
+    final _$result =
+        _$v ??
+        _$GepisodeDetailsData_episode_characters._(
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+            G__typename,
+            r'GepisodeDetailsData_episode_characters',
+            'G__typename',
+          ),
+          name: name,
+          image: image,
+        );
     replace(_$result);
     return _$result;
   }

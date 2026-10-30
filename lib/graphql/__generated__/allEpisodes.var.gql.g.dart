@@ -7,7 +7,7 @@ part of 'allEpisodes.var.gql.dart';
 // **************************************************************************
 
 Serializer<GallEpisodesVars> _$gallEpisodesVarsSerializer =
-    new _$GallEpisodesVarsSerializer();
+    _$GallEpisodesVarsSerializer();
 
 class _$GallEpisodesVarsSerializer
     implements StructuredSerializer<GallEpisodesVars> {
@@ -17,8 +17,11 @@ class _$GallEpisodesVarsSerializer
   final String wireName = 'GallEpisodesVars';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, GallEpisodesVars object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GallEpisodesVars object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[];
     Object? value;
     value = object.page;
@@ -32,9 +35,11 @@ class _$GallEpisodesVarsSerializer
 
   @override
   GallEpisodesVars deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new GallEpisodesVarsBuilder();
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = GallEpisodesVarsBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -43,8 +48,9 @@ class _$GallEpisodesVarsSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'page':
-          result.page = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
+          result.page =
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
           break;
       }
     }
@@ -57,19 +63,18 @@ class _$GallEpisodesVars extends GallEpisodesVars {
   @override
   final int? page;
 
-  factory _$GallEpisodesVars(
-          [void Function(GallEpisodesVarsBuilder)? updates]) =>
-      (new GallEpisodesVarsBuilder()..update(updates))._build();
+  factory _$GallEpisodesVars([
+    void Function(GallEpisodesVarsBuilder)? updates,
+  ]) => (GallEpisodesVarsBuilder()..update(updates))._build();
 
   _$GallEpisodesVars._({this.page}) : super._();
-
   @override
   GallEpisodesVars rebuild(void Function(GallEpisodesVarsBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
   GallEpisodesVarsBuilder toBuilder() =>
-      new GallEpisodesVarsBuilder()..replace(this);
+      GallEpisodesVarsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -87,8 +92,9 @@ class _$GallEpisodesVars extends GallEpisodesVars {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'GallEpisodesVars')..add('page', page))
-        .toString();
+    return (newBuiltValueToStringHelper(
+      r'GallEpisodesVars',
+    )..add('page', page)).toString();
   }
 }
 
@@ -113,7 +119,6 @@ class GallEpisodesVarsBuilder
 
   @override
   void replace(GallEpisodesVars other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GallEpisodesVars;
   }
 
@@ -126,7 +131,7 @@ class GallEpisodesVarsBuilder
   GallEpisodesVars build() => _build();
 
   _$GallEpisodesVars _build() {
-    final _$result = _$v ?? new _$GallEpisodesVars._(page: page);
+    final _$result = _$v ?? _$GallEpisodesVars._(page: page);
     replace(_$result);
     return _$result;
   }

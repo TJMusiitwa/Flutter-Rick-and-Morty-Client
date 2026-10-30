@@ -7,22 +7,24 @@ part of 'locationDetails.var.gql.dart';
 // **************************************************************************
 
 Serializer<GLocationDetailsVars> _$gLocationDetailsVarsSerializer =
-    new _$GLocationDetailsVarsSerializer();
+    _$GLocationDetailsVarsSerializer();
 
 class _$GLocationDetailsVarsSerializer
     implements StructuredSerializer<GLocationDetailsVars> {
   @override
   final Iterable<Type> types = const [
     GLocationDetailsVars,
-    _$GLocationDetailsVars
+    _$GLocationDetailsVars,
   ];
   @override
   final String wireName = 'GLocationDetailsVars';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GLocationDetailsVars object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GLocationDetailsVars object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
@@ -33,9 +35,11 @@ class _$GLocationDetailsVarsSerializer
 
   @override
   GLocationDetailsVars deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new GLocationDetailsVarsBuilder();
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = GLocationDetailsVarsBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -44,8 +48,12 @@ class _$GLocationDetailsVarsSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'id':
-          result.id = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.id =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
       }
     }
@@ -58,22 +66,19 @@ class _$GLocationDetailsVars extends GLocationDetailsVars {
   @override
   final String id;
 
-  factory _$GLocationDetailsVars(
-          [void Function(GLocationDetailsVarsBuilder)? updates]) =>
-      (new GLocationDetailsVarsBuilder()..update(updates))._build();
+  factory _$GLocationDetailsVars([
+    void Function(GLocationDetailsVarsBuilder)? updates,
+  ]) => (GLocationDetailsVarsBuilder()..update(updates))._build();
 
-  _$GLocationDetailsVars._({required this.id}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(id, r'GLocationDetailsVars', 'id');
-  }
-
+  _$GLocationDetailsVars._({required this.id}) : super._();
   @override
   GLocationDetailsVars rebuild(
-          void Function(GLocationDetailsVarsBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GLocationDetailsVarsBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GLocationDetailsVarsBuilder toBuilder() =>
-      new GLocationDetailsVarsBuilder()..replace(this);
+      GLocationDetailsVarsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -91,8 +96,9 @@ class _$GLocationDetailsVars extends GLocationDetailsVars {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'GLocationDetailsVars')..add('id', id))
-        .toString();
+    return (newBuiltValueToStringHelper(
+      r'GLocationDetailsVars',
+    )..add('id', id)).toString();
   }
 }
 
@@ -117,7 +123,6 @@ class GLocationDetailsVarsBuilder
 
   @override
   void replace(GLocationDetailsVars other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GLocationDetailsVars;
   }
 
@@ -130,10 +135,15 @@ class GLocationDetailsVarsBuilder
   GLocationDetailsVars build() => _build();
 
   _$GLocationDetailsVars _build() {
-    final _$result = _$v ??
-        new _$GLocationDetailsVars._(
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GLocationDetailsVars', 'id'));
+    final _$result =
+        _$v ??
+        _$GLocationDetailsVars._(
+          id: BuiltValueNullFieldError.checkNotNull(
+            id,
+            r'GLocationDetailsVars',
+            'id',
+          ),
+        );
     replace(_$result);
     return _$result;
   }

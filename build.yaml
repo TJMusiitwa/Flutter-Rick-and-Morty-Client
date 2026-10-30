@@ -1,11 +1,7 @@
 targets:
   $default:
     builders:
-      ferry_generator|graphql_builder:
-        enabled: true
+      graphql_codegen:
         options:
-          schema: ricky_n_morty|lib/graphql/schema.graphql
-      ferry_generator|serializer_builder:
-        enabled: true
-        options:
-          schema: ricky_n_morty|lib/graphql/schema.graphql
+          clients:
+            - graphql_flutter

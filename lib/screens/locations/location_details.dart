@@ -1,12 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:ferry/ferry.dart';
-import 'package:ferry_flutter/ferry_flutter.dart';
-import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:material_ui/material_ui.dart';
 
-import '../../graphql/__generated__/locationDetails.data.gql.dart';
-import '../../graphql/__generated__/locationDetails.req.gql.dart';
-import '../../graphql/__generated__/locationDetails.var.gql.dart';
+import '../../graphql/locationDetails.graphql.dart';
 
 class LocationDetails extends StatelessWidget {
   final String? id, locationName, locationType, locationDimension;
@@ -21,30 +17,25 @@ class LocationDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final client = GetIt.I<Client>();
     return Scaffold(
       appBar: AppBar(
         title: Text(locationName!, overflow: TextOverflow.ellipsis),
       ),
-      body: Operation(
-        client: client,
-        operationRequest: GLocationDetailsReq(
-          (d) =>
-              d
-                ..vars.id = id
-                ..fetchPolicy = FetchPolicy.CacheFirst,
+      body: Query$LocationDetails$Widget(
+        options: Options$Query$LocationDetails(
+          variables: Variables$Query$LocationDetails(id: id ?? ''),
+          fetchPolicy: FetchPolicy.cacheFirst,
         ),
-        builder: (
-          BuildContext context,
-          OperationResponse<GLocationDetailsData, GLocationDetailsVars?>?
-          response,
-          Object? error,
-        ) {
-          if (response!.loading) {
+        builder: (response, {fetchMore, refetch}) {
+          if (response.isLoading) {
             return const Center(child: CircularProgressIndicator());
           }
-          if (response.hasErrors) {}
-          final residents = response.data!.location!.residents!.asList();
+          if (response.hasException || response.parsedData?.location == null) {
+            return Center(
+              child: Text(response.exception?.toString() ?? 'No data found'),
+            );
+          }
+          final residents = response.parsedData!.location!.residents!.toList();
           return SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
             child: Column(
@@ -79,8 +70,7 @@ class LocationDetails extends StatelessWidget {
                     (int index) => Chip(
                       avatar: CircleAvatar(
                         backgroundImage: CachedNetworkImageProvider(
-                          residents[index]?.image ??
-                              'https://rickandmortyapi.com/api/character/avatar/19.jpeg',
+                          residents[index]?.image ?? 'https://rickandmortyapi.com/api/character/avatar/19.jpeg',
                           scale: 1.5,
                         ),
                       ),

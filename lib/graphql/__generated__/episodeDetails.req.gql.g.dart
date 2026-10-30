@@ -7,7 +7,7 @@ part of 'episodeDetails.req.gql.dart';
 // **************************************************************************
 
 Serializer<GepisodeDetailsReq> _$gepisodeDetailsReqSerializer =
-    new _$GepisodeDetailsReqSerializer();
+    _$GepisodeDetailsReqSerializer();
 
 class _$GepisodeDetailsReqSerializer
     implements StructuredSerializer<GepisodeDetailsReq> {
@@ -18,64 +18,90 @@ class _$GepisodeDetailsReqSerializer
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GepisodeDetailsReq object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GepisodeDetailsReq object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'vars',
-      serializers.serialize(object.vars,
-          specifiedType: const FullType(_i3.GepisodeDetailsVars)),
+      serializers.serialize(
+        object.vars,
+        specifiedType: const FullType(_i3.GepisodeDetailsVars),
+      ),
       'operation',
-      serializers.serialize(object.operation,
-          specifiedType: const FullType(_i4.Operation)),
+      serializers.serialize(
+        object.operation,
+        specifiedType: const FullType(_i4.Operation),
+      ),
       'executeOnListen',
-      serializers.serialize(object.executeOnListen,
-          specifiedType: const FullType(bool)),
+      serializers.serialize(
+        object.executeOnListen,
+        specifiedType: const FullType(bool),
+      ),
     ];
     Object? value;
     value = object.requestId;
     if (value != null) {
       result
         ..add('requestId')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.optimisticResponse;
     if (value != null) {
       result
         ..add('optimisticResponse')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(_i2.GepisodeDetailsData)));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(_i2.GepisodeDetailsData),
+          ),
+        );
     }
     value = object.updateCacheHandlerKey;
     if (value != null) {
       result
         ..add('updateCacheHandlerKey')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.updateCacheHandlerContext;
     if (value != null) {
       result
         ..add('updateCacheHandlerContext')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(
-                Map, const [const FullType(String), const FullType(dynamic)])));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(Map, const [
+              const FullType(String),
+              const FullType(dynamic),
+            ]),
+          ),
+        );
     }
     value = object.fetchPolicy;
     if (value != null) {
       result
         ..add('fetchPolicy')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(_i1.FetchPolicy)));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(_i1.FetchPolicy),
+          ),
+        );
     }
     return result;
   }
 
   @override
   GepisodeDetailsReq deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new GepisodeDetailsReqBuilder();
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = GepisodeDetailsReqBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -84,42 +110,73 @@ class _$GepisodeDetailsReqSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'vars':
-          result.vars.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(_i3.GepisodeDetailsVars))!
-              as _i3.GepisodeDetailsVars);
+          result.vars.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(_i3.GepisodeDetailsVars),
+                )!
+                as _i3.GepisodeDetailsVars,
+          );
           break;
         case 'operation':
-          result.operation = serializers.deserialize(value,
-              specifiedType: const FullType(_i4.Operation))! as _i4.Operation;
+          result.operation =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(_i4.Operation),
+                  )!
+                  as _i4.Operation;
           break;
         case 'requestId':
-          result.requestId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.requestId =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'optimisticResponse':
-          result.optimisticResponse.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(_i2.GepisodeDetailsData))!
-              as _i2.GepisodeDetailsData);
+          result.optimisticResponse.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(_i2.GepisodeDetailsData),
+                )!
+                as _i2.GepisodeDetailsData,
+          );
           break;
         case 'updateCacheHandlerKey':
-          result.updateCacheHandlerKey = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.updateCacheHandlerKey =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'updateCacheHandlerContext':
-          result.updateCacheHandlerContext = serializers.deserialize(value,
-              specifiedType: const FullType(Map, const [
-                const FullType(String),
-                const FullType(dynamic)
-              ])) as Map<String, dynamic>?;
+          result.updateCacheHandlerContext =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(Map, const [
+                      const FullType(String),
+                      const FullType(dynamic),
+                    ]),
+                  )
+                  as Map<String, dynamic>?;
           break;
         case 'fetchPolicy':
-          result.fetchPolicy = serializers.deserialize(value,
-                  specifiedType: const FullType(_i1.FetchPolicy))
-              as _i1.FetchPolicy?;
+          result.fetchPolicy =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(_i1.FetchPolicy),
+                  )
+                  as _i1.FetchPolicy?;
           break;
         case 'executeOnListen':
-          result.executeOnListen = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+          result.executeOnListen =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
           break;
       }
     }
@@ -137,7 +194,10 @@ class _$GepisodeDetailsReq extends GepisodeDetailsReq {
   final String? requestId;
   @override
   final _i2.GepisodeDetailsData? Function(
-      _i2.GepisodeDetailsData?, _i2.GepisodeDetailsData?)? updateResult;
+    _i2.GepisodeDetailsData?,
+    _i2.GepisodeDetailsData?,
+  )?
+  updateResult;
   @override
   final _i2.GepisodeDetailsData? optimisticResponse;
   @override
@@ -151,37 +211,30 @@ class _$GepisodeDetailsReq extends GepisodeDetailsReq {
   @override
   final _i4.Context? context;
 
-  factory _$GepisodeDetailsReq(
-          [void Function(GepisodeDetailsReqBuilder)? updates]) =>
-      (new GepisodeDetailsReqBuilder()..update(updates))._build();
+  factory _$GepisodeDetailsReq([
+    void Function(GepisodeDetailsReqBuilder)? updates,
+  ]) => (GepisodeDetailsReqBuilder()..update(updates))._build();
 
-  _$GepisodeDetailsReq._(
-      {required this.vars,
-      required this.operation,
-      this.requestId,
-      this.updateResult,
-      this.optimisticResponse,
-      this.updateCacheHandlerKey,
-      this.updateCacheHandlerContext,
-      this.fetchPolicy,
-      required this.executeOnListen,
-      this.context})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(vars, r'GepisodeDetailsReq', 'vars');
-    BuiltValueNullFieldError.checkNotNull(
-        operation, r'GepisodeDetailsReq', 'operation');
-    BuiltValueNullFieldError.checkNotNull(
-        executeOnListen, r'GepisodeDetailsReq', 'executeOnListen');
-  }
-
+  _$GepisodeDetailsReq._({
+    required this.vars,
+    required this.operation,
+    this.requestId,
+    this.updateResult,
+    this.optimisticResponse,
+    this.updateCacheHandlerKey,
+    this.updateCacheHandlerContext,
+    this.fetchPolicy,
+    required this.executeOnListen,
+    this.context,
+  }) : super._();
   @override
   GepisodeDetailsReq rebuild(
-          void Function(GepisodeDetailsReqBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GepisodeDetailsReqBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GepisodeDetailsReqBuilder toBuilder() =>
-      new GepisodeDetailsReqBuilder()..replace(this);
+      GepisodeDetailsReqBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -240,7 +293,7 @@ class GepisodeDetailsReqBuilder
 
   _i3.GepisodeDetailsVarsBuilder? _vars;
   _i3.GepisodeDetailsVarsBuilder get vars =>
-      _$this._vars ??= new _i3.GepisodeDetailsVarsBuilder();
+      _$this._vars ??= _i3.GepisodeDetailsVarsBuilder();
   set vars(_i3.GepisodeDetailsVarsBuilder? vars) => _$this._vars = vars;
 
   _i4.Operation? _operation;
@@ -252,19 +305,26 @@ class GepisodeDetailsReqBuilder
   set requestId(String? requestId) => _$this._requestId = requestId;
 
   _i2.GepisodeDetailsData? Function(
-      _i2.GepisodeDetailsData?, _i2.GepisodeDetailsData?)? _updateResult;
+    _i2.GepisodeDetailsData?,
+    _i2.GepisodeDetailsData?,
+  )?
+  _updateResult;
   _i2.GepisodeDetailsData? Function(
-          _i2.GepisodeDetailsData?, _i2.GepisodeDetailsData?)?
-      get updateResult => _$this._updateResult;
+    _i2.GepisodeDetailsData?,
+    _i2.GepisodeDetailsData?,
+  )?
+  get updateResult => _$this._updateResult;
   set updateResult(
-          _i2.GepisodeDetailsData? Function(
-                  _i2.GepisodeDetailsData?, _i2.GepisodeDetailsData?)?
-              updateResult) =>
-      _$this._updateResult = updateResult;
+    _i2.GepisodeDetailsData? Function(
+      _i2.GepisodeDetailsData?,
+      _i2.GepisodeDetailsData?,
+    )?
+    updateResult,
+  ) => _$this._updateResult = updateResult;
 
   _i2.GepisodeDetailsDataBuilder? _optimisticResponse;
   _i2.GepisodeDetailsDataBuilder get optimisticResponse =>
-      _$this._optimisticResponse ??= new _i2.GepisodeDetailsDataBuilder();
+      _$this._optimisticResponse ??= _i2.GepisodeDetailsDataBuilder();
   set optimisticResponse(_i2.GepisodeDetailsDataBuilder? optimisticResponse) =>
       _$this._optimisticResponse = optimisticResponse;
 
@@ -277,8 +337,8 @@ class GepisodeDetailsReqBuilder
   Map<String, dynamic>? get updateCacheHandlerContext =>
       _$this._updateCacheHandlerContext;
   set updateCacheHandlerContext(
-          Map<String, dynamic>? updateCacheHandlerContext) =>
-      _$this._updateCacheHandlerContext = updateCacheHandlerContext;
+    Map<String, dynamic>? updateCacheHandlerContext,
+  ) => _$this._updateCacheHandlerContext = updateCacheHandlerContext;
 
   _i1.FetchPolicy? _fetchPolicy;
   _i1.FetchPolicy? get fetchPolicy => _$this._fetchPolicy;
@@ -318,7 +378,6 @@ class GepisodeDetailsReqBuilder
 
   @override
   void replace(GepisodeDetailsReq other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GepisodeDetailsReq;
   }
 
@@ -333,20 +392,28 @@ class GepisodeDetailsReqBuilder
   _$GepisodeDetailsReq _build() {
     _$GepisodeDetailsReq _$result;
     try {
-      _$result = _$v ??
-          new _$GepisodeDetailsReq._(
-              vars: vars.build(),
-              operation: BuiltValueNullFieldError.checkNotNull(
-                  operation, r'GepisodeDetailsReq', 'operation'),
-              requestId: requestId,
-              updateResult: updateResult,
-              optimisticResponse: _optimisticResponse?.build(),
-              updateCacheHandlerKey: updateCacheHandlerKey,
-              updateCacheHandlerContext: updateCacheHandlerContext,
-              fetchPolicy: fetchPolicy,
-              executeOnListen: BuiltValueNullFieldError.checkNotNull(
-                  executeOnListen, r'GepisodeDetailsReq', 'executeOnListen'),
-              context: context);
+      _$result =
+          _$v ??
+          _$GepisodeDetailsReq._(
+            vars: vars.build(),
+            operation: BuiltValueNullFieldError.checkNotNull(
+              operation,
+              r'GepisodeDetailsReq',
+              'operation',
+            ),
+            requestId: requestId,
+            updateResult: updateResult,
+            optimisticResponse: _optimisticResponse?.build(),
+            updateCacheHandlerKey: updateCacheHandlerKey,
+            updateCacheHandlerContext: updateCacheHandlerContext,
+            fetchPolicy: fetchPolicy,
+            executeOnListen: BuiltValueNullFieldError.checkNotNull(
+              executeOnListen,
+              r'GepisodeDetailsReq',
+              'executeOnListen',
+            ),
+            context: context,
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -356,8 +423,11 @@ class GepisodeDetailsReqBuilder
         _$failedField = 'optimisticResponse';
         _optimisticResponse?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            r'GepisodeDetailsReq', _$failedField, e.toString());
+        throw BuiltValueNestedFieldError(
+          r'GepisodeDetailsReq',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }

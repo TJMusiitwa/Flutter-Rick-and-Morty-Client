@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:ricky_n_morty/screens/characters/character_details.dart';
 import 'package:ricky_n_morty/screens/characters/characters_screen.dart';

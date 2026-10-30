@@ -18,24 +18,24 @@ GCacheControlScope _$gCacheControlScopeValueOf(String name) {
     case 'PRIVATE':
       return _$gCacheControlScopePRIVATE;
     default:
-      throw new ArgumentError(name);
+      throw ArgumentError(name);
   }
 }
 
 final BuiltSet<GCacheControlScope> _$gCacheControlScopeValues =
-    new BuiltSet<GCacheControlScope>(const <GCacheControlScope>[
-  _$gCacheControlScopePUBLIC,
-  _$gCacheControlScopePRIVATE,
-]);
+    BuiltSet<GCacheControlScope>(const <GCacheControlScope>[
+      _$gCacheControlScopePUBLIC,
+      _$gCacheControlScopePRIVATE,
+    ]);
 
 Serializer<GCacheControlScope> _$gCacheControlScopeSerializer =
-    new _$GCacheControlScopeSerializer();
+    _$GCacheControlScopeSerializer();
 Serializer<GFilterCharacter> _$gFilterCharacterSerializer =
-    new _$GFilterCharacterSerializer();
+    _$GFilterCharacterSerializer();
 Serializer<GFilterEpisode> _$gFilterEpisodeSerializer =
-    new _$GFilterEpisodeSerializer();
+    _$GFilterEpisodeSerializer();
 Serializer<GFilterLocation> _$gFilterLocationSerializer =
-    new _$GFilterLocationSerializer();
+    _$GFilterLocationSerializer();
 
 class _$GCacheControlScopeSerializer
     implements PrimitiveSerializer<GCacheControlScope> {
@@ -45,14 +45,18 @@ class _$GCacheControlScopeSerializer
   final String wireName = 'GCacheControlScope';
 
   @override
-  Object serialize(Serializers serializers, GCacheControlScope object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      object.name;
+  Object serialize(
+    Serializers serializers,
+    GCacheControlScope object, {
+    FullType specifiedType = FullType.unspecified,
+  }) => object.name;
 
   @override
-  GCacheControlScope deserialize(Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      GCacheControlScope.valueOf(serialized as String);
+  GCacheControlScope deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) => GCacheControlScope.valueOf(serialized as String);
 }
 
 class _$GFilterCharacterSerializer
@@ -63,53 +67,63 @@ class _$GFilterCharacterSerializer
   final String wireName = 'GFilterCharacter';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, GFilterCharacter object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GFilterCharacter object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[];
     Object? value;
     value = object.name;
     if (value != null) {
       result
         ..add('name')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.status;
     if (value != null) {
       result
         ..add('status')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.species;
     if (value != null) {
       result
         ..add('species')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.type;
     if (value != null) {
       result
         ..add('type')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.gender;
     if (value != null) {
       result
         ..add('gender')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     return result;
   }
 
   @override
   GFilterCharacter deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new GFilterCharacterBuilder();
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = GFilterCharacterBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -118,24 +132,44 @@ class _$GFilterCharacterSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'name':
-          result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.name =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'status':
-          result.status = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.status =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'species':
-          result.species = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.species =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'type':
-          result.type = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.type =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'gender':
-          result.gender = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.gender =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
       }
     }
@@ -152,32 +186,39 @@ class _$GFilterEpisodeSerializer
   final String wireName = 'GFilterEpisode';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, GFilterEpisode object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GFilterEpisode object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[];
     Object? value;
     value = object.name;
     if (value != null) {
       result
         ..add('name')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.episode;
     if (value != null) {
       result
         ..add('episode')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     return result;
   }
 
   @override
   GFilterEpisode deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new GFilterEpisodeBuilder();
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = GFilterEpisodeBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -186,12 +227,20 @@ class _$GFilterEpisodeSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'name':
-          result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.name =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'episode':
-          result.episode = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.episode =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
       }
     }
@@ -208,39 +257,47 @@ class _$GFilterLocationSerializer
   final String wireName = 'GFilterLocation';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, GFilterLocation object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GFilterLocation object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[];
     Object? value;
     value = object.name;
     if (value != null) {
       result
         ..add('name')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.type;
     if (value != null) {
       result
         ..add('type')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.dimension;
     if (value != null) {
       result
         ..add('dimension')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     return result;
   }
 
   @override
   GFilterLocation deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new GFilterLocationBuilder();
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = GFilterLocationBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -249,16 +306,28 @@ class _$GFilterLocationSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'name':
-          result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.name =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'type':
-          result.type = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.type =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'dimension':
-          result.dimension = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.dimension =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
       }
     }
@@ -279,21 +348,24 @@ class _$GFilterCharacter extends GFilterCharacter {
   @override
   final String? gender;
 
-  factory _$GFilterCharacter(
-          [void Function(GFilterCharacterBuilder)? updates]) =>
-      (new GFilterCharacterBuilder()..update(updates))._build();
+  factory _$GFilterCharacter([
+    void Function(GFilterCharacterBuilder)? updates,
+  ]) => (GFilterCharacterBuilder()..update(updates))._build();
 
-  _$GFilterCharacter._(
-      {this.name, this.status, this.species, this.type, this.gender})
-      : super._();
-
+  _$GFilterCharacter._({
+    this.name,
+    this.status,
+    this.species,
+    this.type,
+    this.gender,
+  }) : super._();
   @override
   GFilterCharacter rebuild(void Function(GFilterCharacterBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
   GFilterCharacterBuilder toBuilder() =>
-      new GFilterCharacterBuilder()..replace(this);
+      GFilterCharacterBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -371,7 +443,6 @@ class GFilterCharacterBuilder
 
   @override
   void replace(GFilterCharacter other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GFilterCharacter;
   }
 
@@ -384,13 +455,15 @@ class GFilterCharacterBuilder
   GFilterCharacter build() => _build();
 
   _$GFilterCharacter _build() {
-    final _$result = _$v ??
-        new _$GFilterCharacter._(
-            name: name,
-            status: status,
-            species: species,
-            type: type,
-            gender: gender);
+    final _$result =
+        _$v ??
+        _$GFilterCharacter._(
+          name: name,
+          status: status,
+          species: species,
+          type: type,
+          gender: gender,
+        );
     replace(_$result);
     return _$result;
   }
@@ -403,17 +476,15 @@ class _$GFilterEpisode extends GFilterEpisode {
   final String? episode;
 
   factory _$GFilterEpisode([void Function(GFilterEpisodeBuilder)? updates]) =>
-      (new GFilterEpisodeBuilder()..update(updates))._build();
+      (GFilterEpisodeBuilder()..update(updates))._build();
 
   _$GFilterEpisode._({this.name, this.episode}) : super._();
-
   @override
   GFilterEpisode rebuild(void Function(GFilterEpisodeBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GFilterEpisodeBuilder toBuilder() =>
-      new GFilterEpisodeBuilder()..replace(this);
+  GFilterEpisodeBuilder toBuilder() => GFilterEpisodeBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -467,7 +538,6 @@ class GFilterEpisodeBuilder
 
   @override
   void replace(GFilterEpisode other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GFilterEpisode;
   }
 
@@ -480,8 +550,7 @@ class GFilterEpisodeBuilder
   GFilterEpisode build() => _build();
 
   _$GFilterEpisode _build() {
-    final _$result =
-        _$v ?? new _$GFilterEpisode._(name: name, episode: episode);
+    final _$result = _$v ?? _$GFilterEpisode._(name: name, episode: episode);
     replace(_$result);
     return _$result;
   }
@@ -496,17 +565,15 @@ class _$GFilterLocation extends GFilterLocation {
   final String? dimension;
 
   factory _$GFilterLocation([void Function(GFilterLocationBuilder)? updates]) =>
-      (new GFilterLocationBuilder()..update(updates))._build();
+      (GFilterLocationBuilder()..update(updates))._build();
 
   _$GFilterLocation._({this.name, this.type, this.dimension}) : super._();
-
   @override
   GFilterLocation rebuild(void Function(GFilterLocationBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GFilterLocationBuilder toBuilder() =>
-      new GFilterLocationBuilder()..replace(this);
+  GFilterLocationBuilder toBuilder() => GFilterLocationBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -568,7 +635,6 @@ class GFilterLocationBuilder
 
   @override
   void replace(GFilterLocation other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GFilterLocation;
   }
 
@@ -581,8 +647,9 @@ class GFilterLocationBuilder
   GFilterLocation build() => _build();
 
   _$GFilterLocation _build() {
-    final _$result = _$v ??
-        new _$GFilterLocation._(name: name, type: type, dimension: dimension);
+    final _$result =
+        _$v ??
+        _$GFilterLocation._(name: name, type: type, dimension: dimension);
     replace(_$result);
     return _$result;
   }
@@ -593,18 +660,15 @@ class _$GUpload extends GUpload {
   final String value;
 
   factory _$GUpload([void Function(GUploadBuilder)? updates]) =>
-      (new GUploadBuilder()..update(updates))._build();
+      (GUploadBuilder()..update(updates))._build();
 
-  _$GUpload._({required this.value}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(value, r'GUpload', 'value');
-  }
-
+  _$GUpload._({required this.value}) : super._();
   @override
   GUpload rebuild(void Function(GUploadBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GUploadBuilder toBuilder() => new GUploadBuilder()..replace(this);
+  GUploadBuilder toBuilder() => GUploadBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -622,8 +686,9 @@ class _$GUpload extends GUpload {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'GUpload')..add('value', value))
-        .toString();
+    return (newBuiltValueToStringHelper(
+      r'GUpload',
+    )..add('value', value)).toString();
   }
 }
 
@@ -647,7 +712,6 @@ class GUploadBuilder implements Builder<GUpload, GUploadBuilder> {
 
   @override
   void replace(GUpload other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GUpload;
   }
 
@@ -660,10 +724,15 @@ class GUploadBuilder implements Builder<GUpload, GUploadBuilder> {
   GUpload build() => _build();
 
   _$GUpload _build() {
-    final _$result = _$v ??
-        new _$GUpload._(
-            value: BuiltValueNullFieldError.checkNotNull(
-                value, r'GUpload', 'value'));
+    final _$result =
+        _$v ??
+        _$GUpload._(
+          value: BuiltValueNullFieldError.checkNotNull(
+            value,
+            r'GUpload',
+            'value',
+          ),
+        );
     replace(_$result);
     return _$result;
   }
